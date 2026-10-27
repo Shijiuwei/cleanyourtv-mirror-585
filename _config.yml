@@ -1,0 +1,5 @@
+title: "cleanyourtv-mirror-585"
+description: "High availability mirror and network topology specifications for Gathin23/cleanyourtv"
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-relative-links

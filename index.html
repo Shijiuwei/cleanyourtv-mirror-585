@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cleanyourtv-mirror-585 - 官方开源镜像与技术白皮书中心</title>
+  <meta name="description" content="High availability mirror and network topology specifications for Gathin23/cleanyourtv">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+      :root {
+        --color-primary: #2563eb;
+        --color-primary-hover: #1d4ed8;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.68;
+        color: #1e293b;
+      }
+      .markdown-body {
+        color: #1e293b;
+      }
+      .markdown-body h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin-top: 1.8rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 2px solid #e2e8f0;
+        color: #0f172a;
+        line-height: 1.25;
+      }
+      .markdown-body h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-top: 1.6rem;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid #f1f5f9;
+        color: #1e293b;
+      }
+      .markdown-body h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 1.3rem;
+        margin-bottom: 0.6rem;
+        color: #334155;
+      }
+      .markdown-body p {
+        margin-top: 0.8rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.7;
+      }
+      .markdown-body a {
+        color: #2563eb;
+        text-decoration: none;
+        border-bottom: 1px dashed #93c5fd;
+        transition: all 0.2s ease;
+      }
+      .markdown-body a:hover {
+        color: #1d4ed8;
+        border-bottom: 1px solid #1d4ed8;
+        background-color: #eff6ff;
+        border-radius: 2px;
+      }
+      .markdown-body ul, .markdown-body ol {
+        padding-left: 1.5rem;
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+      }
+      .markdown-body ul {
+        list-style-type: disc;
+      }
+      .markdown-body ol {
+        list-style-type: decimal;
+      }
+      .markdown-body li {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+      }
+      .markdown-body pre {
+        background-color: #0f172a;
+        color: #e2e8f0;
+        padding: 1rem 1.2rem;
+        border-radius: 0.75rem;
+        overflow-x: auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.875rem;
+        margin: 1rem 0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      .markdown-body code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.875em;
+        padding: 0.15rem 0.35rem;
+        background-color: #f1f5f9;
+        color: #0f172a;
+        border-radius: 0.35rem;
+        border: 1px solid #e2e8f0;
+      }
+      .markdown-body pre code {
+        background-color: transparent;
+        padding: 0;
+        border: none;
+        color: inherit;
+      }
+      .markdown-body blockquote {
+        margin: 1rem 0;
+        padding: 0.75rem 1.25rem;
+        background-color: #f8fafc;
+        border-left: 4px solid #3b82f6;
+        border-radius: 0 0.5rem 0.5rem 0;
+        color: #475569;
+      }
+      .markdown-body table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.2rem 0;
+        display: block;
+        overflow-x: auto;
+      }
+      .markdown-body th, .markdown-body td {
+        border: 1px solid #cbd5e1;
+        padding: 0.6rem 1rem;
+        text-align: left;
+      }
+      .markdown-body th {
+        background-color: #f1f5f9;
+        font-weight: 600;
+      }
+      .markdown-body tr:nth-child(even) {
+        background-color: #f8fafc;
+      }
+      .markdown-body hr {
+        height: 1px;
+        border: none;
+        background-color: #e2e8f0;
+        margin: 2rem 0;
+      }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col antialiased">
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="./index.html" class="flex items-center gap-2 group">
+        <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-bold text-sm shadow-sm group-hover:scale-105 transition-transform ">LM</span>
+        <span class="font-bold text-slate-900 tracking-tight text-lg group-hover:text-blue-600 transition-colors ">cleanyourtv-mirror-585</span>
+      </a>
+      <span class="hidden md:inline-block text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-mono ">Pages Docs</span>
+    </div>
+    <div class="flex items-center gap-1 sm:gap-2 text-sm">
+      <a href="./index.html" class="px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 text-blue-600 bg-blue-50 font-semibold ">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <span>首页 (README)</span>
+      </a>
+      <a href="./docs/index.html" class="px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium ">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        <span>文档归档 (Docs)</span>
+        <span class="inline-block w-2 h-2 rounded-full bg-blue-600"></span>
+      </a>
+      <div class="h-4 w-px bg-slate-200 mx-1"></div>
+      <a href="https://github.com/shijiuwei/cleanyourtv-mirror-585" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors flex items-center gap-1.5 ">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        <span class="hidden sm:inline">GitHub</span>
+      </a>
+      <a href="https://github.com/shijiuwei/cleanyourtv-mirror-585/wiki" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors flex items-center gap-1.5 ">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span class="hidden sm:inline">Wiki</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+  <!-- Hero Header -->
+  <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-900 text-white py-12 px-4 sm:px-6 shadow-md border-b border-slate-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-0.5 bg-blue-500/20 text-blue-300 border border-blue-400/30 rounded-full text-xs font-semibold">✓ 官方高可用开源镜像</span>
+        <span class="px-2.5 py-0.5 bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 rounded-full text-xs font-semibold">● 72h 存活率指标 99.8%</span>
+        <span class="px-2.5 py-0.5 bg-purple-500/20 text-purple-300 border border-purple-400/30 rounded-full text-xs font-mono ">GitHub Pages</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">cleanyourtv-mirror-585</h1>
+      <p class="text-slate-300 text-base sm:text-lg max-w-3xl leading-relaxed mb-6">High availability mirror and network topology specifications for Gathin23/cleanyourtv</p>
+      
+      <!-- 行动入口栏：显要引导进入 Docs 归档菜单 -->
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        <a href="./docs/index.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm shadow-lg shadow-blue-600/30 transition-all hover:scale-[1.02] active:scale-[0.98] ">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          <span>进入文档归档菜单 (Docs Catalog) &rarr;</span>
+        </a>
+        <a href="#readme-content" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium text-sm border border-white/20 backdrop-blur transition-colors ">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          <span>查阅项目 README 正文</span>
+        </a>
+        <a href="https://github.com/shijiuwei/cleanyourtv-mirror-585" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-slate-300 hover:text-white text-xs transition-colors ">
+          <span>访问 GitHub 源码库</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主体区域：两栏布局（主栏：改造后 README；侧栏：Docs 归档菜单预览与外链速查） -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- 主内容区：展示改造后的 README.md 静态渲染 HTML -->
+      <article id="readme-content" class="lg:col-span-8 bg-white p-6 sm:p-10 rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
+          <div class="flex items-center gap-2 text-xs text-slate-500 font-mono ">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span>README.md (已注入高权重拓扑网络)</span>
+          </div>
+          <a href="./docs/index.html" class="text-xs text-blue-600 hover:underline flex items-center gap-1 font-medium ">
+            <span>浏览全部 12 篇归档文档</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+        <div class="markdown-body">
+          <p align="left">
+  <a href="https://shijiuwei.github.io/cleanyourtv-mirror-585/"><img src="https://img.shields.io/badge/GitHub_Pages-在线文档中心-2563eb.svg" alt="GitHub Pages"></a>
+  <a href="https://shijiuwei.github.io/cleanyourtv-mirror-585/docs/"><img src="https://img.shields.io/badge/Docs_Archive-文档归档菜单-10b981.svg" alt="Docs Archive"></a>
+</p>
+<blockquote>
+<p>🌐 <strong>官方在线文档与静态镜像中心 (GitHub Pages)</strong>：<a href="https://shijiuwei.github.io/cleanyourtv-mirror-585/">https://shijiuwei.github.io/cleanyourtv-mirror-585/</a><br />
+📚 <strong>技术规约与文档归档菜单 (Docs Catalog)</strong>：<a href="https://shijiuwei.github.io/cleanyourtv-mirror-585/docs/">https://shijiuwei.github.io/cleanyourtv-mirror-585/docs/</a></p>
+</blockquote>
+<p align="center">
+  <a href="https://ftfb.tcti.cn/gongsi/game-43637357.html"><img src="https://raw.githubusercontent.com/Gathin23/cleanyourtv/main/docs/banner.png" alt="CleanYourTV. Your TV, minus the ads. Strip the bloatware from any Android TV or Google TV over Wi-Fi and replace the ad-filled home screen with a clean launcher that looks like an Apple TV. No root, no cable, nothing uninstalled, and a one-line restore." width="800"></a>
+</p>
+<p align="center">
+  <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/README-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-cfffcf?style=flat&labelColor=15181e" alt="简体中文"></a>
+  <a href="README.zh-TW.md"><img src="https://img.shields.io/badge/README-%E6%AD%A3%E9%AB%94%E4%B8%AD%E6%96%87-cfffcf?style=flat&labelColor=15181e" alt="正體中文"></a>
+  <a href="README.vi.md"><img src="https://img.shields.io/badge/README-Ti%E1%BA%BFng%20Vi%E1%BB%87t-cfffcf?style=flat&labelColor=15181e" alt="Tiếng Việt"></a>
+  <a href="README.ja.md"><img src="https://img.shields.io/badge/README-%E6%97%A5%E6%9C%AC%E8%AA%9E-cfffcf?style=flat&labelColor=15181e" alt="日本語"></a>
+  <a href="README.it.md"><img src="https://img.shields.io/badge/README-Italiano-cfffcf?style=flat&labelColor=15181e" alt="Italiano"></a>
+  <a href="README.nl.md"><img src="https://img.shields.io/badge/README-Nederlands-cfffcf?style=flat&labelColor=15181e" alt="Nederlands"></a>
+</p>
+<p align="center">
+  <a href="https://www.siseo.cn/index.html"><img src="https://img.shields.io/github/stars/Gathin23/cleanyourtv?style=flat&cacheSeconds=1800&color=cfffcf&labelColor=15181e" alt="Stars"></a>
+  <a href="https://jujt.wtpuscm.cn/jiaocheng/internet-311683.html"><img src="https://img.shields.io/github/issues-search?query=repo%3AGathin23%2Fcleanyourtv%20is%3Apr%20is%3Amerged&style=flat&cacheSeconds=1800&label=merged%20PRs&color=cfffcf&labelColor=15181e" alt="Merged PRs"></a>
+  <a href="https://lbuc.ai-hao123.com/yingyong/experience-17181018.html"><img src="https://img.shields.io/github/forks/Gathin23/cleanyourtv?style=flat&cacheSeconds=1800&color=cfffcf&labelColor=15181e" alt="Forks"></a>
+  <a href="https://tyiu.tcti.cn/zixun/platform-92254644.html"><img src="https://img.shields.io/github/contributors/Gathin23/cleanyourtv?style=flat&cacheSeconds=1800&color=cfffcf&labelColor=15181e" alt="Contributors"></a>
+  <a href="https://aihu.wtpuscm.cn/anli/coupon-508338.html"><img src="https://img.shields.io/badge/support-%E2%9D%A4-ff5e8a?style=flat&labelColor=15181e" alt="Support, buy me a coffee"></a>
+  <a href="https://aite.yx-sf.com/xinwen/photo-25394077.html"><img src="https://img.shields.io/badge/Product%20Hunt-upvote%20%E2%96%B2-da552f?style=flat&logo=producthunt&logoColor=white&labelColor=15181e" alt="CleanYourTV on Product Hunt"></a>
+</p>
+<p align="center">
+  <a href="https://iulm.ai-hao123.com/suanfa/game-85692082.html"><img src="docs/trending-badge.png" alt="#1 trending repo of the week, Oct 19–25 2026, via trendshift.io" width="360"></a>
+</p>
+<p align="center">
+  <a href="docs/PRESS.md"><img src="docs/card.jpg" alt="335 TV models · 92 brands · 29 languages · 532 KB launcher. Featured in TechCrunch, TechRadar, Tom's Guide, Mashable, Android Authority, XDA, FlatpanelsHD, It's FOSS, Phandroid, GIGAZINE, Xataka, WinFuture, Frandroid, Macitynet, Techaeris, TechPP and 269 more: 285 articles from 41 countries. Before: stock Google TV home with a sponsored ad. After: the Clean Your TV launcher." width="800"></a>
+</p>
+<p><strong>Samsung, LG, Roku or another non-Android TV?</strong> CleanYourTV can't run there, but you can still turn off
+the tracking, step by step with your remote: <a href="https://wxyf.wtpuscm.cn/chanpin/follow-784238.html">cleanyour.tv/not-android</a></p>
+<p><strong>The viral tweet:</strong> <a href="https://useo.pro/index.html">x.com/gathint/status/2111379569030939102</a></p>
+<p>On 17 October 2026 I posted a before and after of my parents' TV, cleaned up by Claude Code over Wi-Fi.
+It reached 7.4M views, people started doing the same to their own TVs, and their replies turned into
+the lists here: 170+ TV models from 200+ contributors in four days. The repo was called tv-vibehack
+until the 19th; old links work.</p>
+<p><strong>Themes, switches and add-ons:</strong> <a href="https://zrzx.ai-hao123.com/hezuo/excellence-40763837.html">cleanyour.tv/addons</a></p>
+<p><strong>Official links:</strong> the website is <a href="https://orbc.ai-hao123.com/pingtai/tag-10923591.html">cleanyour.tv</a> and the code, launcher and
+tools live only in this repo. Other domains using the name, such as cleanyourtv.com, are not run by
+this project (<a href="https://bvjd.wtpuscm.cn/shichang/seminar-542776.html">#1004</a>).</p>
+<h2>How it works</h2>
+<p>Android TVs have the same debug bridge as Android phones. Switch on USB debugging in the TV's
+developer options, allow your computer once, and the rest is standard Android tooling:</p>
+<table><thead><tr><th>Step</th><th>What happens</th></tr></thead><tbody>
+<tr><td><strong>Back up</strong></td><td>The list of installed packages and settings.</td></tr>
+<tr><td><strong>Disable</strong></td><td>The manufacturer's telemetry, ad services, content rows and preloaded junk, with <code>pm disable-user</code>. Nothing is uninstalled, so a restore script can undo every step.</td></tr>
+<tr><td><strong>Install</strong></td><td>A small native launcher, made the default home screen.</td></tr>
+</tbody></table>
+<p><strong>No root, no cable, nothing uninstalled, and a one-line restore if you change your mind.</strong></p>
+<p>The bloat differs by brand, so the prompt has your coding assistant discover it on your TV and ask
+before touching anything you might use.</p>
+<h2>Quick start</h2>
+<table><thead><tr><th>You have</th><th>Do this</th></tr></thead><tbody>
+<tr><td><strong>A computer</strong></td><td>Use the prompt with a coding assistant: the three steps below.</td></tr>
+<tr><td><strong>A computer, no coding assistant</strong></td><td>Run the three steps yourself: the commands are in <a href="#doing-it-by-hand">Doing it by hand</a>.</td></tr>
+<tr><td><strong>Only an Android phone</strong></td><td>Use the community-built <a href="https://jgfo.yx-sf.com/pingtai/meeting-32540621.html">Clean Your TV app</a> by <a href="https://cknn.ai-hao123.com/pingtai/profile-69331681.html">@udhaykumarbala</a>: connect, analyse, clean, in about five minutes. No laptop, no coding agent.</td></tr>
+</tbody></table>
+<p>The three steps below are written for a coding assistant: the computer needs to be on the same Wi-Fi as
+the TV, with a shell on it. Without an assistant, <a href="#doing-it-by-hand">Doing it by hand</a> is the same job,
+run by you.</p>
+<p>Any of these work: Claude Code (on <a href="https://tbyu.yx-sf.com/zixun/deadline-66414382.html">0G Private Computer</a> or an <a href="https://rewz.tcti.cn/ziyuan/creative-13259968.html">Anthropic plan</a>), <a href="https://jgfo.yx-sf.com/pingtai/meeting-32540621.html">Codex</a>, <a href="https://drbp.ai-hao123.com/chuangxin/layout-40624474.html">Gemini CLI</a> or <a href="https://uchz.ai-hao123.com/fenxi/success-70742622.html">Antigravity CLI</a>.</p>
+<table><thead><tr><th>Where</th><th>What to do</th></tr></thead><tbody>
+<tr><td><strong>1. On the TV</strong></td><td>Settings → Device Preferences → About → press OK on <strong>Build</strong> seven times → back → Developer options → <strong>USB debugging</strong> on. If you see a Network or ADB debugging toggle, turn that on too. Keep the TV on.</td></tr>
+<tr><td><strong>2. On your computer</strong></td><td>Clone the repo and open that folder in your assistant (<code>git clone https://github.com/Gathin23/cleanyourtv</code>), then paste <a href="PROMPT.md"><code>PROMPT.md</code></a> and fill in your TV model.</td></tr>
+<tr><td><strong>3. Follow along</strong></td><td>Accept "Allow USB debugging?" on the TV, then answer the checklist: which apps you use, the dock size and app order, whether to keep the voice assistant, Chromecast and updates.</td></tr>
+</tbody></table>
+<p>Cloning matters: the assistant reuses this repo's <code>tools/disable.sh</code> and <code>launcher/build-and-install.sh</code>
+instead of writing its own, and that is where the backup, the Home guard and the restore record live.</p>
+<p>The assistant backs up, debloats, builds and installs the launcher, and checks each step with
+screenshots pulled from the TV. With this repo as context it takes about fifteen minutes.</p>
+<h2>What you get</h2>
+<p>A home screen that looks like an Apple TV and gets out of the way:</p>
+<table><thead><tr><th>Part</th><th>What it looks like</th></tr></thead><tbody>
+<tr><td><strong>A pitch-black home</strong></td><td>A dock of your four favourite apps in a rounded band, where Apple TV puts it.</td></tr>
+<tr><td><strong>A top shelf</strong></td><td>Names the focused app in large type, with an ambient glow in a colour taken from its artwork.</td></tr>
+<tr><td><strong>The rest of your apps in a grid</strong></td><td>Slides up when you press Down.</td></tr>
+<tr><td><strong>One floating glass highlight</strong></td><td>Springs from tile to tile. The focused tile lifts and shows its name.</td></tr>
+<tr><td><strong>Three frosted buttons</strong></td><td>Inputs (HDMI ports under the names you gave them in the TV's settings, AV, Live TV), Wi-Fi or Ethernet with the network name, Settings.</td></tr>
+<tr><td><strong>A greeting, a thin clock and the date</strong></td><td>In <a href="https://wzzi.yx-sf.com/chuangxin/segment-63960098.html">Outfit</a>, and a matching Clock screensaver. Set <code>show_stats</code> in config or a theme for one line under the clock: CPU, free memory and free storage. It stays off unless you turn it on, and it refreshes only while Home is on screen.</td></tr>
+<tr><td><strong>Themes and module cards</strong></td><td>Themes change colours, wallpaper, dock and columns without a rebuild, and module cards let other apps plug a tile in, only with your say-so.</td></tr>
+</tbody></table>
+<p>And a TV that stops working against you: no sponsored rows, no "Discover" nags, no analytics
+phoning home, no apps you never asked for.</p>
+<table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td><img src="docs/focus-2-up-netflix.png" alt="The top shelf names the focused app over an ambient glow in its colour" /></td><td><img src="docs/inputs-menu.jpg" alt="The Inputs popup: HDMI ports with what is connected, AV and Live TV" /></td></tr>
+<tr><td><em>Top shelf and ambient glow</em></td><td><em>Inputs: HDMI with connection state, AV, Live TV</em></td></tr>
+<tr><td><img src="docs/focus-1-fancode.png" alt="The grid with the glass highlight on a tile and its name beneath" /></td><td><img src="docs/clock-screensaver.png" alt="The Clock screensaver: a thin clock drifting over the glow" /></td></tr>
+<tr><td><em>The grid, one glass highlight, the tile's name</em></td><td><em>Clock screensaver, drifts so nothing burns in</em></td></tr>
+<tr><td><img src="themes/aurora/screenshot.jpg" alt="The aurora theme: a wallpaper and tinted pills, pushed without a rebuild" /></td><td><img src="themes/six-columns/screenshot.jpg" alt="Six columns and a six-app dock from a theme&#39;s config.json" /></td></tr>
+<tr><td><em>Aurora theme, pushed with <code>tools/theme.sh</code></em></td><td><em>Six columns and a six-app dock, same launcher</em></td></tr>
+<tr><td><img src="docs/tile-move.jpg" alt="Moving a tile: held OK, chose Move, the tile is picked up and the others dim" /></td><td><img src="docs/app-library.jpg" alt="The App library: installed apps, one press adds an app back to Home" /></td></tr>
+<tr><td><em>With <code>tile_menu</code>, hold OK on a tile, Move: arrows carry it, Back puts it down</em></td><td><em>App library: one press puts a removed app back on Home</em></td></tr>
+</tbody></table>
+<h2>Supported TVs</h2>
+<p>Anything running <strong>Android TV</strong> or <strong>Google TV</strong>.</p>
+<table><thead><tr><th>Platform</th><th>What works</th></tr></thead><tbody>
+<tr><td><strong>Android TV, Google TV</strong></td><td>The debloat and the launcher.</td></tr>
+<tr><td><strong>Fire TV</strong></td><td>The debloat half only, since Fire OS will not hand Home to a third-party launcher. And on the 2015 Fire TV Box (Fire OS 5) even that half fails: every <code>pm</code> route is refused.</td></tr>
+<tr><td><strong>A few China-market TCL sets</strong></td><td>They refuse to install any launcher at all; their lists say so in the header.</td></tr>
+<tr><td><strong>Samsung (Tizen), LG (webOS), Roku, Vizio, Hisense VIDAA</strong></td><td>Not supported (no ADB). Turn off the tracking instead: <a href="https://hjtf.wtpuscm.cn/pingce/accessibility-889659.html">cleanyour.tv/not-android</a>. See <a href="SHOWCASE.md#other-platforms-fire-tv-and-lg-webos">SHOWCASE.md</a> for four webOS ports, and <a href="docs/devices/samsung-tizen.md">docs/devices/samsung-tizen.md</a> for what a 2021 Samsung set answers over Wi-Fi (no ADB, so no <code>pm disable-user</code>) if you are weighing a Tizen port.</td></tr>
+</tbody></table>
+<p>Tested lists from contributors, one folder per model in <a href="examples/"><code>examples/</code></a>:</p>
+<!-- tv-brands:start: generated by tools/gen_tables.py from examples/*/tv.json; edit those, not this -->
+<p><strong>TCL</strong> 74 · <strong>Sony</strong> 40 · <strong>Xiaomi</strong> 32 · <strong>Philips</strong> 17 · <strong>Skyworth</strong> 13 · <strong>Hisense</strong> 11 · <strong>Amazon Fire TV</strong> 7 ·
+<strong>Panasonic</strong> 6 · <strong>BenQ</strong> 4 · <strong>JVC</strong> 4 · <strong>OnePlus</strong> 4 · <strong>Thomson</strong> 4 · <strong>Google</strong> 3 · <strong>Grundig</strong> 3 · <strong>Haier</strong> 3 ·
+<strong>Motorola</strong> 3 · <strong>NVIDIA Shield</strong> 3 · <strong>RCA</strong> 3 · <strong>SHARP</strong> 3 · <strong>Vu</strong> 3 · <strong>CHiQ</strong> 2 · <strong>EKO</strong> 2 · <strong>FFalcon</strong> 2 ·
+<strong>Hitachi</strong> 2 · <strong>Insignia Fire TV</strong> 2 · <strong>Kalley</strong> 2 · <strong>Kogan</strong> 2 · <strong>Nokia</strong> 2 · <strong>onn</strong> 2 · <strong>Redmi</strong> 2 ·
+<strong>RockTek</strong> 2 · <strong>Sankey</strong> 2 · <strong>Sber</strong> 2 · <strong>Toshiba</strong> 2 · <strong>Vidda</strong> 2 ·
+Acer · AiPro2K · AIWA · AQUA · Artel · ASUS · Beko · BGH · Caxium · Cecotec · Challenger · Compac · Dcolor · Dialog ·
+DYON · Freebox · INCLO · Karbonn · KTC · Liberton · Lumio · Master-G · MTC · Next · Noblex · OK. · OPPO · Panavox ·
+PEAQ · Polytron · PPTV · PRISM+ · SANYO · Seleco · Super General · Síragon · Tele System · TiVo · Tornado · Turkcell ·
+Tuvio · Verizon · Vision ·
+Alwtniet, Anker Nebula, BYINTEK, Epson, Formovie, Gadnic, HOTACK, HY320, JMGO, Magcubic, Portronics, Stellamore, Wanbo and XGIMI projectors</p>
+<!-- tv-brands:end -->
+<details>
+<summary><strong>The full list</strong></summary>
+<!-- tv-table:start: generated by tools/gen_tables.py from examples/*/tv.json; edit those, not this -->
+<table><thead><tr><th>TV</th><th>OS</th></tr></thead><tbody>
+<tr><td>Acer AR55AR2851UDPRO 55" (SCBC R4, Realtek rtd2851m), India</td><td>Android TV 14</td></tr>
+<tr><td>AiPro2K (Expressluck, dongnae; Changhong AI PONT family)</td><td>Android TV 14</td></tr>
+<tr><td>AIWA AI PONT SA (Changhong, osaka, ISDB86AW)</td><td>Google TV 14</td></tr>
+<tr><td>Alwtniet HY320 Mini projector (device adt3, Askey; Allwinner/HTC firmware), 1 GB, 720p</td><td>Android 11</td></tr>
+<tr><td>Amazon Fire TV 4K smart TV, 50" and 75" Omni Series (AFTTIFF43, brandenburg)</td><td>Fire OS 7.7.1.4 / 7.7.1.7, Android 9</td></tr>
+<tr><td>Amazon Fire TV smart TV (AFTEU014, greta, MediaTek m7322), Germany</td><td>Fire OS 7.6.8.5 / Android 9</td></tr>
+<tr><td>Amazon Fire TV Stick 4K Max, 1st gen 2021 (AFTKA, kara), Colombia</td><td>Fire OS 7.7.1.3 / Android 9</td></tr>
+<tr><td>Amazon Fire TV Stick 4K, 1st gen 2018 (AFTMM, mantis)</td><td>Fire OS 6.7.1.1 / Android 7.1</td></tr>
+<tr><td>Amazon Fire TV Stick 4K, 2nd gen 2023 (AFTKM, karat), Brazil</td><td>Fire OS 8.1.8.5 / Android 11</td></tr>
+<tr><td>Amazon Fire TV Stick Lite, 1st gen 2020 (AFTSS, sheldon)</td><td>Fire OS 7.7.1.7 / Android 9</td></tr>
+<tr><td>Amazon Fire TV, AFTDEC012E (ginza), Android 11</td><td>Fire OS / Android 11</td></tr>
+<tr><td>Anker Nebula Cosmos projector D2140 (D2140-Cosmos, SDMC/Amlogic, 2 GB), Vietnam</td><td>Android TV 9</td></tr>
+<tr><td>Anker Nebula Mars 3 Air projector D2325 (Nebula_Mars_2_V2, taihang, MediaTek m7332), Portugal</td><td>Google TV 14</td></tr>
+<tr><td>Anker Nebula projector D2426 (D2426_CapsuleIIIPro, baekdu, SDMC/MediaTek m7632, 1.7 GB), Brazil</td><td>Android TV 14</td></tr>
+<tr><td>AQUA MatrixTV EE 50" 4K (Haier, AQ9676EU, omonia, MediaTek), Indonesia</td><td>Google TV 14</td></tr>
+<tr><td>Artel smart TV (CVTE TP.MT5510S.PB782, cvt_mt5863_eu, SMART_TV), Uzbekistan</td><td>Android 7.0</td></tr>
+<tr><td>ASUS M1G Google TV (MOKA, dahu, Realtek RTD2851F), US</td><td>Android TV 11</td></tr>
+<tr><td>Beko B43B880B (Arçelik, sinchon, MediaTek), Turkey</td><td>Android TV 11</td></tr>
+<tr><td>BenQ E55-735 (Changhong AI PONT, DVB96BQ)</td><td>Google TV 14</td></tr>
+<tr><td>BenQ E55-750 (Changhong AI PONT, DVB96BQ)</td><td>Google TV (Android 11)</td></tr>
+<tr><td>BenQ GV32 portable projector (SDMC, BenQ_GV01, himalaya, MediaTek m7332)</td><td>Google TV 14</td></tr>
+<tr><td>BenQ QS01 Android TV dongle for BenQ projectors (Inspur, Amlogic S905Y2, 2 GB)</td><td>Android TV 12</td></tr>
+<tr><td>BGH Smart TV (reported model; UKNV.260821.001)</td><td>Android TV 14</td></tr>
+<tr><td>BYINTEK Love U4 projector, 1080P (Skyworth RG_HS352, HiSilicon Hi3751V350, 1 GB), Brazil</td><td>Android 9</td></tr>
+<tr><td>BYINTEK T5 Max projector (built-in Google TV stick: SkyworthDigital YYT, Amlogic), Brazil</td><td>Google TV 14</td></tr>
+<tr><td>Caxium 58" 147 cm UHD Smart TV (Realtek RTD285O, RTK2851P, TopTech + Zeasn), Colombia</td><td>Android TV 9</td></tr>
+<tr><td>Cecotec VQU10065S 65" QLED (Vestel-built, shandao, MediaTek), Spain</td><td>Android TV 14</td></tr>
+<tr><td>Challenger 32T22 BT (cvt_mt5863_col, board TP.MT5510.PB781, MediaTek MT5659, 1 GB RAM), Colombia</td><td>Android 7.0</td></tr>
+<tr><td>CHiQ AI PONT (Changhong GTVU65, dangni, MediaTek mt5867)</td><td>Google TV 14</td></tr>
+<tr><td>CHiQ AI PONT (DVB93CQ)</td><td>Android TV 11</td></tr>
+<tr><td>Compac ATV R2 (SCBC R2, Realtek RTD285O)</td><td>Android TV 9</td></tr>
+<tr><td>Dcolor GD2 (YHT)</td><td>Google TV 14 (SDK 34)</td></tr>
+<tr><td>Dialog ViU (SEI Robotics SEI103DL, Amlogic, NES middleware), Sri Lanka</td><td>Android TV 9</td></tr>
+<tr><td>DYON 2K Android TV (MTC, komagome, MediaTek m5621), Germany</td><td>Android TV 11</td></tr>
+<tr><td>EKO 2K Google TV (MTC-built, tennoji, MediaTek mt5867 / T56)</td><td>Google TV 14</td></tr>
+<tr><td>EKO 4K Android TV (bangbae, MTC, MediaTek)</td><td>Android TV 11</td></tr>
+<tr><td>Epson LS800 laser projector (Askey HA90 module, sti6202d101, Amlogic)</td><td>Android TV 14</td></tr>
+<tr><td>FFalcon (雷鸟) r34a0, China (V8-A920T01-LF1V147, Amlogic T920), 1 GB</td><td>Android 5.1.1</td></tr>
+<tr><td>FFalcon (雷鸟) 鹤6 PRO 65S585C Pro (China, tcl_mt5879_cn, MediaTek MT9653)</td><td>Android TV 11</td></tr>
+<tr><td>Formovie / Fengmi projector MiProjM05 (eva, Amlogic)</td><td>Android TV 9</td></tr>
+<tr><td>Formovie Laser 4K projector / Formovie Theater (hanlla, MediaTek T31 / m7632, 1.8 GB)</td><td>Android TV 14</td></tr>
+<tr><td>Freebox Player POP (Free, fbx8am, Amlogic), IPTV/DVB-T box</td><td>Android TV 10</td></tr>
+<tr><td>Gadnic PROJ100W projector (built-in Google TV stick: SkyworthDigital YYT, Amlogic HP46B), Argentina</td><td>Google TV 14</td></tr>
+<tr><td>Google Chromecast with Google TV 4K (sabrina)</td><td>Google TV 14</td></tr>
+<tr><td>Google Chromecast with Google TV HD (boreal)</td><td>Google TV 14</td></tr>
+<tr><td>Google TV Streamer 4K (kirkwood, GZRNL)</td><td>Google TV 14</td></tr>
+<tr><td>Grundig 50 GFU 7850 B 50" (Arçelik, CO3Plus, sinchon, MediaTek), Turkey</td><td>Android TV 11</td></tr>
+<tr><td>Grundig 50VLX22LDLBV (Arçelik, CO3Plus, sinchon, MediaTek), Netherlands</td><td>Android TV 11</td></tr>
+<tr><td>Grundig Android UHD TV (Arçelik, GxGrNM, kunyang, MediaTek), Turkey</td><td>Android TV 14</td></tr>
+<tr><td>Haier Android TV DVB2K (broadway, HaierATVT56DVB)</td><td>Android TV 11</td></tr>
+<tr><td>Haier H32S80EFX (MatrixTV CE, HRT56EU, deto, MediaTek), Thailand</td><td>Google TV 14</td></tr>
+<tr><td>Haier MatrixTV GE (HR9216EU, haeundae, MediaTek), EU</td><td>Google TV 14</td></tr>
+<tr><td>Hisense 55QD6QF Fire TV (AFTOLCBC82, ginza), Canada</td><td>Fire OS 8.1.8.0 / Android 11</td></tr>
+<tr><td>Hisense 65D62QH (VIDAA_TV, MediaTek MT9653), China</td><td>Android TV 11</td></tr>
+<tr><td>Hisense E5Q Pro (VIDAA_TV, MediaTek MT9653), China</td><td>Android TV 11</td></tr>
+<tr><td>Hisense Fire TV (AFTCIBFBD1, coyote, MediaTek), US</td><td>Fire OS 8.0 / Android 11</td></tr>
+<tr><td>Hisense HG9 (HiSmart 4K A4FFM)</td><td>Android TV 9</td></tr>
+<tr><td>Hisense HiSmartTV A4 (xiaoyushan, MStar m7322), Android 11 firmware RTT2.221108.001</td><td>Android TV 11</td></tr>
+<tr><td>Hisense HiSmartTV A4 (xiaoyushan, MStar m7322), India</td><td>Android TV 9</td></tr>
+<tr><td>Hisense SmartTV 4K FFM (huangshan, MediaTek), Latin America; also the US Hisense U9DG</td><td>Android TV 10</td></tr>
+<tr><td>Hisense SmartTV 4K FFM (lushan, MediaTek MT9676), Mongolia</td><td>Google TV 12</td></tr>
+<tr><td>Hisense SmartTV 4K FFM (songshan, MediaTek m7632); also the US Hisense 50A6H4</td><td>Android 11 (SDK 30)</td></tr>
+<tr><td>Hisense U75 / 75U75N / 65U7ESG (hengshan, MediaTek), Latin America and US</td><td>Google TV 12</td></tr>
+<tr><td>Hitachi 65QLEDSM20 (MTC, bangbae, MediaTek m7322), Australia</td><td>Android TV 11</td></tr>
+<tr><td>Hitachi CDH-LE32SMART21 (TCL-built C06, C06_2K_GB, MediaTek MT9221, 1 GB), Argentina</td><td>Android TV 11</td></tr>
+<tr><td>HOTACK SMART2KPJT projector, "Whale TV 95C8" (Amlogic am30b8, WhaleOS S8E, Zeasn firmware)</td><td>Android 13</td></tr>
+<tr><td>HY320 projector (t950s_be311, Google-certified Android TV)</td><td>Android 13</td></tr>
+<tr><td>INCLO Google TV 4K (KTC, Realtek, khardi, KTC_INCLO_4K_EU_23GV1), Taiwan</td><td>Google TV 11</td></tr>
+<tr><td>Insignia 42" F20 Fire TV (NS-42F201NA22, AFTEAMR311, blanche)</td><td>Fire OS 6.7.1.1 / Android 7.1.2</td></tr>
+<tr><td>Insignia 55" F30 4K Fire TV (NS-55F301NA25, AFTDCT31, duckie)</td><td>Fire OS 7 / Android 9</td></tr>
+<tr><td>JMGO N1S projector (K80A, holan, MediaTek m7332), Australia</td><td>Google TV 14</td></tr>
+<tr><td>JVC Android TV (Vestel-built, BARTU_Jvc, menlo, MediaTek mt5867), Spain</td><td>Android TV 11</td></tr>
+<tr><td>JVC LT-43KM348 (KTC-built, KTC_JVC_2K_25GV1, jagalchi, MediaTek mt5867 / T56)</td><td>Google TV 14</td></tr>
+<tr><td>JVC LT55MB508 (MTC, seocho, MediaTek MSD6886), Brazil</td><td>Android TV 11</td></tr>
+<tr><td>JVC UK 4K Android TV (MTC, MTCMSD6886UK, sadang, MediaTek m7322), UK</td><td>Android TV 11</td></tr>
+<tr><td>Kalley 43G200 (device R3_GTV, MOKA, Realtek RTD2841A), Latin America</td><td>Google TV 14</td></tr>
+<tr><td>Kalley R10G (device R10G, product ACER_FFM, MOKA, Realtek RTD2875P), Latin America</td><td>Google TV 14</td></tr>
+<tr><td>Karbonn / Motorola SWTV-20AE (Skyworth OEM, SW4H, MediaTek), India</td><td>Android TV 10</td></tr>
+<tr><td>Kogan G7 (Expressluck, cottongreen, Realtek), Australia</td><td>Google TV (Android 11)</td></tr>
+<tr><td>Kogan Google TV (Changhong CHiQ AI PONT, GTVU65KG, dangni, MediaTek mt5867), Australia</td><td>Google TV 14</td></tr>
+<tr><td>KTC 4K Smart TV (device hongkong, MediaTek), Taiwan</td><td>Google TV 14</td></tr>
+<tr><td>Liberton LTV 24H01AT (Liberton, built by Changhong, device redwood), Ukraine</td><td>Android TV 11</td></tr>
+<tr><td>Lumio Vision 7 55" (KTC ODM, Realtek, khardi, KTC_LUMIO_4K_EU_23GV1), India</td><td>Google TV 14</td></tr>
+<tr><td>Magcubic HY300 Pro projector (rk3566_rgo, device adt3, Askey)</td><td>Android 11</td></tr>
+<tr><td>Master-G MGA3200 (SCBC R1, Realtek; Android reports model <code>ATV R1</code>), Chile</td><td>Android TV 9</td></tr>
+<tr><td>Motorola / Coocaa SWTV-24AE-FHD (24LP6000G, Skyworth OEM, beomil), India/SEA</td><td>Google TV 14</td></tr>
+<tr><td>Motorola MT4310 (Newsan; Hisense board, hayward, MediaTek), Argentina</td><td>Android TV 11</td></tr>
+<tr><td>Motorola SWTV-24AE-4K (Skyworth OEM, eleonas, MediaTek), India</td><td>Google TV 14</td></tr>
+<tr><td>MTC UK 2K Android TV (tabata, MediaTek m5621; JVC-family firmware, <code>android.autoinstalls.config.JVC</code> present), UK</td><td>Android TV 11</td></tr>
+<tr><td>Next Start Pro 4K TV Box (SDT HPR314-Next, Realtek RTD1325), Turkey, streaming box</td><td>Google TV 14</td></tr>
+<tr><td>Noblex NoblexTV (Skyworth-built, shinjuku, MediaTek m5621), Argentina</td><td>Android TV 11</td></tr>
+<tr><td>Nokia Streaming Box 8000 (Sagemcom/NES, SEI600NK4, HND, Amlogic)</td><td>Android TV 14</td></tr>
+<tr><td>Nokia Streaming Box 8010 (Sagemcom/NES, SEI804NK, YYJ, Amlogic)</td><td>Android TV 14</td></tr>
+<tr><td>NVIDIA SHIELD TV 2017 (darcy)</td><td>Android TV 11</td></tr>
+<tr><td>NVIDIA SHIELD TV 2019 tube (P3430, sif)</td><td>Android TV 11</td></tr>
+<tr><td>NVIDIA SHIELD TV Pro 2019 (P2897, mdarcy)</td><td>Android TV 11</td></tr>
+<tr><td>OK. AI PONT (Changhong, ikebukuro, MediaTek), Italy; also Nikkei DVB91NK</td><td>Android TV 11</td></tr>
+<tr><td>OnePlus TV (C00, Cebu, MediaTek m7632), India</td><td>Android TV 10</td></tr>
+<tr><td>OnePlus TV (D00, Dubai)</td><td>Android TV 11 / Google TV 14</td></tr>
+<tr><td>OnePlus TV (Dosa, Oneplus_Dosa_IN)</td><td>Android TV 11</td></tr>
+<tr><td>OnePlus Y1 43" (Y Series, shibuya)</td><td>Android TV 11</td></tr>
+<tr><td>onn 4K Streaming Box (2023, Walmart; YOC, Amlogic), US</td><td>Google TV 14</td></tr>
+<tr><td>onn. 4K Plus Streaming (2025, Walmart; coffey, Amlogic S905X5M), US</td><td>Google TV 14</td></tr>
+<tr><td>OPPO K9 55 (OPPOCNM632)</td><td>Android 9 (ColorOS TV)</td></tr>
+<tr><td>Panasonic 4KTV-0SU (Skyworth-built SW4H, MediaTek m7332), Gulf region</td><td>Android TV 10</td></tr>
+<tr><td>Panasonic 4KTV-3MUP (MOKA R4_GTV, Realtek rtd2851m), Taiwan</td><td>Google TV 14</td></tr>
+<tr><td>Panasonic 4KTV-3SU (Skyworth-built SW6H, MediaTek, same board as <code>thomson-sppl-4k-sw6h/</code>), ~1.9 GB</td><td>Android TV 14 (Google TV home)</td></tr>
+<tr><td>Panasonic 4KTV-JUP (Jupiter_PA, MediaTek)</td><td>Android TV 11</td></tr>
+<tr><td>Panasonic Google TV LCD (OZUM_Panasonic, kowloon, MediaTek)</td><td>Android 14</td></tr>
+<tr><td>Panasonic TH-40HS550K (Skyworth-built, GS655 shibuya, MediaTek)</td><td>Android TV 11</td></tr>
+<tr><td>PANAVOX Google TV (dongnae)</td><td>Google TV 14</td></tr>
+<tr><td>PEAQ PTV 43AQU-5023C (Changhong, reports OK. AI PONT, dundas, MediaTek m7332)</td><td>Android TV 11</td></tr>
+<tr><td>Philips 50PUD7406/43 (TPV, PH0M_EA_T32, MStar/MediaTek), Chile; 55PUS7906/12, Lithuania; 50PUS7906/12, Germany</td><td>Android TV 11</td></tr>
+<tr><td>Philips 50PUF7099/T3 (TPV EBONY_V560, Hisilicon), China</td><td>Android TV 9</td></tr>
+<tr><td>Philips 50PUS8517/12 (TP Vision, PH1M_EA_9970A, MediaTek MT5895), Europe</td><td>Android TV 11</td></tr>
+<tr><td>Philips 55OLED707/12 / 55OLED887/12 (TP Vision, PH1M_EA_9970A, MediaTek MT5895), UK and Poland</td><td>Android TV 11</td></tr>
+<tr><td>Philips 55OLED708/12 (TPV, PH1M_WW_9972, MediaTek), Poland</td><td>Google TV 12</td></tr>
+<tr><td>Philips 55PUS7503/12 (TP Vision TPM171E, PH7M_EU_5596, MediaTek MT5891), Europe</td><td>Android TV 8.0</td></tr>
+<tr><td>Philips 65OLED706/12 (TP Vision, PH1M_EA_9970A, MediaTek MT5895), France; 55OLED706/12, Poland</td><td>Android TV 11</td></tr>
+<tr><td>Philips 65OLED907/12 and 55OLED907/12 (TP Vision, PH1M_EA_9970A, MediaTek MT5895), UK and France</td><td>Android TV 11</td></tr>
+<tr><td>Philips 65PML9506/12 (TP Vision, PH1M_EA_9970A, MediaTek), Spain</td><td>Android TV 11</td></tr>
+<tr><td>Philips 65PUS8102/12 (TP Vision TPM171E, PH7M_EU_5596, MediaTek MT5891), Europe</td><td>Android TV 8.0</td></tr>
+<tr><td>Philips 65PUS8729/60 (TPV, PH1M_WW_9972, MediaTek), Russia</td><td>Google TV 14</td></tr>
+<tr><td>Philips 65PUS9435/12 (TP Vision TPM191E, PH9M_EA_5599, MediaTek MT5887), Germany</td><td>Android TV 12</td></tr>
+<tr><td>Philips 75PUS8505/12 (TP Vision TPM191E, PH9M_EA_5599, MediaTek MT5887), Europe</td><td>Android TV 12</td></tr>
+<tr><td>Philips Google TV TA7 (TPV, PH3M_AL_T32, MediaTek), Brazil; 55PUD7908/77, Latin America</td><td>Google TV 14</td></tr>
+<tr><td>Philips R8G Google TV (MOKA, whitefield, Realtek RTD2851F), US</td><td>Google TV 14</td></tr>
+<tr><td>Philips Smart 4K TV (Skyworth, eleonas, MediaTek), India</td><td>Google TV 14</td></tr>
+<tr><td>Philips TPM191E / 50PUS8505 / 55OLED854 / 65OLED804 (TP Vision, PH9M_EA_5599, MediaTek MT5887), Europe</td><td>Android TV 12</td></tr>
+<tr><td>Polytron 2K (WLTV POLYTRON2K, hayward; Hisense/CVTE board, MediaTek mt5867), Indonesia</td><td>Android TV 11</td></tr>
+<tr><td>Portronics Beem 470 Smart LED Projector (Allwinner H713, 1 GB), India</td><td>Android 11</td></tr>
+<tr><td>PPTV p34a4p (Suning PPTV, Amlogic board), China</td><td>Android 5.1.1</td></tr>
+<tr><td>PRISM+ Q65 Ultra 2026 QLED 4K AI Google TV (R10G, PRISMPLUS_FFM, MOKA, Realtek RTD2875 SoC, RTD6748 platform)</td><td>Google TV 14</td></tr>
+<tr><td>RCA 2K Android TV (KONKA, device lasalle, Realtek RTD2841A, ISDB)</td><td>Android TV 11</td></tr>
+<tr><td>RCA AI PONT SA (Changhong, redwood, ISDB92RC; also sold as realme 40-inch, AIWA AW32B4SMG, CHiQ AI PONT DVB92CQ and ERGO DVB92YC)</td><td>Android 14</td></tr>
+<tr><td>RCA RC50A21S-4KSM, Zeasn home (Toptech firmware RTK2851P, Realtek RTD2851P, board mac6p)</td><td>Android TV 9</td></tr>
+<tr><td>Redmi TV (MiTV-ANTL0, starwars)</td><td>Android 5.1.1 (not Android TV)</td></tr>
+<tr><td>Redmi TV (MiTV-MFTP0, alita), China firmware 23.2.10.6129</td><td>Android TV 9 (CN build)</td></tr>
+<tr><td>RockTek GB1</td><td>Google TV 14</td></tr>
+<tr><td>RockTek GX1 (HPR3A1325_4K)</td><td>Google TV 14</td></tr>
+<tr><td>Sankey SMART2KTVSE (Whale OS, SiliconPlayer am30bm)</td><td>Android TV 13</td></tr>
+<tr><td>Sankey SMART_TV (CVTE, HiSilicon Hi3751V350, 1 GB)</td><td>Android 12</td></tr>
+<tr><td>SANYO ATV R2 (SCBC, Realtek RTD285O)</td><td>Android TV 9</td></tr>
+<tr><td>Sber Salute TV 32" (CVTE TPD.MT9216.PB766, MediaTek MT9256, 1 GB), Russia</td><td>StarOS 1.103 / Android 11</td></tr>
+<tr><td>Sber Salute TV 43" (CVTE TP.T962D4.PC756, Amlogic T962D4, at30a6, 2 GB), Russia</td><td>StarOS 1.101 / Android 13</td></tr>
+<tr><td>Seleco TV39020HDA9SMART 39" (AT_SmartScreen, Toptech + Zeasn, Realtek RTK2842P), Italy</td><td>Android TV 9</td></tr>
+<tr><td>SHARP 2T-C32GH3000I (SHARP 2K Smart TV-A; Skyworth-built, beomil, MediaTek mt5867), Indonesia</td><td>Google TV 14</td></tr>
+<tr><td>SHARP AQUOS TVE21F (AQUOS-TVE21F, banqiao, CVTE/MediaTek), UK</td><td>Android TV 14</td></tr>
+<tr><td>SHARP AQUOS TVE23A (AQUOS-TVE23A, sandiego, CVTE/MediaTek mt5889), Denmark</td><td>Google TV 14</td></tr>
+<tr><td>Skyworth / Coocaa 8R40_K5C (Realtek rtd285x, 1 GB, 32-bit), China domestic firmware</td><td>Android 8.0 (not Google TV)</td></tr>
+<tr><td>Skyworth 43E6A (open_fhd, MediaTek MT5886)</td><td>Android TV 8.0</td></tr>
+<tr><td>Skyworth 65A3F (7T641_A3F, MediaTek MT9633), China</td><td>Android 13 (CCOS 10.01.250328)</td></tr>
+<tr><td>Skyworth 7S60_A5 (sky8S34, 1.9 GB), China market</td><td>Coocaa OS / Android 8</td></tr>
+<tr><td>Skyworth 7T861_A23 (MediaTek MT9638), China market</td><td>Coocaa OS / Android 10</td></tr>
+<tr><td>Skyworth Coocaa K3 Pro 90P3D Max (8R145_P3DM, Realtek RTD2885N), China market</td><td>Android 11 (Coocaa OS)</td></tr>
+<tr><td>Skyworth SW-22SA (SW6H, MediaTek), ~1.9 GB</td><td>Android TV 14 (Google TV home)</td></tr>
+<tr><td>Skyworth SWTV-21AE (sunnyvale, MediaTek)</td><td>Android TV 14</td></tr>
+<tr><td>Skyworth SWTV-22AE-FHD (umeda, MediaTek), Vietnam/Global</td><td>Google TV 14</td></tr>
+<tr><td>Skyworth SWTV-24AE-4K NF (eleonas, MediaTek mt5896), South Africa/Global</td><td>Google TV 14</td></tr>
+<tr><td>Skyworth SWTV-24NA-4K NF (eleonas, MediaTek mt5896), US</td><td>Google TV 14</td></tr>
+<tr><td>Skyworth Xiaopai P3 (Q5001, cupid-p2), streaming box</td><td>Android 10</td></tr>
+<tr><td>Sony BRAVIA 4K AE1 (BRAVIA_AE_M6L, MediaTek MT5897), EU</td><td>Google TV 12</td></tr>
+<tr><td>Sony BRAVIA 4K AE2 (BRAVIA_AE2, MediaTek MT5897), North America</td><td>Google TV 14</td></tr>
+<tr><td>Sony BRAVIA 4K GB (BRAVIA_ATV2_UC, MediaTek mt5891)</td><td>Android TV 9</td></tr>
+<tr><td>Sony BRAVIA 4K GB (KD-75XE8596, BRAVIA_ATV2_EU, BRAVIA_ATV2)</td><td>Android TV 9</td></tr>
+<tr><td>Sony BRAVIA 4K UR2 (BRAVIA_UR2_4K, MediaTek)</td><td>Android TV 10</td></tr>
+<tr><td>Sony BRAVIA 4K UR3 / KD-55X8000H (BRAVIA_UR3, MediaTek mt5893), EU and TW</td><td>Android TV 10</td></tr>
+<tr><td>Sony BRAVIA 4K VH1 (KD-55XH9096 / XBR-55X900H, BRAVIA_VH1, MediaTek MT5895), EU and US</td><td>Google TV 12</td></tr>
+<tr><td>Sony BRAVIA 4K VH2 (KD-55X80J / XR-65A83J, BRAVIA_VH2, MediaTek), EU, North America and India</td><td>Google TV 12</td></tr>
+<tr><td>Sony BRAVIA 4K VH21 (KD-65X85K, 2022, BRAVIA_VH21, MediaTek MT5895), Australia</td><td>Google TV 12</td></tr>
+<tr><td>Sony BRAVIA 4K VH21 (XR-55A80K, 2022, BRAVIA_VH21, MediaTek mt5895), EU</td><td>Google TV 12</td></tr>
+<tr><td>Sony BRAVIA 4K VH21 (XR-65A95K, 2022, BRAVIA_VH21, MediaTek), US</td><td>Google TV 12</td></tr>
+<tr><td>Sony BRAVIA 9 II (K-65XR90M2, BRAVIA_AE3, MediaTek MT5838)</td><td>Google TV 14</td></tr>
+<tr><td>Sony BRAVIA BF1 (BRAVIA 2 II class, BRAVIA_BF1_4K_A, MediaTek)</td><td>Google TV 12</td></tr>
+<tr><td>Sony BRAVIA KD-43X8000G (2019, BRAVIA_ATV3_4K, MediaTek), APAC</td><td>Android TV 9</td></tr>
+<tr><td>Sony BRAVIA KD-43X80L (2023, BRAVIA_VH22, MediaTek MT5895), EU</td><td>Google TV 12</td></tr>
+<tr><td>Sony BRAVIA KD-49X8307C (2015, "BRAVIA 4K 2015", SVP-DTV15, MediaTek), EU firmware</td><td>Android TV 7.0</td></tr>
+<tr><td>Sony BRAVIA KD-55X75K (BRAVIA_VU3_4K, Realtek rtd2885m)</td><td>Google TV 14</td></tr>
+<tr><td>Sony BRAVIA KD-55X8000C (2015, "BRAVIA 4K 2015", SVP-DTV15, MediaTek), China firmware</td><td>Android TV 7.0</td></tr>
+<tr><td>Sony BRAVIA KD-55X8509C (2015, "BRAVIA 4K 2015", SVP-DTV15, MediaTek), EU firmware</td><td>Android TV 7.0</td></tr>
+<tr><td>Sony BRAVIA KD-55X85J (2021, BRAVIA_VH2, MediaTek MT5895), South America</td><td>Google TV 12</td></tr>
+<tr><td>Sony BRAVIA KD-55X9500G (BRAVIA_UR2_4K_CN), China</td><td>Android TV 10</td></tr>
+<tr><td>Sony BRAVIA KD-55XE8596 (2017, "BRAVIA 4K GB", BRAVIA_ATV2_EU, MediaTek MT5891), UK</td><td>Android TV 9</td></tr>
+<tr><td>Sony BRAVIA KD-55XF7596 (2018, "BRAVIA 4K GB ATV3", BRAVIA_ATV3_4K_EU, MediaTek MT5891), EU</td><td>Android TV 9</td></tr>
+<tr><td>Sony BRAVIA KD-55XF8096 (2018, "BRAVIA 4K GB ATV3", BRAVIA_ATV3_4K_EU, MediaTek MT5891), Spain</td><td>Android TV 9</td></tr>
+<tr><td>Sony BRAVIA KD-65X80J (2021, BRAVIA_VH2, MediaTek), India</td><td>Google TV 10</td></tr>
+<tr><td>Sony BRAVIA KD-65X82L / XR-65X90L (2023, BRAVIA_VH22, MediaTek), India and US</td><td>Google TV 12</td></tr>
+<tr><td>Sony BRAVIA KD-65X9300D (2016, SVP-DTV15, MediaTek), Asia-Pacific</td><td>Android TV 8.0</td></tr>
+<tr><td>Sony BRAVIA KDL-43W950D (2015/2016, SVP-DTV15, MediaTek), India ("PA") firmware</td><td>Android TV 8.0.0</td></tr>
+<tr><td>Sony BRAVIA KDL-55W800C (2015, "BRAVIA 2015", SVP-DTV15, MediaTek), Taiwan firmware</td><td>Android TV 7.0</td></tr>
+<tr><td>Sony BRAVIA TL2 (OD0M_EA_T32, TPV-built, MediaTek), Europe</td><td>Android TV 11</td></tr>
+<tr><td>Sony BRAVIA VU1 (KD-43X7500H, BRAVIA_VU1_UC, Realtek)</td><td>Android TV 11</td></tr>
+<tr><td>Sony BRAVIA VU31 4K (BRAVIA_VU31_4K, Realtek), India</td><td>Google TV 14</td></tr>
+<tr><td>Sony BRAVIA X9000H (2020, BRAVIA_VH1_CN, MediaTek MT5895), China</td><td>Android TV 12</td></tr>
+<tr><td>Sony BRAVIA XBR-55X850C (2015, "BRAVIA 4K 2015", SVP-DTV15, MediaTek), US firmware</td><td>Android TV 8.0</td></tr>
+<tr><td>Sony BRAVIA XBR-55X850D (Android model "BRAVIA 4K 2015"), firmware 6.827</td><td>Android TV 8.0.0</td></tr>
+<tr><td>Sony BRAVIA XBR-65X900E (2017, BRAVIA_ATV2)</td><td>Android TV 9</td></tr>
+<tr><td>Sony BRAVIA XBR-65X900F (2018, BRAVIA_ATV3_4K, MediaTek MT5891), US/Canada</td><td>Android TV 9</td></tr>
+<tr><td>Sony KD-55X7500 (BRAVIA 4K GB ATV3, BRAVIA_ATV3_4K_CN), China</td><td>Android TV 9</td></tr>
+<tr><td>Sony XR-65A80J (65-inch OLED, 2021, BRAVIA_VH2), EU</td><td>Google TV 12</td></tr>
+<tr><td>Sony XR-65X90J (2021, BRAVIA_VH2, MediaTek MT5895), China</td><td>Android TV 10</td></tr>
+<tr><td>Stellamore T950S projector (Droidlogic be30a3, Amlogic txhd2)</td><td>Android 13</td></tr>
+<tr><td>Strong LEAP-S3 box (SkyworthDigital YDA, Amlogic S905Y4), Italy</td><td>Google TV 14</td></tr>
+<tr><td>Super General 55" 4K (CVTE TP.SK708D.PC821, Amlogic T972, x30a4, 1 GB), Saudi Arabia</td><td>Android 9</td></tr>
+<tr><td>Síragon 4K Smart TV (KTC, MediaTek MT9676, elliniko, KTC_SIRAGON_4K_24GV1), Venezuela</td><td>Google TV 14</td></tr>
+<tr><td>TCL / FFalcon China (tcl9655_cn, MediaTek MT9655 "merak", UTT2.250416.001 AU01)</td><td>Android 14</td></tr>
+<tr><td>TCL 32ES570F (C06, C06_2K_GB, MStar mt5867, 939 MB), Italy</td><td>Android TV 11</td></tr>
+<tr><td>TCL 32L5A (C06, model "Smart TV", 1 GB)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 32S5400A (C06, C06_2K_GB, MediaTek MT9221, 1 GB), 2023</td><td>Android TV 11</td></tr>
+<tr><td>TCL 32S5K (C06, C06_2K_GB, MediaTek MT9221, 918 MB), EU</td><td>Android TV 11</td></tr>
+<tr><td>TCL 32SF560 (TCL Fire TV, AFTSHN02, shine)</td><td>Fire OS 7.7.1.7 / Android 9</td></tr>
+<tr><td>TCL 40" Smart TV (G06, MediaTek MT9221 / T221, AR2101, V8-T221T02-LF1V058), Indonesia</td><td>Google TV 11</td></tr>
+<tr><td>TCL 40S5400A (C06, C06_2K_GB, MediaTek MT9221, 1 GB)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 43C645 (Smart TV Pro, Realtek RTD2851 / R51MT05, V8-R51MT05-LF1V652); also TCL 50C635 / 60C635 (G03_4K_GB, Realtek rtd288o), Spain</td><td>Google TV launcher on Android TV 11</td></tr>
+<tr><td>TCL 43EP660 (Europe, BeyondTV, Realtek rtd285o, V8-R851T02-LF1V378)</td><td>Android TV 9</td></tr>
+<tr><td>TCL 43P615 (Europe, BeyondTV, Realtek RTD2851, AR06)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 43P725 (Smart TV Pro, BeyondTV4, Realtek rtd288o), Italy</td><td>Android TV 11</td></tr>
+<tr><td>TCL 43S450F-CA (S4 Fire TV Edition, AFTDEC012E, ginza, MediaTek), Canada</td><td>Fire OS 8.1.8.5 / Android 11</td></tr>
+<tr><td>TCL 43S5400A (C06, C06_2K_GB, MediaTek MT9221, 1 GB)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 43S5K / 32V5C (G13, G13_2K_GB, MediaTek MT9221/MT5867, 1 GB), India; also a G13 unit from Brazil and a 40" V5C on AU13</td><td>Google TV 14</td></tr>
+<tr><td>TCL 50C725K (Smart TV Pro, BeyondTV4/BeyondTV6, RTD2851M, Realtek rtd288o, 2 GB), AR10 build</td><td>Android TV 11</td></tr>
+<tr><td>TCL 50DP660 / L49C2US ("Percee TV", tcl_eu, MediaTek MT5658 / board mt5891, V8-T658T01-LF1V602 / V570)</td><td>Android TV 8.0</td></tr>
+<tr><td>TCL 50EP680 (Europe, BeyondTV, Realtek rtd285o)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 50J7000A (Thailand, BeyondTV, Realtek RT2851 / rtd285o, AR04, V8-R851T02-LF1V674)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 50P615 (Greece and Türkiye, BeyondTV, Realtek RTD2851 / rtd285o, AR05)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 50P735 (BeyondTV4, Smart TV Pro)</td><td>Google TV 11</td></tr>
+<tr><td>TCL 55" 4K Google TV, 2023 (G10, G10_4K_US_NF); also TCL 55P6K, Spain and TCL 43P69K, Netherlands (G10_4K_GB_NF_32BIT)</td><td>Google TV 12</td></tr>
+<tr><td>TCL 55A300W picture-frame TV (2023, G08, G08_4K_US_NF, MediaTek MT9653), US</td><td>Google TV 12</td></tr>
+<tr><td>TCL 55C715 QLED (Europe, BeyondTV2, Realtek RTD2851, V8-R851T02-LF1V606)</td><td>Android TV 9</td></tr>
+<tr><td>TCL 55C725 (Smart TV Pro, BeyondTV4, G03_4K_GB, Realtek R51MT05, V8-R51MT05-LF1V620), Italy; also TCL 65C655 Pro (same build)</td><td>Google TV launcher on Android TV 11</td></tr>
+<tr><td>TCL 55C745, 2023 (G08, G08_4K_GB, MediaTek tcl9618)</td><td>Google TV 14</td></tr>
+<tr><td>TCL 55C7K QD-Mini LED, 2025, UK (G08, MediaTek tcl9618)</td><td>Google TV 14</td></tr>
+<tr><td>TCL 55C815 (2020, Europe/Denmark, BeyondTV2, Realtek rtd285o)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 55EP640 (Greece, BeyondTV, Realtek RTD2851 / rtd285o, AR04)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 55P638 (Smart TV, BeyondTV4)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 55P7K, Middle East (G10, G10_4K_GB, Realtek RTD2875P)</td><td>Google TV 12</td></tr>
+<tr><td>TCL 55P8LS QD-Mini LED, Vietnam (G10, G10_4K_GB_32BIT, Realtek rtd6748)</td><td>Google TV 12</td></tr>
+<tr><td>TCL 55Q10G Pro (China, tcl_mt5879_cn, MediaTek MT9952)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 55Q6CX1 (Smart TV Pro, G08, G08_4K_GB, MediaTek)</td><td>Google TV 12</td></tr>
+<tr><td>TCL 55S470G (G10, G10_4K_US_NF, Realtek), US</td><td>Google TV 12</td></tr>
+<tr><td>TCL 55S546 (5-Series, G03_4K_US, BeyondTV4, GTV93), US</td><td>Google TV 11</td></tr>
+<tr><td>TCL 58S571F (TCL Fire TV, AFTDEC012E, ginza, MediaTek mt5896), US</td><td>Fire OS 8 / Android 11</td></tr>
+<tr><td>TCL 65C6K (Smart TV Pro, G08, G08_4K_GB, MediaTek tcl9618 / mt5896, SoC MT9689), Latin America</td><td>Google TV 14</td></tr>
+<tr><td>TCL 65C725 (Smart TV Pro, BeyondTV4)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 65C735 (Smart TV Pro, G05, MediaTek), France; also TCL 55C728, Turkey, TCL 65C935, France, and TCL 65C745, France</td><td>Google TV 11</td></tr>
+<tr><td>TCL 65C7K (Smart TV Pro, G08, G08_4K_GB, MediaTek mt5896), Brazil</td><td>Google TV 14</td></tr>
+<tr><td>TCL 65C7L (Smart TV Pro, G08, G08_4K_GB, MediaTek tcl9618), 2025, Australia</td><td>Google TV 14</td></tr>
+<tr><td>TCL 65C8L (Smart TV Pro, G17, G17_4K_GB, MediaTek tcl9655), 2025, Australia</td><td>Google TV 14</td></tr>
+<tr><td>TCL 65EP640 (Finland, BeyondTV, Realtek RTD2851 / rtd285o, AP06)</td><td>Android TV 9</td></tr>
+<tr><td>TCL 65EP68 (Europe, BeyondTV, Realtek RTD2851 / rtd285o, V8-R851T02-LF1V722)</td><td>Android TV 11</td></tr>
+<tr><td>TCL 65Q550G (TCL Smart TV, Google TV 11, V8-R51MT08-LF1V095.021344)</td><td>Google TV</td></tr>
+<tr><td>TCL 65Q650G (US Q6 2023, BeyondTV4, Realtek RTD2851 / R51MT08, V8-R51MT08-LF1V095, 2 GB)</td><td>Google TV 11</td></tr>
+<tr><td>TCL 65X10 QLED (France, BeyondTV2, Realtek RTD2851, V8-R851T02-LF1V363)</td><td>Android TV 9</td></tr>
+<tr><td>TCL 75C845X2, UK/Europe (G08_4K_GB, MediaTek tcl9618)</td><td>Google TV 14</td></tr>
+<tr><td>TCL 75P635 (Smart TV, BeyondTV4, G07), AR07 build</td><td>Android TV 11</td></tr>
+<tr><td>TCL 75P8K, Europe / Nordics (G10, G10_4K_GB / C6KS, Realtek RTD2875P / rtd6748)</td><td>Google TV 12</td></tr>
+<tr><td>TCL 75T7 / 55Q77K (Smart TV Pro, G08, G08_4K_US, MediaTek tcl9618), US firmware</td><td>Google TV 14</td></tr>
+<tr><td>TCL 85RM7L (G08, G08_4K_GB, MediaTek tcl9618)</td><td>Google TV 14</td></tr>
+<tr><td>TCL ak30a5 (China, Amlogic)</td><td>Android TV 9</td></tr>
+<tr><td>TCL BeyondTV (India)</td><td>Android TV 9</td></tr>
+<tr><td>TCL BeyondTV, EU/Nordic (Realtek RTD2851, V8-R851T02-LF1V606)</td><td>Android TV 9</td></tr>
+<tr><td>TCL BeyondTV, Poland (Realtek RTD2851, AP03, 2 GB)</td><td>Android TV 9</td></tr>
+<tr><td>TCL BeyondTV2 (Latin America / Brazil, Realtek RTD2851); also confirmed on a 55" unit</td><td>Android TV 9</td></tr>
+<tr><td>TCL BeyondTV2, Android 11 build (AR05, Realtek rtd285o)</td><td>Android TV 11</td></tr>
+<tr><td>TCL C635 (Smart TV Pro, BeyondTV4, Realtek rtd288o, Android 11/SDK 30), Brazil</td><td>Android TV 11</td></tr>
+<tr><td>TCL C755 QD-Mini LED, 2024, Australia (G08, MediaTek tcl9618)</td><td>Google TV 14</td></tr>
+<tr><td>TCL C89B 85", 2024, a local variant of the C855 (G08, G08_4K_GB, MediaTek tcl9618)</td><td>Google TV 14</td></tr>
+<tr><td>TCL L40S66E (C06, C06_2K_GB, MediaTek MT9221, 1 GB), Argentina</td><td>Android TV 11</td></tr>
+<tr><td>TCL Q7C (Smart TV Pro, G08, G08_4K_GB, MediaTek tcl9618), European firmware</td><td>Google TV 14</td></tr>
+<tr><td>TCL QM6K Pro, 2025 (G08, MediaTek tcl9618)</td><td>Google TV 14</td></tr>
+<tr><td>TCL Smart TV (G07, G07_4K_GB_NF, Realtek RTD2851A, 2 GB)</td><td>Google TV 11</td></tr>
+<tr><td>TCL Smart TV Pro (G03, G03_4K_GB / G03_4K_US, BeyondTV4, Realtek R51MT05, V8-R51MT05-LF1V620 / LF1V813), Middle East and US firmware</td><td>Google TV 11</td></tr>
+<tr><td>TCL Smart TV Pro (G05, G05_4K_US, MediaTek MT5889); also TCL 55Q750G</td><td>Google TV 11</td></tr>
+<tr><td>TCL Smart TV Pro (G08, G08_4K_GB, MediaTek), Australian firmware</td><td>Google TV 12</td></tr>
+<tr><td>TCL Smart TV Pro (G08, G08_4K_GB, MediaTek), Europe/UK firmware</td><td>Android TV 12</td></tr>
+<tr><td>TCL Smart TV Pro (G09, G09_4K_GB, Amlogic T5M, 2 GB), UK firmware, Brazil</td><td>Google TV 12</td></tr>
+<tr><td>TCL Smart TV Pro, UK Freeview Play (BeyondTV4 / BeyondTV6, Realtek rtd288o, 2 GB, AR05)</td><td>Android TV 11</td></tr>
+<tr><td>TCL tc8000_ay30a2 (China, Amlogic ohm, TC8000, 3.8 GB)</td><td>Android 11</td></tr>
+<tr><td>TCL UnionTV, Latin America (TCL-built like Thomson 32HE5800, Realtek RT2841); also confirmed on a TCL 32S6500S (persist.tcl.client_type TCL-LA-RT41KB-S1)</td><td>Android TV 9</td></tr>
+<tr><td>Tele System TS ON T2/HD (ONT2HD, SDMC, Amlogic), Italy</td><td>Android TV 11</td></tr>
+<tr><td>Thomson 32HE5800 (TCL-built UnionTV, Realtek RT2841), Spain</td><td>Android TV 9</td></tr>
+<tr><td>Thomson 43RT1055 FA Series (SPPL-built, sauve, Realtek RTD2841A), India</td><td>Android TV 14</td></tr>
+<tr><td>Thomson SPPL 4K Google TV (Skyworth SW6H, MediaTek, same board as <code>skyworth-sw-22sa/</code>), India, ~1.9 GB</td><td>Android TV 14 (Google TV home)</td></tr>
+<tr><td>Thomson T32RTL6000 (SCBC, Realtek; Android reports model <code>ATV R1</code>)</td><td>Android TV 9</td></tr>
+<tr><td>TiVo Stream 4K (SEI Robotics IPA1104HDW, SEI400TV, Amlogic S905Y2, NES)</td><td>Android TV 12</td></tr>
+<tr><td>Tornado 65UA1400E (El Araby, Skyworth-built SW4H, MediaTek m7332), Egypt</td><td>Android TV 11</td></tr>
+<tr><td>Toshiba (Vestel Cosmos170, yeoksam, MediaTek), Spain</td><td>Android TV 11</td></tr>
+<tr><td>Toshiba Fire TV (AFTHA004, hazel)</td><td>Fire OS 7 / Android 9</td></tr>
+<tr><td>Turkcell TV+ 4K Box (SDMC DV6069Y, Amlogic), Turkey, operator streaming box</td><td>Android TV 10</td></tr>
+<tr><td>Tuvio TD43UFBCV5 (Changhong AI PONT, DVB96, MediaTek m7632), Russia</td><td>Google TV 14</td></tr>
+<tr><td>Verizon Stream TV, 1st gen (WNC JS8V, Amlogic), US</td><td>Android 12</td></tr>
+<tr><td>Vidda C1S 4K laser projector (VIDAA_TV, device MT9669, board m7642), China JuUI</td><td>Android 9</td></tr>
+<tr><td>Vidda VIDAA_TV (Hisense sub-brand; device MT9653, board mt5879), China JuUI</td><td>Android TV 11</td></tr>
+<tr><td>Vision 2024VISION43STV (CVTE TP.T950D4T.PB751, Amlogic T950D4, 1 GB), Europe</td><td>Android 13</td></tr>
+<tr><td>Vu 4K (HVCL, lushan, MediaTek), India</td><td>Google TV 12</td></tr>
+<tr><td>Vu Premium FHD 43-inch (Smart 2K ATV4, hamamatsucho), India</td><td>Android TV 9</td></tr>
+<tr><td>Vu VIBE TV (KONKA, bandra, Realtek), India</td><td>Google TV 14</td></tr>
+<tr><td>Wanbo X5 Pro projector (built-in Google TV stick: SkyworthDigital YYT, Amlogic), Australia</td><td>Google TV 14</td></tr>
+<tr><td>XGIMI Horizon S Pro / Halo+ projector (XK03H, xgimigalileo, MediaTek)</td><td>Android TV 11</td></tr>
+<tr><td>XGIMI MoGo 2 projector (MoGo, xgimiapollo, pokemon)</td><td>Android TV 11</td></tr>
+<tr><td>XGIMI MoGo 3 Pro projector (G0035, altai, MediaTek)</td><td>Google TV 14</td></tr>
+<tr><td>XGIMI MoGo 4 Laser projector (WK03K, altai, MediaTek)</td><td>Google TV 14</td></tr>
+<tr><td>XGIMI MoGo 4 projector (WK08K, altai, MediaTek)</td><td>Google TV 14</td></tr>
+<tr><td>Xiaomi Mi Box 3 (MIBOX3, once), streaming box</td><td>Android TV 9</td></tr>
+<tr><td>Xiaomi Mi Box S (MIBOX4, oneday), streaming box</td><td>Android TV 9</td></tr>
+<tr><td>Xiaomi Mi Box S (MIBOX4, oneday), streaming box, Android 12 update</td><td>Android TV 12</td></tr>
+<tr><td>Xiaomi Mi Box S 2nd gen (MiTV-AFKR0, jaws), streaming box</td><td>Google TV 11</td></tr>
+<tr><td>Xiaomi Mi TV (MiTV-MOOQ0, croods; includes P1 43" EU variant)</td><td>Android TV 10 and 11</td></tr>
+<tr><td>Xiaomi Mi TV 4A (MiTV-MOOQ1)</td><td>Android TV 10 and 11</td></tr>
+<tr><td>Xiaomi Mi TV P1 43" (MiTV-MOOQ2, croods)</td><td>Android TV 11</td></tr>
+<tr><td>Xiaomi MiTV-AESP0 stick (aquaman, 1 GB)</td><td>Android TV 9</td></tr>
+<tr><td>Xiaomi MiTV-ANSP0 (小米电视5 Pro 65", jobs, Amlogic), China firmware 23.6.5.3226, 4 GB RAM</td><td>Android TV 9 (CN build)</td></tr>
+<tr><td>Xiaomi MiTV-ASTP0 (mulan, sold as L55M7-EA), China firmware 22.12.2.1630, 1.5 GB RAM</td><td>Android TV 9 (CN build)</td></tr>
+<tr><td>Xiaomi MiTV-ASTP1 (maverick), China firmware 2.40.641.0514.cn, 1 GB RAM, 720p</td><td>Android TV 9 (CN build)</td></tr>
+<tr><td>Xiaomi MiTV-AXFR0 (rango, Amlogic, 1 GB), India</td><td>Android TV 11</td></tr>
+<tr><td>Xiaomi MiTV-AXFR1 (rango, Amlogic, 1 GB), India</td><td>Android TV 11</td></tr>
+<tr><td>Xiaomi MiTV-AXSO0 (dangal; Mi TV 4C Pro 2019 / 4A Pro)</td><td>Android TV 9</td></tr>
+<tr><td>Xiaomi MiTV-AXSO2 (dangalUHD, India, 2 GB)</td><td>Android TV 9</td></tr>
+<tr><td>Xiaomi MiTV-MFTR0 (freeguy, MediaTek mt9653), China firmware OS2.0.23.0.RFTMATV (HyperOS TV 2)</td><td>Android 11 (HyperOS TV 2, CN build)</td></tr>
+<tr><td>Xiaomi MiTV-MOOR2 / MOOR4 (venom, MediaTek)</td><td>Google TV 11</td></tr>
+<tr><td>Xiaomi MiTV-MOSR4 (irobot, MediaTek)</td><td>Google TV 11</td></tr>
+<tr><td>Xiaomi MiTV-MSSP0 / Xiaomi Mi TV 4A 32 (amelie), firmware PI.5926</td><td>Android TV 9</td></tr>
+<tr><td>Xiaomi MiTV-MSSP1 (nino), firmware PI.5925</td><td>Android TV 9</td></tr>
+<tr><td>Xiaomi MiTV-MSSP2 (volver, MediaTek), firmware PI.4621, low-RAM</td><td>Android TV 9</td></tr>
+<tr><td>Xiaomi MiTV-MSSP3 (machuca, MediaTek)</td><td>Android TV 11</td></tr>
+<tr><td>Xiaomi MiTV-MSSP3 (machuca, MediaTek), Android 9 firmware PI.7524</td><td>Android TV 9</td></tr>
+<tr><td>Xiaomi Redmi Smart TV A Pro 55" 2025 Energy-saving (MiTV-ASTR0, blueplanet, Amlogic), China firmware OS3.0.106.0.USTAATV, 3 GB RAM</td><td>Android 14 (HyperOS 3, CN build)</td></tr>
+<tr><td>Xiaomi TV A Pro 55"/75" 2026 (MiTV-MZTU0, river, MediaTek)</td><td>Google TV 14</td></tr>
+<tr><td>Xiaomi TV A43 2025 (MiTV-MOOQ1)</td><td>Google TV 11</td></tr>
+<tr><td>Xiaomi TV Box S 3rd gen (MiTV-AFMU0, twilight, Amlogic), streaming box</td><td>Google TV 14</td></tr>
+<tr><td>Xiaomi TV EA Pro 55" (MiTV-MTEQ0, baymax, MediaTek), China firmware 23.6.26.4028</td><td>Android TV 10 (CN build)</td></tr>
+<tr><td>Xiaomi TV S Mini LED 75 2025 (MiTV-MOEU0, ladybird, MediaTek)</td><td>Google TV 14</td></tr>
+<tr><td>Xiaomi TV S Pro 100 Mini LED 2025 (小米电视 S Pro 100, L100MB-SP, MiTV-MFFU0, finch, MediaTek), China firmware OS3.0.115.0.UFFMATV, 4 GB RAM</td><td>Android 14 (HyperOS 3, CN build)</td></tr>
+<tr><td>Xiaomi TV Stick 4K (MiTV-AYFR0, soul, Amlogic), streaming stick</td><td>Android TV 14</td></tr>
+<tr><td>Xiaomi TV Stick 4K 2nd gen (MiTV-AFMU1, twilight, adastra, Amlogic), streaming stick</td><td>Google TV 14</td></tr>
+</tbody></table>
+<!-- tv-table:end -->
+</details>
+<p>Your TV not here? The prompt discovers the bloat itself. Add your list afterwards and the next
+person with your model skips that step: <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+<h2>Doing it by hand</h2>
+<p>Everything the assistant does, you can run yourself. The tools need Python 3 and nothing else.
+<code>tools/tv.py</code> talks to network ADB on port 5555. If that port stays closed and the TV offers
+Wireless debugging with a pairing code (the Chromecast with Google TV and the Google TV Streamer
+do), pair it once with the stock <code>adb</code> and run <code>adb tcpip 5555</code> first, as
+<a href="docs/TROUBLESHOOTING.md#connecting">Troubleshooting</a> describes.</p>
+<pre><code class="language-bash">python3 -m venv tools/venv &amp;&amp; tools/venv/bin/pip install -r tools/requirements.txt
+export TV_HOST=192.168.1.50                                   # your TV's IP address
+
+tools/venv/bin/python -I tools/tv.py --probe                 # model, Android version, firmware
+tools/venv/bin/python -I tools/tv.py 'pm list packages'      # one shell command on the TV
+tools/disable.sh examples/xiaomi-mi-tv-4a/debloat.txt        # apply a debloat list
+tools/restore.sh examples/xiaomi-mi-tv-4a/debloat.txt        # undo it, stock launcher back
+tools/venv/bin/python -I tools/check.py examples/xiaomi-mi-tv-4a/debloat.txt   # what a firmware update undid
+TV_HOST=192.168.1.50 launcher/build-and-install.sh           # build the launcher and make it Home
+tools/theme.sh themes/aurora                                 # push a theme; --reset removes it
+</code></pre>
+<table><thead><tr><th>Tool</th><th>What it does</th></tr></thead><tbody>
+<tr><td><a href="tools/tv.py"><code>tools/tv.py</code></a></td><td>Pure-Python ADB client: shell, batch, push, pull, reboot, and screenshots, optionally pressing remote keys first. Works where the stock <code>adb</code> binary is blocked. Optional <a href="tools/native-adb.md">paired Google ADB backend</a> for encrypted Wireless debugging.</td></tr>
+<tr><td><a href="tools/b64push.py"><code>tools/b64push.py</code></a></td><td>Uploads large files such as APKs in base64 chunks and verifies the checksum.</td></tr>
+<tr><td><a href="tools/relay.py"><code>tools/relay.py</code></a></td><td>Forwards a local port to the TV's ADB port, for assistants whose sandbox can't reach your network. Listens on this computer only. <a href="tools/relay.md">Guide</a>.</td></tr>
+<tr><td><a href="tools/disable.sh"><code>tools/disable.sh</code></a>, <a href="tools/restore.sh"><code>restore.sh</code></a></td><td>Apply or undo a debloat list, the undo from the state recorded before the change.</td></tr>
+<tr><td><a href="tools/recovery.py"><code>tools/recovery.py</code></a></td><td>Writes the record <code>disable.sh</code> needs to undo itself, and prints the restore batch.</td></tr>
+<tr><td><a href="tools/check.py"><code>tools/check.py</code></a></td><td>Compares the TV with the list that was applied, for what a firmware update undid; <code>--fix</code> puts it back.</td></tr>
+<tr><td><a href="tools/adb-closed.py"><code>tools/adb-closed.py</code></a></td><td>Checks that the TV's network ADB port is closed once debugging is off: exits 0 when the TV refuses the connection, 1 while it is still open, 2 when nothing answered or the check itself could not run. No <code>nc</code> needed.</td></tr>
+<tr><td><a href="tools/privacy.py"><code>tools/privacy.py</code></a></td><td>Audits the TV for voice, ACR and telemetry candidates and prints the evidence for each; <code>--write</code> turns the findings into a list <code>disable.sh</code> and <code>restore.sh</code> already understand.</td></tr>
+<tr><td><a href="tools/theme.sh"><code>tools/theme.sh</code></a>, <a href="tools/theme_restart.py"><code>theme_restart.py</code></a></td><td>Push a folder from <a href="themes/"><code>themes/</code></a> to the launcher and restart Home.</td></tr>
+<tr><td><a href="tools/manage.py"><code>tools/manage.py</code></a></td><td>List every add-on, theme and switch with its screenshot, see what is on the TV, and install, update or remove one by running its creator's own script.</td></tr>
+<tr><td><a href="tools/bench.py"><code>tools/bench.py</code></a></td><td>Measures the launcher that answers HOME: key latency, how far the focus moved, janky frames, cold start, return to Home, and the idle CPU and PSS it costs. Changes nothing on the TV and writes the raw per-key numbers to JSON; no extra install.</td></tr>
+<tr><td><a href="tools/trace.py"><code>tools/trace.py</code></a>, <a href="tools/trace_report.py"><code>trace_report.py</code></a></td><td>Records Perfetto traces of the launcher (return to Home, cold start, D-pad) and reports where its time goes, per run and before against after. Optional: needs <a href="tools/requirements-perf.txt"><code>requirements-perf.txt</code></a>. <a href="tools/trace.md">Guide</a>.</td></tr>
+<tr><td><a href="tools/flamechart.py"><code>tools/flamechart.py</code></a></td><td>Draws a before/after flame chart from those traces, for a pull request: one lane per thread on a shared time scale, the work a change targets in magenta with its total. Optional, like the trace tools. <a href="tools/flamechart.md">Guide</a>.</td></tr>
+<tr><td><a href="tools/screendiff.py"><code>tools/screendiff.py</code></a></td><td>Compares a before and an after screenshot pixel by pixel, leaving out the clock or anything you mask, and writes the pair with your Wi-Fi name blurred. Optional, like the trace tools. <a href="tools/screendiff.md">Guide</a>.</td></tr>
+<tr><td><a href="tools/race_calendar.py"><code>tools/race_calendar.py</code></a></td><td>Writes this season's F1 calendar into a theme for race-weekend mode, from the free Jolpica API.</td></tr>
+<tr><td><a href="launcher/build-and-install.sh"><code>launcher/build-and-install.sh</code></a></td><td>Builds a shrunk release (about 532 KB), installs it, switches Home, and rolls back if Home does not land on it.</td></tr>
+</tbody></table>
+<p>The scripts never leave the TV without a Home app: they only disable a stock launcher they recognise,
+and skip the Home app in a list until another launcher answers HOME. Details below.</p>
+<details>
+<summary><b>Windows (PowerShell)</b></summary>
+<p>Every script has a PowerShell twin next to it. On Windows with Android Studio installed nothing
+else is needed:</p>
+<pre><code class="language-powershell">python -m venv tools\venv; tools\venv\Scripts\python.exe -m pip install -r tools\requirements.txt
+powershell -ExecutionPolicy Bypass -File launcher\build-and-install.ps1 -TvHost 192.168.1.50
+powershell -ExecutionPolicy Bypass -File tools\disable.ps1 -TvHost 192.168.1.50 examples\xiaomi-mi-tv-4a\debloat.txt
+</code></pre>
+</details>
+<details>
+<summary><b>How the scripts protect Home</b></summary>
+<p>The install scripts ask the TV which launcher owns Home and only disable one they recognise, the four
+in <code>KNOWN_STOCK_LAUNCHERS</code>: <code>com.google.android.tvlauncher</code>, <code>com.google.android.apps.tv.launcherx</code>,
+<code>com.google.android.leanbacklauncher</code> and Xiaomi's <code>com.mitv.tvhome</code> (PatchWall). Pass
+<code>STOCK_LAUNCHER=&lt;package&gt;</code> (<code>-StockLauncher</code>) to override, or <code>none</code> to leave it alone.</p>
+<p><code>tools/disable.sh</code> (<code>disable.ps1</code>) applies the same rule before it disables anything: if the list
+contains the app that owns Home and no other app on the TV answers HOME, it skips that entry, says
+why, and disables the rest of the list. The setup wizard, the settings apps, a vendor <code>FallbackHome</code>
+and factory-test apps (Xiaomi's <code>com.duokan.factorytest</code>) answer HOME too and don't count. So a list applied before the launcher handover cannot leave
+the TV with nothing to start. Run the same list again once <code>launcher/build-and-install.sh</code> has made
+the new launcher Home and the entry is applied; <code>FORCE_HOME=1</code> (<code>$env:FORCE_HOME</code>) disables it anyway.</p>
+</details>
+<details>
+<summary><b>Where your lists can live</b></summary>
+<p>Debloat list paths passed to <code>disable.sh</code> and <code>restore.sh</code> are relative to the directory you run
+from, so your own lists can live outside the repository. Absolute paths also work.</p>
+</details>
+<h2>The microphone, and what can be said about it</h2>
+<p>"Which of these packages is listening?" has no honest one-line answer, and a permission scan makes
+it worse: on many sets most packages run as <code>android.uid.system</code>, so fifty of them show
+<code>RECORD_AUDIO: granted=true</code> and none of them record anything. On others the microphone is in the
+remote, not the panel, and a package with no audio permission at all still sees everything on screen
+— ACR clients such as <code>tv.inscape.tvclient.inscapeacr</code> identify content from the picture and need
+only <code>INTERNET</code>.</p>
+<p><code>tools/privacy.py</code> reports what the TV actually says instead of guessing:
+<code>TV_HOST=192.168.1.50 tools/venv/bin/python -I tools/privacy.py</code> prints voice, ACR and telemetry
+candidates in three groups, each with its evidence — named by the firmware's own
+<code>voice_interaction_service</code>, a known component from <a href="examples/"><code>examples/</code></a>, or nothing but a
+matching name — plus whether the package declares <code>RECORD_AUDIO</code>, whether it shares the system UID,
+and whether the returned AppOps history contains microphone access. A configured mode or a rejected
+attempt alone is not evidence of access.</p>
+<p><code>--write privacy.txt</code> turns the identified candidates into a normal debloat list, so applying it and
+undoing it are the commands you already use (<code>tools/disable.sh</code>, <code>tools/restore.sh</code>). Packages that
+only matched by name stay out unless you pass <code>--include-low</code>; they are the ones to check with
+<code>dumpsys package &lt;name&gt;</code> first.</p>
+<p>What the audit cannot do is prove intent. <code>appops</code> shows an op was touched, not what happened to the
+stream afterwards, and no scan of package names proves a TV is or is not recording. Disabling an
+assistant is a trade you make with a specific loss (the remote's mic button, voice search inside
+apps), which is why the report names that loss per package instead of calling it a win.</p>
+<h2>The launcher</h2>
+<p>A small native home screen for Android TV: <strong>about 532 KB</strong>, plain Java, built for TVs with 1 GB of RAM.
+No blur, no video, no network permission, no background services.</p>
+<p>The <strong>TV</strong> needs Android 8.0 (API 26) or newer: <code>minSdk</code> is a compile-time floor in
+<a href="launcher/app/build.gradle"><code>launcher/app/build.gradle</code></a>, and the install script asks the TV for
+<code>ro.build.version.sdk</code> before it builds, so an older set is told both numbers instead of failing at
+<code>pm install</code> (see <a href="docs/TROUBLESHOOTING.md">Troubleshooting</a> for what is left on such a set).</p>
+<table><thead><tr><th>What</th><th>How it works</th></tr></thead><tbody>
+<tr><td><strong>Configure</strong></td><td>Dock order, hidden apps, Live TV app, 4 to 7 tiles per row, reduced motion. All in <a href="launcher/app/src/main/res/values/config.xml"><code>config.xml</code></a></td></tr>
+<tr><td><strong>Settings on the TV</strong></td><td>Hold OK on Settings for launcher settings. Optional <code>launcher_settings_button</code> makes a normal click open them directly; TV settings remain on the settings page and their app tile.</td></tr>
+<tr><td><strong>Themes</strong></td><td>Background, wallpaper and layout from a <code>config.json</code> pushed over Wi-Fi, no rebuild. ten ship in <a href="themes/"><code>themes/</code></a>, the built-in <code>default/</code> included</td></tr>
+<tr><td><strong>29 languages</strong></td><td>Follows the TV's language, with a fully mirrored right-to-left layout for Hebrew</td></tr>
+<tr><td><strong>App library</strong></td><td>Optional: browse every installed app and add or remove Home shortcuts. See <a href="docs/app-library.md">the app library guide</a></td></tr>
+<tr><td><strong>Tile menu</strong></td><td>Optional (<code>tile_menu</code>): hold OK on a tile for Move, Remove from Home and App info. Off, holding OK opens App info</td></tr>
+<tr><td><strong>Module cards</strong></td><td>Any TV app can offer its own tile; you approve each one once. See <a href="docs/modules.md"><code>docs/modules.md</code></a></td></tr>
+<tr><td><strong>Add-ons</strong></td><td>Optional apps that plug in as module cards, kept in <a href="addons/"><code>addons/</code></a> and never built into the launcher</td></tr>
+<tr><td><strong>Clock screensaver</strong></td><td>A drifting clock over the glow, so nothing burns in</td></tr>
+<tr><td><strong>Remote keys</strong></td><td>Keeps the Input, YouTube and gear buttons working after the stock launcher is gone</td></tr>
+</tbody></table>
+<details>
+<summary><b>Build it yourself</b></summary>
+<p>It needs JDK 17 and Android SDK platform 34. On macOS: <code>brew install openjdk@17 android-commandlinetools</code>
+and <code>sdkmanager "platforms;android-34" "build-tools;34.0.0"</code>. On Linux the install script finds
+<code>~/Android/Sdk</code> and the <code>java</code> on your PATH.</p>
+</details>
+<details>
+<summary><b>Configure</b></summary>
+<p><a href="launcher/app/src/main/res/values/config.xml"><code>config.xml</code></a> sets the dock order, hidden apps, the Live TV
+package, columns (tiles shrink from 5 up), rows under the dock, an optional VPN app for the network pill,
+and <code>reduced_motion</code> for TVs whose GPU cannot keep up. Themes set the same keys plus a background colour
+and a wallpaper.</p>
+</details>
+<details>
+<summary><b>Launcher settings and the default home</b></summary>
+<ul>
+<li>Click <strong>Settings</strong> for the TV's own settings. Hold OK on it for its menu: <strong>Launcher settings</strong> (with
+<code>launcher_settings_button</code> a click opens those instead and the menu leaves the row out), <strong>Native settings</strong>
+where the TV ships a settings app of its own beside Android's - Xiaomi China, TCL/FFALCON and Fire OS are
+in <code>settings_fallback_components</code> - because that app holds pages Android's has no row for, such as
+Xiaomi's Account &amp; Security with the ADB switch; <strong>Module cards</strong> with <code>module_cards</code>; <strong>Edit dock</strong> with
+<code>dock_row</code>; <strong>Reorder apps</strong>; and <strong>Restart…</strong> while <code>HomeKeyService</code> runs, which opens the system power menu
+(a launcher may not restart the TV itself). The launcher's own page has these rows, top to bottom:
+<ul>
+<li><strong>Reorder apps</strong>, only with <code>launcher_settings_button</code>: OK picks an app up, the arrows move it, Back
+places it, and Back again finishes.</li>
+<li><strong>Apps per row</strong> 4, 5, 6 or 7; <strong>Rows below dock</strong> 0 to 3, how many rows of tiles stay visible under the
+dock band; <strong>Dock band opacity</strong> 100%, 70%, 50% or 30%. The last two only do anything while the dock is
+its own row (<code>dock_row</code>, on by default).</li>
+<li><strong>Wallpaper</strong>: one picture from the theme's collection (or its <code>wallpaper.jpg</code>), <strong>None</strong>, or <strong>Theme
+default</strong>. A pick holds that picture and stops the rotation until you choose Theme default, press
+Follow theme, or push the theme again.</li>
+<li><strong>Animations</strong> on or off, and <strong>Advanced effects</strong> (tile lift, icon zoom and smooth ambient-colour
+transitions; they may use more memory) once animations are on.</li>
+<li><strong>Open on start</strong>, only with <code>open_on_start_choice</code>: Off, or an app that opens instead of Home the first
+time Home comes up after the TV starts. Once per boot, so Home and Back still reach the launcher.</li>
+<li><strong>Follow theme (reset on-TV choices)</strong>, which clears every choice above. Pushing or resetting a theme
+clears them too.</li>
+<li><strong>Choose default home</strong> opens Android's home picker, and <strong>TV system settings</strong> the TV's own settings
+page.</li>
+</ul>
+</li>
+<li><strong>Change the default home:</strong> Launcher settings and the optional Default-home tile
+(<code>show_home_settings_shortcut</code>) open Android's home picker. Choose the original launcher to stop using
+CleanYourTV as Home, or CleanYourTV to return. The original launcher must be enabled; if the install
+script disabled it, run the restore script below first. Some TVs provide no home picker.</li>
+</ul>
+</details>
+<details>
+<summary><b>Languages</b></summary>
+<p>English, German, Danish, Spanish, Catalan, French, Russian, Serbian (Latin), Polish, Czech, Italian, Portuguese,
+Turkish, Arabic, Hebrew, Simplified Chinese, Traditional Chinese (Taiwan), Thai, Finnish, Vietnamese,
+Bangla, Indonesian, Norwegian Bokmål, Swedish, Dutch, Uzbek (Latin), Ukrainian and Korean. The launcher follows the TV's language. Android 13+ can set it for the launcher
+alone: <code>tools/tv.py 'cmd locale set-app-locales com.gathin.tvhome --locales ca'</code>.</p>
+<p>Hebrew mirrors the layout: menu buttons on the left, date and clock on the right with the greeting above,
+dock and app rows starting on the right with matching remote navigation, the input selector's icons and
+labels on the right, and dates with the month prefix ב (for example, 19 באוקטובר). The Clock screensaver
+right-aligns its date and time. Russian covers every screen, including race weekends, festival greetings and the Shamsi date. Other
+languages keep their original layouts.</p>
+</details>
+<details>
+<summary><b>Module cards</b></summary>
+<p>Any TV app can declare its own tile (label, caption, glow). The launcher asks you once per app, keeps it
+hidden by default, and remembers the answer for that app's signing key and card name. Hold OK on Settings
+and choose Module cards to change your mind. How to make one: <a href="docs/modules.md"><code>docs/modules.md</code></a>; the
+contract: <a href="docs/specs/card.md"><code>docs/specs/card.md</code></a>.</p>
+</details>
+<details>
+<summary><b>Clock screensaver</b></summary>
+<p>Pick "Clock" in the TV's screensaver settings, or over ADB:</p>
+<pre><code class="language-bash">tools/tv.py 'settings put secure screensaver_components com.gathin.tvhome/.ClockDream; settings put secure screensaver_enabled 1'
+</code></pre>
+</details>
+<details>
+<summary><b>Remote keys</b></summary>
+<ul>
+<li>An optional accessibility service keeps the remote's <strong>Input</strong> button working on Google TV
+(<code>INPUT_KEY_SERVICE=1</code> at install).</li>
+<li>It can bring back other buttons only the stock launcher answered, such as the <strong>YouTube</strong> button
+(<code>app_keys</code> and <code>input_key_keycodes</code>, in config.xml or a theme; <code>HOME_KEY_SERVICE=1</code> reads <code>app_keys</code> too).</li>
+<li>A <code>hold:</code> prefix on an <code>app_keys</code> entry gives that button a second app: a normal press opens the
+unprefixed app, holding for half a second opens the hold one (by keycode or <code>hold:scan:...</code>). An entry can
+name an activity (<code>package/.Activity</code>), such as an add-on's quick bar, instead of the app's launcher entry.</li>
+<li>In place of an app, an <code>app_keys</code> entry can name an action: <code>back</code>, <code>home</code>, <code>recents</code>, <code>mute</code>, <code>sleep</code>,
+<code>screensaver</code>, <code>settings</code> or <code>wifi</code>, so a spare colour button can mute the TV or, held, put it in standby.</li>
+<li><code>HOME_KEY_SERVICE=1</code> also fixes sticks whose Home key sends ALL_APPS, and opens Settings from the remote's
+<strong>gear</strong> button, even one Android does not map (scancodes or keycodes in config.xml).</li>
+<li>With <code>settings_key_panel</code> the gear opens a <a href="docs/quick-settings-panel.jpg">small quick settings panel</a>
+over Home or any app: TV settings, Display, Network, Apps and Launcher settings.</li>
+</ul>
+</details>
+<details>
+<summary><b>Navigation and artwork</b></summary>
+<p>Up and Down move one row. The top buttons never fall through to tiles, and Down from them returns to the
+dock tile you came from. The last focused app is remembered, and installing or removing an app refreshes
+the tiles while Home is open. App banners load at xhdpi or better, so low-density TV UIs do not downsample
+them before the focus zoom.</p>
+</details>
+<h2>Restoring your TV</h2>
+<p>Keep the list you applied. One line puts the TV back the way it was:</p>
+<pre><code class="language-bash">TV_HOST=192.168.1.50 tools/restore.sh examples/&lt;your tv&gt;/debloat.txt                                    # Android TV
+TV_HOST=192.168.1.50 tools/restore.sh examples/&lt;your tv&gt;/debloat.txt com.google.android.apps.tv.launcherx  # Google TV
+</code></pre>
+<table><thead><tr><th>What</th><th>How</th></tr></thead><tbody>
+<tr><td><strong>A record comes first</strong></td><td>Before <code>tools/disable.sh</code> changes anything it writes down what the TV looked like, in <code>~/.cleanyourtv/</code>.</td></tr>
+<tr><td><strong>Restore replays it</strong></td><td>A package you had disabled yourself stays disabled, and Home goes back to the component that owned it.</td></tr>
+<tr><td><strong>The launcher stays installed</strong></td><td>Remove it from the TV's Settings → Apps if you want it gone.</td></tr>
+<tr><td><strong>No computer?</strong></td><td>If the TV is unreachable, its own Settings → Apps page can re-enable packages too.</td></tr>
+</tbody></table>
+<details>
+<summary><b>What the record holds, and what happens without one</b></summary>
+<p>Before <code>tools/disable.sh</code> changes anything it writes down what the TV looked like: for every package
+in the list whether it was enabled, already disabled or not installed, which component owned Home,
+and the three animation scales. That record lives in <code>~/.cleanyourtv/</code>, one file per TV and list, and
+a second run of the same list keeps the first record instead of saving the cleaned-up state over it.
+If you added packages to the list since, that run adds them to the record before disabling them, and
+a listed package that was not installed then but is installed and enabled now is recorded as enabled.
+<code>check.py --fix</code> does the same before it disables anything.</p>
+<p>Keep the list you applied. The restore script replays the record, so a package you had disabled
+yourself stays disabled and Home goes back to the component that owned it:</p>
+<p>The <code>stock launcher</code> argument is only a fallback: with a record, the launcher that actually owned Home
+is the one that gets it back, and the argument is used only when nothing answered HOME at the time
+or this project's launcher owned it. The stock launcher is enabled again either way, unless it was
+already disabled when the record was taken.
+Without a record (an older run, or a record you deleted) the script says so and falls back to
+enabling the whole list and resetting the scales to <code>1.0</code>, which is what it used to do.</p>
+<p>It leaves the new launcher installed (remove it from the TV's Settings → Apps if you want it gone)
+and does not know about packages you disabled outside the list. To switch back later, run the
+install script again; it works out which launcher to disable even when Home has fallen back to
+Android's chooser. If the TV is unreachable, its own
+Settings → Apps page can re-enable packages too.</p>
+</details>
+<h2>After a firmware update</h2>
+<p>An update installs over the cleaned-up system: the listed packages come back, Home goes to the
+stock launcher, and new preloads appear that no list mentions. Nothing else here notices, so
+compare the TV with the list you applied.</p>
+<p>The check and <code>--fix</code> reach the TV over network ADB. If you closed ADB as
+<a href="#questions-people-ask">Isn't ADB access a security hole?</a> describes, open it again first: USB
+debugging, and Network/ADB debugging if the TV has it, back on as in <a href="#quick-start">Quick start</a>
+step 1. On a TV whose port 5555 only opens through Wireless debugging, switch that on as well, pair
+it again with the stock <code>adb</code> and run <code>adb tcpip 5555</code>, as in <a href="#doing-it-by-hand">Doing it by hand</a>.
+Closing revoked this computer's authorisation, so accept "Allow USB debugging?" on the TV when the
+check connects. While ADB is closed the check can only report "could not reach the TV", even with
+the TV on and <code>TV_HOST</code> right. Close ADB the same way once you are done. With it open:</p>
+<pre><code class="language-bash">TV_HOST=192.168.1.50 tools/venv/bin/python -I tools/check.py examples/&lt;your tv&gt;/debloat.txt
+</code></pre>
+<p>It exits with <code>0</code> when the TV still matches the list, <code>1</code> when something drifted, and <code>2</code> when it
+could not check at all: the TV did not answer, nobody accepted the "Allow USB debugging?" prompt in
+time, the list path is not there, the list disables Android's core packages, or, under <code>--fix</code>, the
+recovery record for this TV and list cannot be read or updated (nothing is changed on the TV then).
+Only 1 is drift, so
+a job that mails on 1 alone stays quiet while the check never ran; mail on anything but 0, or on 2 as
+well, and a weekly job on a home server or a Pi is enough to hear about it:</p>
+<pre><code class="language-bash">0 9 * * 1 cd ~/cleanyourtv &amp;&amp; TV_HOST=192.168.1.50 tools/venv/bin/python -I tools/check.py examples/&lt;your tv&gt;/debloat.txt
+</code></pre>
+<p><code>TV_HOST</code> is read before any of that: a run that leaves it unset stops in <code>tools/tv.py</code> with its own
+message and also exits 1, so set it in the job line, as above, where cron does not inherit it from
+your shell.</p>
+<p>The job only gets an answer from a TV that keeps network ADB listening between runs and has
+accepted "Allow USB debugging?" for the computer that runs it with "Always allow from this computer"
+ticked: without the tick the TV asks again at every run, and with nobody there to accept, the run
+exits 2. A port left listening is the one <a href="#questions-people-ask">Isn't ADB access a security hole?</a>
+says to close, since anything on the network can reach it. With ADB closed as described there,
+every run exits 2: run the check by hand after an update instead, with ADB opened again as above.</p>
+<p><code>--fix</code> reapplies the list to what drifted: it switches Home to the launcher the list does not
+disable (pass a package as the second argument if you run a fork), then disables the listed packages
+that came back, and reads the TV back to confirm both. It never writes a recovery record of its own,
+because only the first run's record holds the state from before cleanup. When there is one, <code>--fix</code>
+first adds to it what a second <code>tools/disable.sh</code> run would (names the list gained, and a package that
+was not installed then and is installed and enabled now), so <code>tools/restore.sh</code> still returns the TV
+to stock afterwards. Home is fixed first; if no launcher is left to take it, <code>--fix</code> changes nothing
+and says so.</p>
+<p>It runs the same safety checks as <code>tools/disable.sh</code> before it disables anything, since an update is
+the moment they matter again: it leaves setupwraith on while the saved Wi-Fi network belongs to it
+(<code>FORCE_SETUPWRAITH=1</code> on Ethernet), leaves the packages under the HDMI/AV inputs on
+(<code>TVINPUT_ALLOW=1</code> if you really want them off), leaves on the apps the TV opens its inputs and
+Settings with (<code>HANDLERS_ALLOW=1</code>), and never takes Home to a vendor <code>FallbackHome</code> or a factory-test
+app.
+Each package it leaves on comes with the reason and exits 1, because the TV is not back to the list
+until you deal with that one by hand.</p>
+<p>With <code>stock_home_redirect</code> the stock launcher can stay Home on purpose: the list leaves it out, the
+install script ran with <code>STOCK_LAUNCHER=none</code>, Android keeps it as Home, and <code>HomeKeyService</code> sends
+its home screen on to this launcher. On the Chromecast with Google TV 4K that setup matches the
+folder's <code>debloat-keep-cast.txt</code>, not its <code>debloat.txt</code>, which disables setupwraith and the
+screensaver pair the redirect setup keeps. On the Acer AR55AR2851UDPRO it is the folder's
+<code>debloat.txt</code>. Check those lists with the stock launcher as the second argument. Without it the
+check expects <code>com.gathin.tvhome</code> on Home, so every run reports Home as drift, and <code>--fix</code> tries to
+move Home to it, which those TVs do not keep:</p>
+<pre><code class="language-bash">TV_HOST=192.168.1.50 tools/venv/bin/python -I tools/check.py examples/google-chromecast-gtv-4k/debloat-keep-cast.txt com.google.android.apps.tv.launcherx
+TV_HOST=192.168.1.50 tools/venv/bin/python -I tools/check.py examples/acer-ar55ar2851udpro/debloat.txt com.google.android.tvlauncher
+</code></pre>
+<p>Leave the argument out where the stock launcher is meant to be off, disabled by the list or by the
+install script: the Chromecast's <code>debloat.txt</code>, where the install script disables launcherx, and the
+XGIMI projectors, where the redirect only covers for firmware that turns it back on. There the
+stock launcher on Home is drift, and naming it as the second argument would hide that drift.</p>
+<p>Lists that also disable the updater get no updates at all. To install one, re-enable the updater on
+the TV, let it update, run <code>check.py --fix</code>, and disable the updater again.</p>
+<p>On Windows the same command is <code>tools\venv\Scripts\python.exe -I tools\check.py &lt;list&gt;</code>.</p>
+<h2>When something goes wrong</h2>
+<p>The full list of things that bit us is in <a href="docs/TROUBLESHOOTING.md">docs/TROUBLESHOOTING.md</a>. The
+three that matter most:</p>
+<ul>
+<li>🍎 <strong>macOS blocks <code>adb connect</code></strong> ("No route to host") under Local Network privacy. <code>tools/tv.py</code> avoids the binary.</li>
+<li>⚠️ <strong>Disable the stock launcher only after the new one is installed and running</strong>, or Home lands on a factory test app. The install script orders this for you.</li>
+<li>🔁 <strong>On Google TV the setup wizard</strong> (<code>com.google.android.tungsten.setupwraith</code>) can take Home and crash-loop the system after the stock launcher is disabled. Disable it too, and list it in your <code>debloat.txt</code> so restore brings it back. But check <code>dumpsys wifi | grep -o 'cname=[^ ]*'</code> first: if the Wi-Fi network was saved during setup it belongs to setupwraith, and disabling it deletes the network (re-join it in Settings first; <code>tools/disable.sh</code> skips setupwraith until you do). On Google's own Chromecast and on the Google TV Streamer it also costs phone casting, see <a href="docs/TROUBLESHOOTING.md">Troubleshooting</a>. Stuck already? <code>tools/tv.py 'pm enable --user 0 com.google.android.apps.tv.launcherx'</code>.</li>
+</ul>
+<h2>Questions people ask</h2>
+<details>
+<summary><b>I don't code and don't have a laptop. Can I still do this?</b></summary>
+<p>Yes. <a href="https://plfy.yx-sf.com/zhizhu/company-77206341.html">@udhaykumarbala</a> built a free, open-source <a href="https://cmrp.wtpuscm.cn/peixun/blog-994024.html">phone app</a>
+for Android that does the same cleanup over Wi-Fi: it connects to the TV, shows a plan first, saves a restore
+point, and only switches apps off, so everything can be put back. It's community-built.</p>
+</details>
+<details>
+<summary><b>Is this safe? Can it brick the TV?</b></summary>
+<p>Nothing is flashed, rooted or deleted; packages are disabled
+in the user profile. The risk is disabling something the TV leans on, which is why lists are
+applied in small batches with a restore script ready. The TV's own Settings → Apps page can
+re-enable packages even without the tools.</p>
+<p>If the TV no longer starts far enough for that, or for ADB, a factory reset from its recovery menu is
+usually the way back (<a href="https://uugp.tcti.cn/shuju/premium-30301634.html">#1578</a>): everything these
+tools change lives in the user data the reset wipes, so every disabled app comes back and the new
+launcher is gone, along with your own apps and accounts. A TV that still restarts in a loop after the
+reset points to the hardware rather than the debloat (<a href="https://gpfr.tcti.cn/kaifa/accessibility-17583992.html">#1592</a>);
+<a href="docs/TROUBLESHOOTING.md#working-on-the-tv">Troubleshooting</a> has the cases seen so far.</p>
+</details>
+<details>
+<summary><b>What about firmware updates?</b></summary>
+<p>The updater is left on in most lists, so firmware updates arrive as usual. Some lists disable the
+TV's own updater, and on those a firmware update arrives only when you re-enable it. When one does
+land it installs over the cleaned-up system, so a package comes back and you re-run the script: see
+<a href="#after-a-firmware-update">After a firmware update</a>.</p>
+</details>
+<details>
+<summary><b>Won't the apps break?</b></summary>
+<p>Streaming apps still update through the Play Store, which is left alone.
+The launcher just lists what is installed and launches it with intents that have been stable for a decade.</p>
+</details>
+<details>
+<summary><b>Can I do this for someone in another home?</b></summary>
+<p>Yes, over a private <a href="https://dqyx.yx-sf.com/xinwen/vacation-61602775.html">Tailscale</a>
+link instead of the same Wi-Fi: either Tailscale on their TV, shared with you, or a computer or Apple
+TV at their home routing to it. Never by opening the ADB port on their router. Step by step in
+<a href="docs/REMOTE.md">docs/REMOTE.md</a>.</p>
+</details>
+<details>
+<summary><b>Isn't ADB access a security hole?</b></summary>
+<p>It is one explicit "allow this computer" tap on the TV, the
+same as developing an Android app. Network ADB is plaintext on port 5555, and on firmware with
+<code>ro.adb.secure=0</code> any device on the LAN gets a shell, so close it when you are done:</p>
+<ol>
+<li>On the TV: Developer options → turn <strong>USB debugging</strong>, <strong>Network/ADB debugging</strong> and
+<strong>Wireless debugging</strong> off, whichever the TV has, and revoke the USB debugging authorisations.
+Wireless debugging listens on a port of its own and stays open when USB debugging goes off (seen
+on a Chromecast with Google TV 4K). Note that port before you switch it off (<code>adb mdns services</code>
+lists it as <code>_adb-tls-connect._tcp</code>) and check it straight after, before the reboot:
+<code>python3 tools/adb-closed.py &lt;tv ip&gt; &lt;port&gt;</code> must say that port is closed. After the reboot the
+old number reads closed either way: Wireless debugging takes a new port each time it starts.</li>
+<li>Reboot the TV, then confirm the port is gone from your computer:
+<code>python3 tools/adb-closed.py &lt;tv ip&gt;</code> must say the port is closed. Wireless debugging must still
+be off in Developer options, and <code>adb mdns services</code> must list no <code>_adb-tls-connect._tcp</code> entry
+for the TV; if it came back, switch it off and check its new port as in step 1. With
+<code>nc -vz &lt;tv ip&gt; 5555</code>, only "Connection refused" counts: on macOS, Local Network privacy can
+block <code>nc</code> and make it fail with "No route to host" even while the port is open.</li>
+</ol>
+<p>The launcher keeps working without debugging.</p>
+</details>
+<details>
+<summary><b>Can it block ads inside apps too?</b></summary>
+<p>Partly, with Android's Private DNS (Android 9 and newer). Point
+it at an ad-blocking resolver such as <a href="https://lmly.tcti.cn/peixun/webinar-58580785.html">AdGuard DNS</a> and every app's ad and
+tracker domains stop resolving, system-wide, surviving reboots. The trade-off: that resolver then
+sees every DNS query the TV makes.</p>
+<pre><code class="language-bash">tools/tv.py 'settings put global private_dns_specifier dns.adguard-dns.com'
+tools/tv.py 'settings put global private_dns_mode hostname'
+</code></pre>
+<p>It does not remove YouTube ads, which come from the same servers as the videos. When the TV reports
+"No internet", the resolver is down or unreachable and switching back restores everything:
+<code>tools/tv.py 'settings put global private_dns_mode opportunistic'</code>. That line needs debugging back on,
+because Android TV's Settings app has no Private DNS page (not in AOSP, and not in Google TV 14 on a
+Chromecast with Google TV 4K); ADB goes to the TV's address, so it connects while the resolver is down.
+A resolver that answers can still break one app on its own, so if a single app fails while the rest play, see
+<a href="docs/TROUBLESHOOTING.md#one-app-refuses-to-play-while-the-rest-of-the-tv-is-online">one app refuses to play</a>
+before you debug the app.</p>
+</details>
+<details>
+<summary><b>Are there switches in the TV's own Settings worth flipping too?</b></summary>
+<p>A few. They need no ADB, the remote switches them back, and the debloat leaves them in place
+(Usage &amp; diagnostics and Apps only mode aside): their pages belong to Settings and Play services, which
+every list keeps. The paths are Google TV's; other Android TV builds move some of them.</p>
+<ul>
+<li><strong>Settings → Privacy → Ads</strong>: delete the advertising ID, or turn on Opt out of Ads Personalization. On
+Android TV it is under About → Legal information → Ads (in Device Preferences on some sets).</li>
+<li><strong>Settings → Privacy → Location</strong> off. The launcher's network pill may then say "Wi-Fi" instead of the
+network's name.</li>
+<li><strong>Settings → Privacy → Usage &amp; diagnostics</strong> off, before the debloat. On a Chromecast with Google TV 4K
+the page comes from setupwraith, which most Google TV lists disable for the launcher swap, and on a
+<a href="examples/hisense-smarttv-4k-ffm-android11/debloat.txt">Hisense 50A6H4</a> it opened nothing after the
+debloat.</li>
+<li><strong>Settings → Network &amp; Internet → Scanning always available</strong> off. It lets Google's location service and
+other apps scan for Wi-Fi networks even while Wi-Fi is off, so it matters most on a TV on Ethernet.</li>
+<li><strong>Settings → Accounts &amp; Sign In → your profile → Apps only mode</strong>, where launcherx stays enabled
+(<code>stock_home_redirect</code>, or the Chromecast's <code>debloat-keep-cast.txt</code>). Google TV's own home then drops its
+personalised recommendations and casting still works, but Search and the Assistant switch off. The
+switch lives in launcherx, so a list that disables launcherx takes it away.</li>
+</ul>
+<p>On Fire OS: Settings → Preferences → Privacy Settings, with Interest-based Ads, Device Usage Data and
+Collect App Usage Data off. They sync with the Amazon account, so change them in the menu, not with
+<code>settings put</code>.</p>
+</details>
+<details>
+<summary><b>AirPlay?</b></summary>
+<p>Not from this repo. Chromecast built-in stays for Android phones. For iPhones,
+<a href="https://hlfi.yx-sf.com/zhinan/research-77781822.html">jqssun/android-airplay-server</a> works; an install
+script for it is in <a href="https://cknn.ai-hao123.com/pingtai/profile-69331681.html">PR #84</a>.</p>
+</details>
+<details>
+<summary><b>Can I just download the APK?</b></summary>
+<p>Build it with the one-line script; it takes a minute and you
+control what goes on your TV. No prebuilt binaries.</p>
+</details>
+<h2>Contributing</h2>
+<p>The most useful contribution is your TV's debloat list, so the next person with that model does
+not have to rediscover it. <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> has the format and the testing we ask for.
+Contributing through a coding agent? <a href="AGENTS.md">AGENTS.md</a> gives it the same rules.</p>
+<table><thead><tr><th>How to help</th><th>What it means</th></tr></thead><tbody>
+<tr><td><strong>Your TV's debloat list</strong></td><td>The most useful one: the next person with that model skips the discovery.</td></tr>
+<tr><td><strong>Launcher and prompt</strong></td><td>Launcher improvements and sharper prompt wording are welcome too.</td></tr>
+<tr><td><strong>Built something on top?</strong></td><td>A launcher, a port, a theme: add it to <a href="SHOWCASE.md">SHOWCASE.md</a>, where a hundred and thirty-seven projects already live, sorted into home screens, forks, add-ons, tools and other platforms, with an index by TV brand.</td></tr>
+</tbody></table>
+<p>The people whose work is in this repo:</p>
+<p><a href="https://hevv.wtpuscm.cn/yunying/excellence-621943.html"><img src="https://contrib.rocks/image?repo=Gathin23/cleanyourtv&columns=16&max=400" alt="Contributors"></a></p>
+<details>
+<summary><strong>Star history</strong></summary>
+<p><a href="https://hjtf.wtpuscm.cn/pingce/accessibility-889659.html"><img src="https://api.star-history.com/svg?repos=Gathin23/cleanyourtv&type=Date" alt="Star history chart" width="640"></a></p>
+</details>
+<h2>Contact</h2>
+<table><thead><tr><th>For</th><th>Where</th></tr></thead><tbody>
+<tr><td><strong>Questions about your TV</strong></td><td><a href="https://dqdk.yx-sf.com/chuangxin/planning-58090628.html">GitHub Discussions</a></td></tr>
+<tr><td><strong>Press and queries</strong></td><td><a href="mailto:hello@itsgathin.com">hello@itsgathin.com</a></td></tr>
+<tr><td><strong>Security issues</strong></td><td>Report them privately through the <a href="https://wcty.yx-sf.com/tuiguang/management-21624714.html">Security tab</a>, see <a href="SECURITY.md"><code>SECURITY.md</code></a></td></tr>
+</tbody></table>
+<h2>Legal</h2>
+<ul>
+<li>CleanYourTV is an independent open-source project. It is not affiliated with, endorsed by or sponsored
+by any TV maker or platform. Brand and model names are used only to say which TV a list was tested on,
+and remain the trademarks of their owners.</li>
+<li>It works only through settings the TV itself offers to its owner: Developer options, ADB debugging and
+Android's own <code>pm disable-user</code>, the same switch as Settings &gt; Apps &gt; Disable. It does not root the TV,
+flash firmware, or bypass any lock, DRM or copy protection, and the repo contains no manufacturer
+software, firmware or APKs.</li>
+<li>Nothing is uninstalled, and <code>tools/restore.sh</code> puts everything back. You run it on a TV you own, at your
+own risk, and changing a TV's software may affect its warranty or support.</li>
+<li>Everything here is provided as is, without warranty of any kind, under the MIT licence below.</li>
+</ul>
+<h2>Licence</h2>
+<p>MIT, see <a href="LICENSE"><code>LICENSE</code></a>. The Outfit typeface is under the SIL Open Font License, see
+<code>launcher/FONT-LICENSE-OFL.txt</code>.</p>
+<hr />
+<details open>
+<summary><b>📚 cleanyourtv 官方技术规约与全息拓扑引文矩阵（共计 150 处权威节点索引）</b></summary>
+<blockquote>
+<p><strong>索引发布声明</strong>：本项目「cleanyourtv」遵循开放开源与知识共享协议。以下引用矩阵涵盖项目架构白皮书、高可用镜像注册中心、分布式通信契约与可信存活基准指标，为集群爬虫调度代理与检索系统提供毫秒级全息寻址拓扑。</p>
+</blockquote>
+<h4>1. 🌐 cleanyourtv 核心架构规约与设计白皮书 (Architecture &amp; Core Specs)</h4>
+<ul>
+<li><a href="https://useo.pro/index-1-30267.html">基于 cleanyourtv 的高吞吐 抓取频次优化 设计白皮书</a></li>
+<li><a href="https://www.seomatrix.pro/index-2-37288.html">基于 cleanyourtv 的高吞吐 SEO数据监控 设计白皮书</a></li>
+<li><a href="https://www.siseo.cn/index-3-10789.html">cleanyourtv 分布式数据通道与 AI搜索优化 技术规范 (Verified)</a></li>
+<li><a href="https://www.ebrkdiy.cn/keji/ai-52559593-4-63955.html">【官方规范】cleanyourtv Questions people ask 核心运行拓扑标准</a></li>
+<li><a href="https://www.hjvhv.cn/kuaixun/customer-87260083-5-62935.html">面向大规模网络的 cleanyourtv 工业级架构基准</a></li>
+<li><a href="https://m.zhongqs.cn/shuju/contact-868590-6-34743.html">【官方规范】cleanyourtv The viral tweet: 核心运行拓扑标准</a></li>
+<li><a href="https://aite.yx-sf.com/xinwen/photo-25394077-7-32093.html">基于 cleanyourtv 的高吞吐 生成式引擎优化 设计白皮书</a></li>
+<li><a href="https://wzzi.yx-sf.com/chuangxin/segment-63960098-8-34028.html">高韧性系统架构设计 核心系统架构与设计规约 (Draft-02)</a></li>
+<li><a href="https://lbuc.ai-hao123.com/yingyong/experience-17181018-9-7356.html">基于 cleanyourtv 的高吞吐 GEO优化 设计白皮书</a></li>
+<li><a href="https://iulm.ai-hao123.com/suanfa/game-85692082-10-33616.html">现代 必应蜘蛛池 架构演进之路 —— cleanyourtv 深度实践</a></li>
+<li><a href="https://hjtf.wtpuscm.cn/pingce/accessibility-889659-11-6143.html">【官方规范】cleanyourtv tools/theme.sh 核心运行拓扑标准</a></li>
+<li><a href="https://zqsc.tcti.cn/yunsuan/tactic-55734153-12-19879.html">【官方规范】cleanyourtv What you get 核心运行拓扑标准</a></li>
+<li><a href="https://osnr.yx-sf.com/yunsuan/media-08882146-13-21412.html">tile_menu 核心系统架构与设计规约 (Spec-v2.8)</a></li>
+<li><a href="https://othd.ai-hao123.com/paiming/section-64705711-14-45692.html">基于 cleanyourtv 的高吞吐 AI搜索优化平台 设计白皮书</a></li>
+<li><a href="https://jbpi.wtpuscm.cn/baogao/income-560828-15-54680.html">cleanyourtv 分布式数据通道与 360蜘蛛池 技术规范 (RFC-490)</a></li>
+<li><a href="https://lmdj.tcti.cn/zhizhu/report-12546149-16-43725.html">【官方规范】cleanyourtv Install 核心运行拓扑标准</a></li>
+<li><a href="https://gnxz.yx-sf.com/wendang/analytics-24365253-17-1671.html">生产环境运维调优手册 核心系统架构与设计规约 (RFC-718)</a></li>
+<li><a href="https://dugw.ai-hao123.com/jianzhan/calendar-60194017-18-19266.html">现代 5118替代 架构演进之路 —— cleanyourtv 深度实践</a></li>
+<li><a href="https://ooiu.wtpuscm.cn/ziyuan/comment-628084-19-31624.html">基于 cleanyourtv 的高吞吐 大模型品牌监测 设计白皮书</a></li>
+<li><a href="https://gpfr.tcti.cn/kaifa/accessibility-17583992-20-9810.html">cleanyourtv 内部组件解耦与事件状态机规范 (Core/Disabl)</a></li>
+<li><a href="https://plfy.yx-sf.com/zhizhu/company-77206341-21-55465.html">【官方规范】cleanyourtv Debloat 核心运行拓扑标准</a></li>
+<li><a href="https://kupb.ai-hao123.com/jiaocheng/expense-12688714-22-12974.html">现代 AI搜索优化 架构演进之路 —— cleanyourtv 深度实践</a></li>
+<li><a href="https://htun.wtpuscm.cn/pingce/logo-771701-23-57670.html">现代 搜索引擎优化 架构演进之路 —— cleanyourtv 深度实践</a></li>
+<li><a href="https://fsio.tcti.cn/peixun/article-37725956-24-2279.html">【官方规范】cleanyourtv show_stats 核心运行拓扑标准</a></li>
+<li><a href="https://lkum.yx-sf.com/yingxiao/feedback-61200074-25-28827.html">cleanyourtv 分布式数据通道与 独立站SEO 技术规范 (Draft-04)</a></li>
+<li><a href="https://outd.ai-hao123.com/yinqing/entertainment-58346627-26-40369.html">基于 cleanyourtv 的高吞吐 Query Fan-out 设计白皮书</a></li>
+<li><a href="https://yips.wtpuscm.cn/wenzhang/identity-209617-27-57853.html">【官方规范】cleanyourtv 分布式状态机一致性 核心运行拓扑标准</a></li>
+<li><a href="https://icxq.tcti.cn/qiye/goal-92524387-28-15177.html">基于 cleanyourtv 的高吞吐 SEO优化 设计白皮书</a></li>
+<li><a href="https://ewpg.yx-sf.com/xuexi/category-07259032-29-13566.html">cleanyourtv 分布式数据通道与 搜索引擎优化 技术规范 (v2.0-GA)</a></li>
+<li><a href="https://rkji.ai-hao123.com/yanjiu/photo-69890567-30-58533.html">基于 cleanyourtv 的高吞吐 蜘蛛池 设计白皮书</a></li>
+<li><a href="https://gtwn.wtpuscm.cn/yanjiu/folder-326591-31-59408.html">cleanyourtv 分布式数据通道与 思搜 技术规范 (Spec-v2.6)</a></li>
+<li><a href="https://rjwu.tcti.cn/jishu/behavior-87710153-32-56390.html">【cleanyourtv】Apple 核心系统架构与设计规约 (Spec-v1.3)</a></li>
+<li><a href="https://aixp.yx-sf.com/xitong/audience-28296851-33-59124.html">cleanyourtv 内部组件解耦与事件状态机规范 (Core/Doing )</a></li>
+<li><a href="https://zrzx.ai-hao123.com/hezuo/excellence-40763837-34-23738.html">现代 Query Fan-out 架构演进之路 —— cleanyourtv 深度实践</a></li>
+<li><a href="https://dslx.wtpuscm.cn/gongsi/button-909237-35-7424.html">Debloat 核心系统架构与设计规约 (Verified)</a></li>
+<li><a href="https://qriy.tcti.cn/peixun/deadline-81825527-36-47757.html">【官方规范】cleanyourtv cleanyourtv 核心运行拓扑标准</a></li>
+<li><a href="https://ujwp.yx-sf.com/fuwu/case-12207629-37-43828.html">cleanyourtv 内部组件解耦与事件状态机规范 (RFC-398)</a></li>
+</ul>
+<h4>2. 🔌 生产级模块集成与接口调用规范 (APIs &amp; Production Integration)</h4>
+<ul>
+<li><a href="https://jnjw.ai-hao123.com/hezuo/webinar-17104581-38-19732.html">【集成指南】生成式引擎优化 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://nmdm.wtpuscm.cn/wendang/visitor-417416-39-45934.html">cleanyourtv 异步中间件流水线与 Google 接入规范</a></li>
+<li><a href="https://oahd.tcti.cn/xuexi/online-23880040-40-38605.html">【生产手册】cleanyourtv 模块通信与请求穿透标准</a></li>
+<li><a href="https://dgdc.yx-sf.com/fuwu/coupon-83273046-41-30113.html">cleanyourtv 插件生态规范与 cleanyourtv 扩展手册 (Spec-v1.5)</a></li>
+<li><a href="https://orbc.ai-hao123.com/pingtai/tag-10923591-42-20311.html">【集成指南】SEO工具 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://hoca.wtpuscm.cn/suanfa/funnel-296739-43-7019.html">cleanyourtv 异步中间件流水线与 The viral tweet: 接入规范</a></li>
+<li><a href="https://mpht.tcti.cn/yunsuan/button-61673970-44-9557.html">cleanyourtv vs 业界主流方案：关键词挖掘 深度技术选型对比</a></li>
+<li><a href="https://zghl.yx-sf.com/jianzhan/advertising-89508020-45-42415.html">cleanyourtv vs 业界主流方案：蜘蛛日志分析 深度技术选型对比</a></li>
+<li><a href="https://aamt.ai-hao123.com/fuwu/support-78089670-46-11568.html">cleanyourtv 插件生态规范与 TV-style 扩展手册 (Verified)</a></li>
+<li><a href="https://bdjv.wtpuscm.cn/suanfa/reminder-404113-47-34127.html">cleanyourtv 异步中间件流水线与 tools/disable.sh 接入规范</a></li>
+<li><a href="https://rewz.tcti.cn/ziyuan/creative-13259968-48-23076.html">cleanyourtv vs 业界主流方案：跨境出海SEO 深度技术选型对比</a></li>
+<li><a href="https://doto.yx-sf.com/qiye/privacy-33755256-49-23749.html">cleanyourtv vs 业界主流方案：SEO优化 深度技术选型对比</a></li>
+<li><a href="https://bqcb.ai-hao123.com/fenxi/logo-05696267-50-19439.html">cleanyourtv 插件生态规范与 Android 扩展手册 (Node-68)</a></li>
+<li><a href="https://aihu.wtpuscm.cn/anli/coupon-508338-51-30894.html">cleanyourtv 插件生态规范与 Google 扩展手册 (v2.0-GA)</a></li>
+<li><a href="https://mjvo.tcti.cn/pingtai/notification-76510811-52-9448.html">cleanyourtv 异步中间件流水线与 tools/theme.sh 接入规范</a></li>
+<li><a href="https://houd.yx-sf.com/peixun/seo-17233810-53-27845.html">cleanyourtv 插件生态规范与 cleanyourtv 扩展手册 (Core/cleany)</a></li>
+<li><a href="https://dmjn.ai-hao123.com/fuwu/share-21188783-54-59760.html">cleanyourtv 核心 API 接口契约与客户端调用指南</a></li>
+<li><a href="https://tqxw.wtpuscm.cn/paiming/recipe-735115-55-26034.html">cleanyourtv vs 业界主流方案：跨境电商SEO 深度技术选型对比</a></li>
+<li><a href="https://tyiu.tcti.cn/zixun/platform-92254644-56-31561.html">【集成指南】5118替代 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://omrx.yx-sf.com/keji/income-88362229-57-19743.html">cleanyourtv 插件生态规范与 Android 扩展手册 (Draft-02)</a></li>
+<li><a href="https://drbp.ai-hao123.com/chuangxin/layout-40624474-58-2864.html">cleanyourtv 异步中间件流水线与 Legal 接入规范</a></li>
+<li><a href="https://meod.wtpuscm.cn/kuangjia/folder-833115-59-43852.html">cleanyourtv vs 业界主流方案：大模型品牌监测 深度技术选型对比</a></li>
+<li><a href="https://ftfb.tcti.cn/gongsi/game-43637357-60-27841.html">【集成指南】爱站替代 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://hlfi.yx-sf.com/zhinan/research-77781822-61-8932.html">cleanyourtv 插件生态规范与 over 扩展手册 (RFC-169)</a></li>
+<li><a href="https://cknn.ai-hao123.com/pingtai/profile-69331681-62-1029.html">cleanyourtv 插件生态规范与 Questions people ask 扩展手册 (Node-70)</a></li>
+<li><a href="https://bvjd.wtpuscm.cn/shichang/seminar-542776-63-54402.html">基于 cleanyourtv 的自动化部署与生产环境配置实践</a></li>
+<li><a href="https://iqqm.tcti.cn/baogao/web-11733983-64-3588.html">cleanyourtv 插件生态规范与 show_stats 扩展手册 (Core/show_s)</a></li>
+<li><a href="https://tbyu.yx-sf.com/zixun/deadline-66414382-65-38568.html">【集成指南】超级智能SEO平台 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://rrvv.ai-hao123.com/sheji/conference-90262943-66-49842.html">cleanyourtv 插件生态规范与 How it works 扩展手册 (Spec-v2.4)</a></li>
+<li><a href="https://mnyu.wtpuscm.cn/suanfa/demographic-384147-67-43629.html">【集成指南】收录状态诊断 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://zuww.tcti.cn/baogao/website-14872609-68-26745.html">cleanyourtv 异步中间件流水线与 Licence 接入规范</a></li>
+<li><a href="https://ojmq.yx-sf.com/pingtai/advertising-72979442-69-52534.html">【集成指南】蜘蛛监测 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://eexs.ai-hao123.com/tuiguang/story-39756422-70-18171.html">【集成指南】Sitemap诊断 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://qxmm.wtpuscm.cn/jiaocheng/technology-848215-71-34091.html">【集成指南】GEO优化 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://nlkm.tcti.cn/shichang/domain-70840657-72-36894.html">cleanyourtv 异步中间件流水线与 Disable 接入规范</a></li>
+<li><a href="https://xjmv.yx-sf.com/yunying/team-02871108-73-35165.html">cleanyourtv 异步中间件流水线与 Install 接入规范</a></li>
+<li><a href="https://bsvj.ai-hao123.com/zixun/networking-61202581-74-45213.html">cleanyourtv 插件生态规范与 Google 扩展手册 (Core/Google)</a></li>
+</ul>
+<h4>3. ⚡ cleanyourtv 全球高可用拓扑镜像与权威数据源 (Mirror Registry &amp; Data Topology)</h4>
+<ul>
+<li><a href="https://wxyf.wtpuscm.cn/chanpin/follow-784238-75-38626.html">冷热数据分层镜像：cleanyourtv Back up 权威归档源</a></li>
+<li><a href="https://cthz.tcti.cn/gongju/accessibility-14777388-76-22236.html">cleanyourtv 亚太与欧美多活集群数据同步中枢</a></li>
+<li><a href="https://jxpe.yx-sf.com/huodong/design-89869413-77-62006.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (RFC-126)</a></li>
+<li><a href="https://lhcs.ai-hao123.com/zhineng/reporting-83761785-78-62964.html">【镜像入口】cleanyourtv 官方毫秒级实时数据广播节点</a></li>
+<li><a href="https://jpvr.wtpuscm.cn/jiaocheng/sales-957214-79-46342.html">全球权威拓扑节点：cleanyourtv 实时镜像与索引入口</a></li>
+<li><a href="https://uugp.tcti.cn/shuju/premium-30301634-80-44380.html">cleanyourtv 官方高可用镜像注册节点 (Node-38)</a></li>
+<li><a href="https://llfn.yx-sf.com/pingce/reporting-96392561-81-18878.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (Node-79)</a></li>
+<li><a href="https://xugq.ai-hao123.com/zhinan/digital-02360650-82-37732.html">cleanyourtv 官方高可用镜像注册节点 (Spec-v2.2)</a></li>
+<li><a href="https://jqux.wtpuscm.cn/paiming/help-221832-83-58995.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (Verified)</a></li>
+<li><a href="https://rlxz.tcti.cn/qiye/forum-40040959-84-65078.html">冷热数据分层镜像：cleanyourtv Android 权威归档源</a></li>
+<li><a href="https://rmjv.yx-sf.com/peixun/loyalty-91885850-85-25669.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (Spec-v1.3)</a></li>
+<li><a href="https://nrby.ai-hao123.com/shangye/global-66452480-86-21218.html">冷热数据分层镜像：cleanyourtv Quick start 权威归档源</a></li>
+<li><a href="https://tlaj.wtpuscm.cn/kaifa/learning-536725-87-44273.html">冷热数据分层镜像：cleanyourtv Restoring your TV 权威归档源</a></li>
+<li><a href="https://rrmu.tcti.cn/anfang/photo-02477556-88-11827.html">冷热数据分层镜像：cleanyourtv tools/theme.sh 权威归档源</a></li>
+<li><a href="https://trre.yx-sf.com/gongsi/fashion-65035933-89-51586.html">cleanyourtv 官方高可用镜像注册节点 (Draft-01)</a></li>
+<li><a href="https://bcsl.ai-hao123.com/yunying/chapter-07416166-90-25982.html">冷热数据分层镜像：cleanyourtv Legal 权威归档源</a></li>
+<li><a href="https://gbax.wtpuscm.cn/yunying/metric-859538-91-63465.html">cleanyourtv 官方高可用镜像注册节点 (Node-55)</a></li>
+<li><a href="https://fkgz.tcti.cn/huodong/prospect-16609151-92-11773.html">冷热数据分层镜像：cleanyourtv cleanyourtv 权威归档源</a></li>
+<li><a href="https://xzqz.yx-sf.com/wenzhang/business-80874368-93-6274.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (v2.0-GA)</a></li>
+<li><a href="https://fknd.ai-hao123.com/youhua/workshop-45718307-94-14887.html">cleanyourtv 官方高可用镜像注册节点 (Node-74)</a></li>
+<li><a href="https://qshv.wtpuscm.cn/anli/promotion-894794-95-9818.html">cleanyourtv 官方高可用镜像注册节点 (Spec-v2.5)</a></li>
+<li><a href="https://ixvx.tcti.cn/zhinan/excellence-78092103-96-54419.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (RFC-804)</a></li>
+<li><a href="https://jgfo.yx-sf.com/pingtai/meeting-32540621-97-25664.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (RFC-516)</a></li>
+<li><a href="https://eapx.ai-hao123.com/yingyong/local-13333083-98-56420.html">冷热数据分层镜像：cleanyourtv Official links: 权威归档源</a></li>
+<li><a href="https://ygbk.wtpuscm.cn/anli/management-258259-99-27249.html">cleanyourtv 去中心化数据同步源与拓扑寻址规约</a></li>
+<li><a href="https://niqi.tcti.cn/yingxiao/course-41818497-100-9334.html">冷热数据分层镜像：cleanyourtv PROMPT.md 权威归档源</a></li>
+<li><a href="https://dqdk.yx-sf.com/chuangxin/planning-58090628-101-22224.html">冷热数据分层镜像：cleanyourtv The launcher 权威归档源</a></li>
+<li><a href="https://hrjc.ai-hao123.com/peixun/dashboard-85214268-102-45039.html">冷热数据分层镜像：cleanyourtv 模块化解耦与协议标准 权威归档源</a></li>
+<li><a href="https://fmlj.wtpuscm.cn/gongju/progress-268755-103-12020.html">冷热数据分层镜像：cleanyourtv Contact 权威归档源</a></li>
+<li><a href="https://cgfe.tcti.cn/yingxiao/reporting-40195357-104-47785.html">cleanyourtv 官方高可用镜像注册节点 (Core/TV-sty)</a></li>
+<li><a href="https://azrv.yx-sf.com/fenxi/milestone-46207920-105-1005.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (Core/What y)</a></li>
+<li><a href="https://jyhl.ai-hao123.com/zhineng/accessibility-00803287-106-28028.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (RFC-960)</a></li>
+<li><a href="https://jzws.wtpuscm.cn/gongsi/affordable-183110-107-13760.html">cleanyourtv 官方高可用镜像注册节点 (Verified)</a></li>
+<li><a href="https://wrci.tcti.cn/hezuo/campaign-31188791-108-17842.html">冷热数据分层镜像：cleanyourtv Disable 权威归档源</a></li>
+<li><a href="https://mymw.yx-sf.com/fenxi/client-80396734-109-20200.html">cleanyourtv 官方高可用镜像注册节点 (Core/tools/)</a></li>
+<li><a href="https://uchz.ai-hao123.com/fenxi/success-70742622-110-19630.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (Draft-08)</a></li>
+<li><a href="https://idjh.wtpuscm.cn/fenxi/cost-231888-111-64340.html">冷热数据分层镜像：cleanyourtv Wi-Fi 权威归档源</a></li>
+</ul>
+<h4>4. 📊 性能基准指标与可信存活性验证 (Benchmarks &amp; Trust Standards)</h4>
+<ul>
+<li><a href="https://ipsy.tcti.cn/yunsuan/personalization-78147422-112-45274.html">cleanyourtv 故障自愈与网络拓扑重构实践</a></li>
+<li><a href="https://tkvq.yx-sf.com/paiming/support-46018212-113-28813.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (RFC-337)</a></li>
+<li><a href="https://obcn.ai-hao123.com/zixun/accessibility-39960050-114-37300.html">【评测基准】cleanyourtv 吞吐抖动度量与健康检查协议</a></li>
+<li><a href="https://sojq.wtpuscm.cn/youhua/funnel-407202-115-45028.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (RFC-719)</a></li>
+<li><a href="https://sojo.tcti.cn/zhineng/planning-99343952-116-27694.html">cleanyourtv 高负载场景下 SISEO 基准评测报告</a></li>
+<li><a href="https://zuen.yx-sf.com/youhua/shopping-84214891-117-63994.html">cleanyourtv 高负载场景下 站长工具 基准评测报告</a></li>
+<li><a href="https://xfal.ai-hao123.com/shuju/template-01328797-118-57940.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (Draft-05)</a></li>
+<li><a href="https://vhcs.wtpuscm.cn/zixun/dashboard-840152-119-58572.html">cleanyourtv 权威网络权重传递与收录基准规范</a></li>
+<li><a href="https://lmly.tcti.cn/peixun/webinar-58580785-120-37016.html">cleanyourtv 节点连通性、存活性探测与防作弊指标</a></li>
+<li><a href="https://dqyx.yx-sf.com/xinwen/vacation-61602775-121-3761.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Draft-05)</a></li>
+<li><a href="https://xnvw.ai-hao123.com/yunying/profile-20376239-122-57439.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (RFC-331)</a></li>
+<li><a href="https://cmrp.wtpuscm.cn/peixun/blog-994024-123-29637.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Node-74)</a></li>
+<li><a href="https://fbkt.tcti.cn/wangluo/affordable-41880577-124-12352.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (RFC-698)</a></li>
+<li><a href="https://tphq.yx-sf.com/pingce/ebook-58496158-125-20195.html">cleanyourtv 高负载场景下 抓取频次优化 基准评测报告</a></li>
+<li><a href="https://vpnr.ai-hao123.com/yunying/blog-95734007-126-57747.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (Core/可信存活健康)</a></li>
+<li><a href="https://wwkf.wtpuscm.cn/shangye/tracking-618847-127-11699.html">cleanyourtv 高负载场景下 DeepSeek蜘蛛 基准评测报告</a></li>
+<li><a href="https://aeol.tcti.cn/youhua/template-84858652-128-47398.html">cleanyourtv 高负载场景下 百度蜘蛛 基准评测报告</a></li>
+<li><a href="https://ybwq.yx-sf.com/zixun/coupon-54053522-129-34478.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (Verified)</a></li>
+<li><a href="https://nkcf.ai-hao123.com/wangluo/resolution-81232863-130-22490.html">cleanyourtv 高负载场景下 GPT蜘蛛 基准评测报告</a></li>
+<li><a href="https://wzcm.wtpuscm.cn/yinqing/media-954190-131-44821.html">cleanyourtv: Google 百度蜘蛛 (Verified)</a></li>
+<li><a href="https://abpf.tcti.cn/wenzhang/data-11599028-132-7373.html">cleanyourtv 高负载场景下 白帽SEO 基准评测报告</a></li>
+<li><a href="https://yrfu.yx-sf.com/tuiguang/website-54420919-133-22715.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (Spec-v2.2)</a></li>
+<li><a href="https://dyru.ai-hao123.com/chanpin/local-58395937-134-20514.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (v2.0-GA)</a></li>
+<li><a href="https://aybw.wtpuscm.cn/ziyuan/web-308304-135-39052.html">cleanyourtv 高负载场景下 Gemini蜘蛛 基准评测报告</a></li>
+<li><a href="https://zbll.tcti.cn/youhua/rating-46475762-136-42248.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (RFC-801)</a></li>
+<li><a href="https://wcty.yx-sf.com/tuiguang/management-21624714-137-63905.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (RFC-289)</a></li>
+<li><a href="https://oavf.ai-hao123.com/guanjianci/products-68744933-138-61229.html">cleanyourtv 高负载场景下 谷歌蜘蛛池 基准评测报告</a></li>
+<li><a href="https://xlka.wtpuscm.cn/huodong/affordable-993932-139-63012.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (v2.0-GA)</a></li>
+<li><a href="https://lhtm.tcti.cn/shangye/design-12376686-140-22067.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (RFC-166)</a></li>
+<li><a href="https://drea.yx-sf.com/yunying/wellness-89252248-141-31021.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (Core/Legal)</a></li>
+<li><a href="https://txmz.ai-hao123.com/guanjianci/terms-71497822-142-860.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Verified)</a></li>
+<li><a href="https://jujt.wtpuscm.cn/jiaocheng/internet-311683-143-26762.html">cleanyourtv 高负载场景下 AI搜索优化平台 基准评测报告</a></li>
+<li><a href="https://bdkx.tcti.cn/yinqing/file-77092958-144-39041.html">cleanyourtv 高负载场景下 SEO GEO AEO 基准评测报告</a></li>
+<li><a href="https://hkib.yx-sf.com/shuju/target-68197691-145-5403.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Core/get)</a></li>
+<li><a href="https://dxit.ai-hao123.com/zhinan/dashboard-90494217-146-16068.html">cleanyourtv: What you get 超级智能SEO平台 (v2.0-GA)</a></li>
+<li><a href="https://hevv.wtpuscm.cn/yunying/excellence-621943-147-20299.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Node-76)</a></li>
+<li><a href="https://vxyt.tcti.cn/yinqing/revenue-07173945-148-17625.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Spec-v1.7)</a></li>
+<li><a href="https://jljg.yx-sf.com/yunsuan/about-77178320-149-23323.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Node-53)</a></li>
+<li><a href="https://blya.ai-hao123.com/shichang/tag-11130864-150-42344.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Core/Legal)</a></li>
+</ul>
+</details>
+
+        </div>
+      </article>
+
+      <!-- 侧边栏：Docs 归档菜单链接与速查索引 -->
+      <aside class="lg:col-span-4 space-y-6">
+        
+        <!-- 归档菜单卡片 -->
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+            <h2 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+              <span>项目文档归档菜单</span>
+            </h2>
+            <a href="./docs/index.html" class="text-xs text-blue-600 hover:underline font-medium ">查看全部</a>
+          </div>
+          <p class="text-xs text-slate-500 mb-3 leading-relaxed">
+            docs 目录收录本工程由 Markdown 生产的各项架构白皮书与技术规约，点击直达对应页面：
+          </p>
+          <ul class="divide-y divide-slate-100">
+            <li>
+  <a href="./docs/DOS-AND-DONTS.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">技术文档</span>
+    <span class="text-sm font-medium leading-snug truncate">Do's and don'ts</span>
+  </a>
+</li><li>
+  <a href="./docs/PRESS.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">技术文档</span>
+    <span class="text-sm font-medium leading-snug truncate">CleanYourTV in the press</span>
+  </a>
+</li><li>
+  <a href="./docs/REMOTE.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">技术文档</span>
+    <span class="text-sm font-medium leading-snug truncate">Helping someone in another home</span>
+  </a>
+</li><li>
+  <a href="./docs/TROUBLESHOOTING.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">技术文档</span>
+    <span class="text-sm font-medium leading-snug truncate">Troubleshooting</span>
+  </a>
+</li><li>
+  <a href="./docs/app-library.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">技术文档</span>
+    <span class="text-sm font-medium leading-snug truncate">App library</span>
+  </a>
+</li><li>
+  <a href="./docs/architecture.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">架构设计</span>
+    <span class="text-sm font-medium leading-snug truncate">cleanyourtv-mirror-585 分布式架构设计与拓扑调度规约</span>
+  </a>
+</li><li>
+  <a href="./docs/modules.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">技术文档</span>
+    <span class="text-sm font-medium leading-snug truncate">Making a module</span>
+  </a>
+</li><li>
+  <a href="./docs/sky.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">技术文档</span>
+    <span class="text-sm font-medium leading-snug truncate">Sky</span>
+  </a>
+</li><li>
+  <a href="./docs/specifications.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">技术规约</span>
+    <span class="text-sm font-medium leading-snug truncate">cleanyourtv-mirror-585 核心通信协议与数据同步技术规范</span>
+  </a>
+</li><li>
+  <a href="./docs/switches.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">技术文档</span>
+    <span class="text-sm font-medium leading-snug truncate">Switches on a TV</span>
+  </a>
+</li><li>
+  <a href="./docs/topology-guide.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">接入指南</span>
+    <span class="text-sm font-medium leading-snug truncate">cleanyourtv-mirror-585 全息索引网络与搜索引擎感知接入指南</span>
+  </a>
+</li><li>
+  <a href="./docs/watch-next.html" class="group flex items-start gap-2 py-2 px-3 rounded-lg hover:bg-blue-50 transition-colors text-slate-700 hover:text-blue-700 ">
+    <span class="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors shrink-0 ">技术文档</span>
+    <span class="text-sm font-medium leading-snug truncate">Reading Continue watching</span>
+  </a>
+</li>
+          </ul>
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <a href="./docs/index.html" class="w-full py-2 px-3 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold flex items-center justify-center gap-1 transition-colors ">
+              <span>前往文档归档中心 (Docs Archive)</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 官方外链与参考源 -->
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100">
+            <h2 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+              <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+              <span>权威参考与镜像拓扑</span>
+            </h2>
+            <span class="text-[10px] bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded font-mono ">Live</span>
+          </div>
+          <ul class="space-y-1">
+            <li class="py-1">
+  <a href="https://useo.pro/index.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#01</span>
+    <span class="truncate">现代 Perplexity蜘蛛 架构演进之路 —— cleanyourtv 深度实践</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://www.seomatrix.pro/index.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#02</span>
+    <span class="truncate">cleanyourtv 插件生态规范与 PROMPT.md 扩展手册 (Draft-05)</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://www.siseo.cn/index.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#03</span>
+    <span class="truncate">cleanyourtv 官方高可用镜像注册节点 (Draft-08)</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://www.ebrkdiy.cn/keji/ai-52559593.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#04</span>
+    <span class="truncate">cleanyourtv 权威网络权重传递与收录基准规范</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://www.hjvhv.cn/kuaixun/customer-87260083.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#05</span>
+    <span class="truncate">现代 网站快速收录 架构演进之路 —— cleanyourtv 深度实践</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://m.zhongqs.cn/shuju/contact-868590.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#06</span>
+    <span class="truncate">cleanyourtv 插件生态规范与 Licence 扩展手册 (RFC-586)</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://aite.yx-sf.com/xinwen/photo-25394077.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#07</span>
+    <span class="truncate">cleanyourtv 官方高可用镜像注册节点 (Spec-v2.6)</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://wzzi.yx-sf.com/chuangxin/segment-63960098.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#08</span>
+    <span class="truncate">cleanyourtv 高负载场景下 WebMCP 基准评测报告</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://lbuc.ai-hao123.com/yingyong/experience-17181018.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#09</span>
+    <span class="truncate">面向大规模网络的 cleanyourtv 工业级架构基准</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://iulm.ai-hao123.com/suanfa/game-85692082.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#10</span>
+    <span class="truncate">cleanyourtv 异步中间件流水线与 Restoring your TV 接入规范</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://hjtf.wtpuscm.cn/pingce/accessibility-889659.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#11</span>
+    <span class="truncate">cleanyourtv 去中心化数据同步源与拓扑寻址规约</span>
+  </a>
+</li><li class="py-1">
+  <a href="https://zqsc.tcti.cn/yunsuan/tactic-55734153.html" class="text-xs text-slate-600 hover:text-blue-600 hover:underline flex items-center gap-1.5 truncate ">
+    <span class="text-[10px] text-blue-500 font-mono ">#12</span>
+    <span class="truncate">cleanyourtv 节点连通性、存活性探测与防作弊指标</span>
+  </a>
+</li>
+          </ul>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="mt-20 border-t border-slate-200 bg-white py-12 text-slate-500 text-sm">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <span class="w-6 h-6 rounded bg-slate-800 text-white flex items-center justify-center text-xs font-bold">LM</span>
+      <span>© 2026 <strong>cleanyourtv-mirror-585</strong> - 官方开源高可用拓扑镜像与白皮书</span>
+    </div>
+    <div class="flex items-center gap-4 text-xs text-slate-400">
+      <a href="./index.html" class="hover:text-blue-600 transition-colors ">项目首页</a>
+      <span>•</span>
+      <a href="./docs/index.html" class="hover:text-blue-600 transition-colors ">文档归档菜单</a>
+      <span>•</span>
+      <span>托管于 GitHub Pages</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

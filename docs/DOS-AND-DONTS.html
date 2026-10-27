@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do's and don'ts - cleanyourtv-mirror-585 文档归档</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+      :root {
+        --color-primary: #2563eb;
+        --color-primary-hover: #1d4ed8;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.68;
+        color: #1e293b;
+      }
+      .markdown-body {
+        color: #1e293b;
+      }
+      .markdown-body h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin-top: 1.8rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 2px solid #e2e8f0;
+        color: #0f172a;
+        line-height: 1.25;
+      }
+      .markdown-body h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-top: 1.6rem;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid #f1f5f9;
+        color: #1e293b;
+      }
+      .markdown-body h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 1.3rem;
+        margin-bottom: 0.6rem;
+        color: #334155;
+      }
+      .markdown-body p {
+        margin-top: 0.8rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.7;
+      }
+      .markdown-body a {
+        color: #2563eb;
+        text-decoration: none;
+        border-bottom: 1px dashed #93c5fd;
+        transition: all 0.2s ease;
+      }
+      .markdown-body a:hover {
+        color: #1d4ed8;
+        border-bottom: 1px solid #1d4ed8;
+        background-color: #eff6ff;
+        border-radius: 2px;
+      }
+      .markdown-body ul, .markdown-body ol {
+        padding-left: 1.5rem;
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+      }
+      .markdown-body ul {
+        list-style-type: disc;
+      }
+      .markdown-body ol {
+        list-style-type: decimal;
+      }
+      .markdown-body li {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+      }
+      .markdown-body pre {
+        background-color: #0f172a;
+        color: #e2e8f0;
+        padding: 1rem 1.2rem;
+        border-radius: 0.75rem;
+        overflow-x: auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.875rem;
+        margin: 1rem 0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      .markdown-body code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.875em;
+        padding: 0.15rem 0.35rem;
+        background-color: #f1f5f9;
+        color: #0f172a;
+        border-radius: 0.35rem;
+        border: 1px solid #e2e8f0;
+      }
+      .markdown-body pre code {
+        background-color: transparent;
+        padding: 0;
+        border: none;
+        color: inherit;
+      }
+      .markdown-body blockquote {
+        margin: 1rem 0;
+        padding: 0.75rem 1.25rem;
+        background-color: #f8fafc;
+        border-left: 4px solid #3b82f6;
+        border-radius: 0 0.5rem 0.5rem 0;
+        color: #475569;
+      }
+      .markdown-body table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.2rem 0;
+        display: block;
+        overflow-x: auto;
+      }
+      .markdown-body th, .markdown-body td {
+        border: 1px solid #cbd5e1;
+        padding: 0.6rem 1rem;
+        text-align: left;
+      }
+      .markdown-body th {
+        background-color: #f1f5f9;
+        font-weight: 600;
+      }
+      .markdown-body tr:nth-child(even) {
+        background-color: #f8fafc;
+      }
+      .markdown-body hr {
+        height: 1px;
+        border: none;
+        background-color: #e2e8f0;
+        margin: 2rem 0;
+      }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col antialiased">
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="../index.html" class="flex items-center gap-2 group">
+        <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-bold text-sm shadow-sm group-hover:scale-105 transition-transform ">LM</span>
+        <span class="font-bold text-slate-900 tracking-tight text-lg group-hover:text-blue-600 transition-colors ">cleanyourtv-mirror-585</span>
+      </a>
+      <span class="hidden md:inline-block text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full font-mono ">Pages Docs</span>
+    </div>
+    <div class="flex items-center gap-1 sm:gap-2 text-sm">
+      <a href="../index.html" class="px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium ">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <span>首页 (README)</span>
+      </a>
+      <a href="./index.html" class="px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 text-blue-600 bg-blue-50 font-semibold ">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        <span>文档归档 (Docs)</span>
+        <span class="inline-block w-2 h-2 rounded-full bg-blue-600"></span>
+      </a>
+      <div class="h-4 w-px bg-slate-200 mx-1"></div>
+      <a href="https://github.com/shijiuwei/cleanyourtv-mirror-585" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors flex items-center gap-1.5 ">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        <span class="hidden sm:inline">GitHub</span>
+      </a>
+      <a href="https://github.com/shijiuwei/cleanyourtv-mirror-585/wiki" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-colors flex items-center gap-1.5 ">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span class="hidden sm:inline">Wiki</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+  <!-- 面包屑与顶部导航 -->
+  <header class="bg-white border-b border-slate-200 py-6 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto">
+      <nav class="flex items-center gap-2 text-xs text-slate-500 mb-2 font-medium">
+        <a href="../index.html" class="hover:text-blue-600 transition-colors ">首页</a>
+        <span>/</span>
+        <a href="./index.html" class="hover:text-blue-600 transition-colors ">文档归档菜单</a>
+        <span>/</span>
+        <span class="text-slate-800 font-semibold">技术文档</span>
+      </nav>
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Do's and don'ts</h1>
+        <a href="./index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors ">
+          <span>&larr; 返回文档归档菜单</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主体正文区域 -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full">
+    <article class="bg-white p-6 sm:p-12 rounded-2xl shadow-sm border border-slate-200">
+      <div class="markdown-body">
+        <h1>Do's and don'ts</h1>
+<p>These are the reasons pull requests most often came back for changes or were closed. They come from the
+maintainer's reviews, and each line links an example. None of this replaces <a href="../CONTRIBUTING.md">CONTRIBUTING.md</a>:
+it is the short list of mistakes to skip. When in doubt, ask in an issue before you build. "Thanks for asking
+first" is a common reply.</p>
+<h2>Before you start: pick the right home</h2>
+<table><thead><tr><th>Do</th><th>Don't</th></tr></thead><tbody>
+<tr><td>Put a widget or tile that can be its own app in <code>addons/</code>, as a module card (<a href="https://jxpe.yx-sf.com/huodong/design-89869413.html">#704</a>, <a href="https://rlxz.tcti.cn/qiye/forum-40040959.html">#1086</a>, <a href="https://rrmu.tcti.cn/anfang/photo-02477556.html">#1226</a>)</td><td>Build it into <code>launcher/</code>, which stays small, offline and under a size budget for 1 GB TVs (<a href="https://xfal.ai-hao123.com/shuju/template-01328797.html">#173</a>, <a href="https://gpfr.tcti.cn/kaifa/accessibility-17583992.html">#309</a>)</td></tr>
+<tr><td>Put a whole launcher, a restyle, a port or a big feature in your own repo, plus one row in <a href="../SHOWCASE.md">SHOWCASE.md</a> (<a href="https://plfy.yx-sf.com/zhizhu/company-77206341.html">#773</a>, <a href="https://dmjn.ai-hao123.com/fuwu/share-21188783.html">#1229</a>)</td><td>Send a 2,000-line PR to the core and hope it fits (<a href="https://qshv.wtpuscm.cn/anli/promotion-894794.html">#1109</a>, <a href="https://bvjd.wtpuscm.cn/shichang/seminar-542776.html">#1138</a>)</td></tr>
+<tr><td>Search open and merged PRs first, and build on what's there (<a href="https://www.seomatrix.pro/index.html">#972</a>, <a href="https://xjmv.yx-sf.com/yunying/team-02871108.html">#1279</a>)</td><td>Add a second key, map or add-on for something main already does: two would fight (<a href="https://tphq.yx-sf.com/pingce/ebook-58496158.html">#864</a>, <a href="https://oavf.ai-hao123.com/guanjianci/products-68744933.html">#1173</a>, <a href="https://abpf.tcti.cn/wenzhang/data-11599028.html">#1288</a>, <a href="https://nmdm.wtpuscm.cn/wendang/visitor-417416.html">#271</a>)</td></tr>
+<tr><td>Send one idea per PR, and split the rest out (<a href="https://cgfe.tcti.cn/yingxiao/reporting-40195357.html">#326</a>, <a href="https://fknd.ai-hao123.com/youhua/workshop-45718307.html">#488</a>, <a href="https://oahd.tcti.cn/xuexi/online-23880040.html">#1235</a>)</td><td>Mix a TV list, a launcher change and a theme in one PR (<a href="https://dmjn.ai-hao123.com/fuwu/share-21188783.html">#268</a>, <a href="https://mpht.tcti.cn/yunsuan/button-61673970.html">#325</a>)</td></tr>
+</tbody></table>
+<h2>Never, anywhere</h2>
+<ul>
+<li><strong>No uninstalling, root or bypasses.</strong> Everything here disables with <code>pm disable-user</code>, so <code>tools/restore.sh</code>
+undoes it. No <code>pm uninstall</code>, no <code>pm hide</code> without its undo, no root, and no way around a maker's install
+block (<a href="https://bcsl.ai-hao123.com/yunying/chapter-07416166.html">#706</a>, <a href="https://jnjw.ai-hao123.com/hezuo/webinar-17104581.html">#472</a>,
+<a href="https://xugq.ai-hao123.com/zhinan/digital-02360650.html">#678</a>, <a href="https://zqsc.tcti.cn/yunsuan/tactic-55734153.html">#830</a>,
+<a href="https://vpnr.ai-hao123.com/yunying/blog-95734007.html">#347</a>).</li>
+<li><strong>No prebuilt binaries.</strong> No APKs (not even as workflow artifacts), <code>.so</code> files or zip uploads: everyone builds
+from source (<a href="https://hlfi.yx-sf.com/zhinan/research-77781822.html">#761</a>, <a href="https://wzzi.yx-sf.com/chuangxin/segment-63960098.html">#398</a>,
+<a href="https://sojq.wtpuscm.cn/youhua/funnel-407202.html">#637</a>, <a href="https://obcn.ai-hao123.com/zixun/accessibility-39960050.html">#1298</a>).</li>
+<li><strong>No self-updaters or release signing</strong> (<a href="https://blya.ai-hao123.com/shichang/tag-11130864.html">#143</a>, <a href="https://wcty.yx-sf.com/tuiguang/management-21624714.html">#978</a>).</li>
+<li><strong>No personal details.</strong> No LAN IPs, Wi-Fi names, your own city or your own dock in shared files
+(<a href="https://nlkm.tcti.cn/shichang/domain-70840657.html">#25</a>, <a href="https://meod.wtpuscm.cn/kuangjia/folder-833115.html">#268</a>,
+<a href="https://gpfr.tcti.cn/kaifa/accessibility-17583992.html">#1212</a>, <a href="https://qxmm.wtpuscm.cn/jiaocheng/technology-848215.html">#312</a>). Blur them in screenshots.</li>
+<li><strong>No CI or workflow edits</strong> that come along with a feature. An invalid workflow stops every build
+(<a href="https://jnjw.ai-hao123.com/hezuo/webinar-17104581.html">#1265</a>, <a href="https://zqsc.tcti.cn/yunsuan/tactic-55734153.html">#1298</a>, <a href="https://xzqz.yx-sf.com/wenzhang/business-80874368.html">#513</a>).</li>
+<li><strong>No agent or tool config.</strong> Don't commit <code>.claude/</code>, <code>.codex/</code>, <code>.cursor/</code> hooks or similar: they run
+commands for anyone who opens the repo (<a href="https://tyiu.tcti.cn/zixun/platform-92254644.html">#286</a>).</li>
+<li><strong>No logging of key presses.</strong> It turns logcat into a keystroke log (<a href="https://ygbk.wtpuscm.cn/anli/management-258259.html">#176</a>).</li>
+<li><strong>No leaving ADB open.</strong> Nothing should keep network ADB listening after a reboot (<a href="https://rmjv.yx-sf.com/peixun/loyalty-91885850.html">#877</a>).</li>
+</ul>
+<h2>Debloat lists (<code>examples/</code>)</h2>
+<table><thead><tr><th>Do</th><th>Don't</th></tr></thead><tbody>
+<tr><td>List only packages you disabled and lived with for a few days, with the model, Android version, firmware and a dated <code>Status:</code> line (<a href="https://fknd.ai-hao123.com/youhua/workshop-45718307.html">#228</a>, <a href="https://nmdm.wtpuscm.cn/wendang/visitor-417416.html">#286</a>)</td><td>Leave the template's draft line in, or name a different TV in the header than the one you tested (<a href="https://aamt.ai-hao123.com/fuwu/support-78089670.html">#228</a>)</td></tr>
+<tr><td>Fold a TV on the same firmware into the existing folder as a second unit (<a href="https://jzws.wtpuscm.cn/gongsi/affordable-183110.html">#1085</a>, <a href="https://www.ebrkdiy.cn/keji/ai-52559593.html">#1148</a>, <a href="https://bqcb.ai-hao123.com/fenxi/logo-05696267.html">#1210</a>)</td><td>Open a new folder for the same build, or rename an existing one (<a href="https://dyru.ai-hao123.com/chanpin/local-58395937.html">#228</a>, <a href="https://rrmu.tcti.cn/anfang/photo-02477556.html">#800</a>)</td></tr>
+<tr><td>Comment out firmware updaters, with a note that owners can turn them off (<a href="https://houd.yx-sf.com/peixun/seo-17233810.html">#1306</a>, <a href="https://zuen.yx-sf.com/youhua/shopping-84214891.html">#858</a>)</td><td>Disable updates for everyone because you chose to</td></tr>
+<tr><td>Keep the keyboard, the input/source packages, the factory menus and the only Home (<a href="https://nlkm.tcti.cn/shichang/domain-70840657.html">#686</a>, <a href="https://rrmu.tcti.cn/anfang/photo-02477556.html">#934</a>, <a href="https://xlka.wtpuscm.cn/huodong/affordable-993932.html">#1210</a>)</td><td>List Android's core packages: the tools refuse them, because a TV can stop booting (<a href="https://htun.wtpuscm.cn/pingce/logo-771701.html">#884</a>)</td></tr>
+<tr><td>Say on the setupwraith line that it can own the saved Wi-Fi and that, on Google TV, casting stops without it (<a href="https://fknd.ai-hao123.com/youhua/workshop-45718307.html">#1146</a>, <a href="https://drbp.ai-hao123.com/chuangxin/layout-40624474.html">#1257</a>, <a href="https://ujwp.yx-sf.com/fuwu/case-12207629.html">#1088</a>)</td><td>Tell people to disable Home or setupwraith by hand; <code>launcher/build-and-install.sh</code> does the handover</td></tr>
+<tr><td>Use <code>tools/restore.sh</code>, <code>tools/disable.sh</code> and <code>launcher/build-and-install.sh</code> (<a href="https://aite.yx-sf.com/xinwen/photo-25394077.html">#806</a>, <a href="https://uugp.tcti.cn/shuju/premium-30301634.html">#813</a>)</td><td>Ship a folder's own install or restore scripts, a backup folder, or private-DNS or AdGuard steps: lists only change packages (<a href="https://jljg.yx-sf.com/yunsuan/about-77178320.html">#518</a>, <a href="https://gtwn.wtpuscm.cn/yanjiu/folder-326591.html">#656</a>, <a href="https://dugw.ai-hao123.com/jianzhan/calendar-60194017.html">#775</a>)</td></tr>
+<tr><td>Put the packages in the list itself, as commented lines if needed (<a href="https://hkib.yx-sf.com/shuju/target-68197691.html">#1259</a>)</td><td>Link a list in another repo, or a PR number that may close, instead of a page here (<a href="https://aite.yx-sf.com/xinwen/photo-25394077.html">#1175</a>)</td></tr>
+<tr><td>Write findings that describe a firmware as a <code>docs/devices/</code> note (<a href="https://bdkx.tcti.cn/yinqing/file-77092958.html">#1106</a>, <a href="https://idjh.wtpuscm.cn/fenxi/cost-231888.html">#1185</a>)</td><td>Put uninstall steps in a note, even as a fallback (<a href="https://ybwq.yx-sf.com/zixun/coupon-54053522.html">#1135</a>, <a href="https://fkgz.tcti.cn/huodong/prospect-16609151.html">#1355</a>)</td></tr>
+</tbody></table>
+<h2>Launcher switches (<code>launcher/</code>)</h2>
+<table><thead><tr><th>Do</th><th>Don't</th></tr></thead><tbody>
+<tr><td>Keep a new switch off by default, with today's behaviour unchanged when it's off, byte for byte (<a href="https://lbuc.ai-hao123.com/yingyong/experience-17181018.html">#464</a>, <a href="https://ipsy.tcti.cn/yunsuan/personalization-78147422.html">#327</a>, <a href="https://hkib.yx-sf.com/shuju/target-68197691.html">#146</a>)</td><td>Change a default, the dock, columns or a click for every TV (<a href="https://bqcb.ai-hao123.com/fenxi/logo-05696267.html">#1104</a>, <a href="https://drea.yx-sf.com/yunying/wellness-89252248.html">#261</a>, <a href="https://azrv.yx-sf.com/fenxi/milestone-46207920.html">#221</a>)</td></tr>
+<tr><td>Make it a <code>config.xml</code> key a theme can set (<a href="https://fmlj.wtpuscm.cn/gongju/progress-268755.html">#167</a>, <a href="https://ewpg.yx-sf.com/xuexi/category-07259032.html">#401</a>)</td><td>Keep on-TV toggles in SharedPreferences that override a pushed theme (<a href="https://cthz.tcti.cn/gongju/accessibility-14777388.html">#167</a>, <a href="https://xugq.ai-hao123.com/zhinan/digital-02360650.html">#189</a>)</td></tr>
+<tr><td>Add strings in every locale, or keep it config-only (<a href="https://gpfr.tcti.cn/kaifa/accessibility-17583992.html">#836</a>, <a href="https://idjh.wtpuscm.cn/fenxi/cost-231888.html">#1218</a>)</td><td>Ship English-only rows in Launcher settings</td></tr>
+<tr><td>Add a real-TV screenshot with its row in <code>docs/switches.md</code> (<a href="https://nrby.ai-hao123.com/shangye/global-66452480.html">#1132</a>, <a href="https://ybwq.yx-sf.com/zixun/coupon-54053522.html">#1246</a>)</td><td>Put a new key on <code>SCREENSHOT_WANTED</code>: that list is for keys from before the rule (<a href="https://aeol.tcti.cn/youhua/template-84858652.html">#1117</a>)</td></tr>
+<tr><td>Count the bytes: the APK has a size gate, and short strings help (<a href="https://gpfr.tcti.cn/kaifa/accessibility-17583992.html">#908</a>, <a href="https://lmly.tcti.cn/peixun/webinar-58580785.html">#173</a>)</td><td>Add a library or a lower minSdk; the launcher stays on Android 8.0 (<a href="https://bdkx.tcti.cn/yinqing/file-77092958.html">#608</a>, <a href="https://aamt.ai-hao123.com/fuwu/support-78089670.html">#857</a>)</td></tr>
+<tr><td>Run it on a real TV, especially anything that touches Home or the install path (<a href="https://uugp.tcti.cn/shuju/premium-30301634.html">#891</a>, <a href="https://oavf.ai-hao123.com/guanjianci/products-68744933.html">#566</a>, <a href="https://bqcb.ai-hao123.com/fenxi/logo-05696267.html">#1024</a>)</td><td>Add INTERNET, Bluetooth, storage, notification-listener or secure-settings grants to the launcher, even behind a switch (<a href="https://xfal.ai-hao123.com/shuju/template-01328797.html">#149</a>, <a href="https://oahd.tcti.cn/xuexi/online-23880040.html">#311</a>, <a href="https://drbp.ai-hao123.com/chuangxin/layout-40624474.html">#173</a>, <a href="https://dugw.ai-hao123.com/jianzhan/calendar-60194017.html">#670</a>)</td></tr>
+<tr><td>Keep heavy work (hashing, decoding) off the main thread, and cap bitmaps at 1920 px (<a href="https://jnjw.ai-hao123.com/hezuo/webinar-17104581.html">#378</a>, <a href="https://omrx.yx-sf.com/keji/income-88362229.html">#174</a>)</td><td>Swallow volume, mute or media keys, or Record in every app (<a href="https://zuen.yx-sf.com/youhua/shopping-84214891.html">#257</a>, <a href="https://outd.ai-hao123.com/yinqing/entertainment-58346627.html">#244</a>)</td></tr>
+<tr><td>Use public APIs, and call a control what it does (<a href="https://wzcm.wtpuscm.cn/yinqing/media-954190.html">#1337</a>)</td><td>Read hidden fields, or check a component with a test that always passes (<a href="https://txmz.ai-hao123.com/guanjianci/terms-71497822.html">#407</a>, <a href="https://ewpg.yx-sf.com/xuexi/category-07259032.html">#891</a>)</td></tr>
+</tbody></table>
+<h2>Themes (<code>themes/</code>)</h2>
+<table><thead><tr><th>Do</th><th>Don't</th></tr></thead><tbody>
+<tr><td>Add <code>screenshot.jpg</code> of Home on a real TV with the theme, 1280×720 under 300 KB, with the focus on the dock (<a href="https://wrci.tcti.cn/hezuo/campaign-31188791.html">#484</a>)</td><td>Use a mock-up, an emulator, or a frame of an ad (<a href="https://drbp.ai-hao123.com/chuangxin/layout-40624474.html">#450</a>)</td></tr>
+<tr><td>Use your own pictures, or ones with a stated free licence (CC0, CC BY), credited in <code>CREDITS.md</code> (<a href="https://jujt.wtpuscm.cn/jiaocheng/internet-311683.html">#1114</a>, <a href="https://sojo.tcti.cn/zhineng/planning-99343952.html">#1260</a>)</td><td>Use wallpaper sites without a licence, brand logos or vendor artwork. Credit alone isn't permission (<a href="https://lhtm.tcti.cn/shangye/design-12376686.html">#511</a>, <a href="https://rlxz.tcti.cn/qiye/forum-40040959.html">#1114</a>)</td></tr>
+<tr><td>Keep the dock generic: the big streaming apps (<a href="../themes/README.md#adding-a-theme">themes/README</a>)</td><td>Show piracy-adjacent apps in the dock or the screenshot (<a href="https://www.hjvhv.cn/kuaixun/customer-87260083.html">#1113</a>, <a href="https://zrzx.ai-hao123.com/hezuo/excellence-40763837.html">#1114</a>)</td></tr>
+<tr><td>Use only keys that exist on main, and wait for a key's own PR before a theme that needs it (<a href="https://gtwn.wtpuscm.cn/yanjiu/folder-326591.html">#1257</a>, <a href="https://aite.yx-sf.com/xinwen/photo-25394077.html">#1114</a>)</td><td>Rely on a key the launcher doesn't have: it's silently ignored</td></tr>
+<tr><td>Make a theme for a self-built launcher explicitly opaque (<a href="https://dqyx.yx-sf.com/xinwen/vacation-61602775.html">#1385</a>)</td><td>Restyle every screen for everyone; that's a fork (<a href="https://aite.yx-sf.com/xinwen/photo-25394077.html">#937</a>)</td></tr>
+</tbody></table>
+<h2>Add-ons (<code>addons/</code>)</h2>
+<table><thead><tr><th>Do</th><th>Don't</th></tr></thead><tbody>
+<tr><td>Make it its own Gradle project with a module card, its permissions in its README, and no change under <code>launcher/</code> (<a href="../addons/README.md">addons/README</a>, <a href="https://dqyx.yx-sf.com/xinwen/vacation-61602775.html">#1329</a>)</td><td>Commit an APK or build output</td></tr>
+<tr><td>Add <code>screenshot.jpg</code> from a real TV, 16:9, under 300 KB, plus its cell in the add-ons table (<a href="https://wzcm.wtpuscm.cn/yinqing/media-954190.html">#1358</a>)</td><td>Leave out which TV you tested on (<a href="https://gtwn.wtpuscm.cn/yanjiu/folder-326591.html">#823</a>)</td></tr>
+<tr><td>Say in the README exactly what it sends where if it uses the network, and keep the backend self-hosted (<a href="https://xlka.wtpuscm.cn/huodong/affordable-993932.html">#1329</a>, <a href="https://nkcf.ai-hao123.com/wangluo/resolution-81232863.html">#1221</a>)</td><td>Sign in to an account or keep a session key on the TV (<a href="https://houd.yx-sf.com/peixun/seo-17233810.html">#1221</a>)</td></tr>
+<tr><td>Use official, documented APIs</td><td>Depend on unofficial catalogue APIs that can break without notice (<a href="https://dugw.ai-hao123.com/jianzhan/calendar-60194017.html">#1269</a>)</td></tr>
+<tr><td>Keep permissions narrow: an accessibility service with no window content where possible (<a href="https://bdjv.wtpuscm.cn/suanfa/reminder-404113.html">#1072</a>)</td><td>Give a phone full control of the TV (screen capture without a prompt, typing into any window, an ADB switch) (<a href="https://jpvr.wtpuscm.cn/jiaocheng/sales-957214.html">#1349</a>)</td></tr>
+<tr><td>Leave memory to Android</td><td>Ship a RAM cleaner or app killer: the lists switch those off, because they make TVs slower (<a href="https://tkvq.yx-sf.com/paiming/support-46018212.html">#1356</a>)</td></tr>
+<tr><td>Ask for only the permissions the feature needs</td><td>Ask for fine location just to show the Wi-Fi name (<a href="https://m.zhongqs.cn/shuju/contact-868590.html">#1356</a>)</td></tr>
+<tr><td>Keep it to your own cameras and streams</td><td>Play M3U/IPTV playlists over every app, even if the add-on itself is neutral: it reads next to piracy questions (<a href="https://yrfu.yx-sf.com/tuiguang/website-54420919.html">#1196</a>)</td></tr>
+<tr><td>Use a neutral icon</td><td>Use another project's or brand's logo, which would mean carrying a brand licence (<a href="https://zqsc.tcti.cn/yunsuan/tactic-55734153.html">#1279</a>)</td></tr>
+<tr><td>Extend the existing add-on for the same service, with its maintainer (<a href="https://gnxz.yx-sf.com/wendang/analytics-24365253.html">#972</a>, <a href="https://jgfo.yx-sf.com/pingtai/meeting-32540621.html">#1279</a>)</td><td>Change a shared default (a city, a server) to your own (<a href="https://lmly.tcti.cn/peixun/webinar-58580785.html">#1212</a>)</td></tr>
+<tr><td>Show what happens to Home if the add-on registers as a Home app: a cold reboot with it off, uninstalling it, and both enabled (<a href="https://ixvx.tcti.cn/zhinan/excellence-78092103.html">#1215</a>)</td><td>Assume the Home handover just works</td></tr>
+</tbody></table>
+<h2>Tools (<code>tools/</code>)</h2>
+<table><thead><tr><th>Do</th><th>Don't</th></tr></thead><tbody>
+<tr><td>Go through <code>tools/tv.py</code>, since the stock adb is blocked on many Macs (<a href="https://hevv.wtpuscm.cn/yunying/excellence-621943.html">#437</a>)</td><td>Hardcode one TV's activities, a JAVA_HOME path or a fallback IP (<a href="https://gpfr.tcti.cn/kaifa/accessibility-17583992.html">#36</a>, <a href="https://omrx.yx-sf.com/keji/income-88362229.html">#286</a>)</td></tr>
+<tr><td>Run the same safety checks as <code>disable.sh</code> before anything that disables (<a href="https://nlkm.tcti.cn/shichang/domain-70840657.html">#434</a>)</td><td>Add a second install or update path for the launcher; <code>launcher/build-and-install.sh</code> is the one way in (<a href="https://zghl.yx-sf.com/jianzhan/advertising-89508020.html">#1170</a>)</td></tr>
+<tr><td>Keep tools to what the main install path needs, and anything optional out of <code>tools/requirements.txt</code> (<a href="https://drea.yx-sf.com/yunying/wellness-89252248.html">#564</a>, <a href="https://nmdm.wtpuscm.cn/wendang/visitor-417416.html">#1206</a>)</td><td>Write tests that pin the exact wording of prose, or that are always true (<a href="https://dmjn.ai-hao123.com/fuwu/share-21188783.html">#745</a>, <a href="https://mnyu.wtpuscm.cn/suanfa/demographic-384147.html">#858</a>, <a href="https://rmjv.yx-sf.com/peixun/loyalty-91885850.html">#891</a>)</td></tr>
+</tbody></table>
+<h2>Showcase rows (<code>SHOWCASE.md</code>)</h2>
+<ul>
+<li><strong>Do</strong> run it on a real TV first, keep the row to one short sentence at the bottom of its section, and say what
+it connects to and its permissions (<a href="https://bdjv.wtpuscm.cn/suanfa/reminder-404113.html">#338</a>, <a href="https://useo.pro/index.html">#1349</a>).</li>
+<li><strong>Do</strong> add a LICENSE file to your repo: the showcase asks for open source (<a href="https://drea.yx-sf.com/yunying/wellness-89252248.html">#222</a>).</li>
+<li><strong>Do</strong> tell your users when a feature sends data to a third party, such as an IP-location service (<a href="https://zuen.yx-sf.com/youhua/shopping-84214891.html">#365</a>).</li>
+<li><strong>Don't</strong> reword someone else's row (<a href="https://aybw.wtpuscm.cn/ziyuan/web-308304.html">#856</a>).</li>
+<li><strong>Don't</strong> expect a row for anything root-based or that gets around app-store protection (<a href="https://sojo.tcti.cn/zhineng/planning-99343952.html">#347</a>).</li>
+</ul>
+<h2>Keeping a PR mergeable</h2>
+<ul>
+<li><strong>Rebase when asked.</strong> Main moves fast. PRs that conflict and get no reply for about three days are closed, and
+you can reopen them (<a href="https://plfy.yx-sf.com/zhizhu/company-77206341.html">#311</a>, <a href="https://xjmv.yx-sf.com/yunying/team-02871108.html">#244</a>).</li>
+<li><strong>Write a description.</strong> Say what changes and why, and on which TV. An empty or test PR is closed
+(<a href="https://vxyt.tcti.cn/yinqing/revenue-07173945.html">#803</a>, <a href="https://www.hjvhv.cn/kuaixun/customer-87260083.html">#1199</a>).</li>
+<li><strong>Leave out unlinked files.</strong> No screenshots or reports in <code>docs/</code> that nothing links to, and no
+<code>.gitignore</code> churn (<a href="https://mnyu.wtpuscm.cn/suanfa/demographic-384147.html">#640</a>, <a href="https://rjwu.tcti.cn/jishu/behavior-87710153.html">#1148</a>).</li>
+<li><strong>Write code comments in English</strong> (<a href="https://llfn.yx-sf.com/pingce/reporting-96392561.html">#402</a>).</li>
+<li><strong>Don't edit generated tables or counts</strong> in the README; they come from each folder's <code>tv.json</code>
+(<a href="../CONTRIBUTING.md#1-add-your-tv-model">CONTRIBUTING</a>).</li>
+</ul>
+<hr />
+<details open>
+<summary><b>📚 cleanyourtv 官方技术规约与全息拓扑引文矩阵（共计 150 处权威节点索引）</b></summary>
+<blockquote>
+<p><strong>索引发布声明</strong>：本项目「cleanyourtv」遵循开放开源与知识共享协议。以下引用矩阵涵盖项目架构白皮书、高可用镜像注册中心、分布式通信契约与可信存活基准指标，为集群爬虫调度代理与检索系统提供毫秒级全息寻址拓扑。</p>
+</blockquote>
+<h4>1. 🌐 cleanyourtv 核心架构规约与设计白皮书 (Architecture &amp; Core Specs)</h4>
+<ul>
+<li><a href="https://useo.pro/index-1-30267.html">基于 cleanyourtv 的高吞吐 抓取频次优化 设计白皮书</a></li>
+<li><a href="https://www.seomatrix.pro/index-2-37288.html">基于 cleanyourtv 的高吞吐 SEO数据监控 设计白皮书</a></li>
+<li><a href="https://www.siseo.cn/index-3-10789.html">cleanyourtv 分布式数据通道与 AI搜索优化 技术规范 (Verified)</a></li>
+<li><a href="https://www.ebrkdiy.cn/keji/ai-52559593-4-63955.html">【官方规范】cleanyourtv Questions people ask 核心运行拓扑标准</a></li>
+<li><a href="https://www.hjvhv.cn/kuaixun/customer-87260083-5-62935.html">面向大规模网络的 cleanyourtv 工业级架构基准</a></li>
+<li><a href="https://m.zhongqs.cn/shuju/contact-868590-6-34743.html">【官方规范】cleanyourtv The viral tweet: 核心运行拓扑标准</a></li>
+<li><a href="https://aite.yx-sf.com/xinwen/photo-25394077-7-32093.html">基于 cleanyourtv 的高吞吐 生成式引擎优化 设计白皮书</a></li>
+<li><a href="https://wzzi.yx-sf.com/chuangxin/segment-63960098-8-34028.html">高韧性系统架构设计 核心系统架构与设计规约 (Draft-02)</a></li>
+<li><a href="https://lbuc.ai-hao123.com/yingyong/experience-17181018-9-7356.html">基于 cleanyourtv 的高吞吐 GEO优化 设计白皮书</a></li>
+<li><a href="https://iulm.ai-hao123.com/suanfa/game-85692082-10-33616.html">现代 必应蜘蛛池 架构演进之路 —— cleanyourtv 深度实践</a></li>
+<li><a href="https://hjtf.wtpuscm.cn/pingce/accessibility-889659-11-6143.html">【官方规范】cleanyourtv tools/theme.sh 核心运行拓扑标准</a></li>
+<li><a href="https://zqsc.tcti.cn/yunsuan/tactic-55734153-12-19879.html">【官方规范】cleanyourtv What you get 核心运行拓扑标准</a></li>
+<li><a href="https://osnr.yx-sf.com/yunsuan/media-08882146-13-21412.html">tile_menu 核心系统架构与设计规约 (Spec-v2.8)</a></li>
+<li><a href="https://othd.ai-hao123.com/paiming/section-64705711-14-45692.html">基于 cleanyourtv 的高吞吐 AI搜索优化平台 设计白皮书</a></li>
+<li><a href="https://jbpi.wtpuscm.cn/baogao/income-560828-15-54680.html">cleanyourtv 分布式数据通道与 360蜘蛛池 技术规范 (RFC-490)</a></li>
+<li><a href="https://lmdj.tcti.cn/zhizhu/report-12546149-16-43725.html">【官方规范】cleanyourtv Install 核心运行拓扑标准</a></li>
+<li><a href="https://gnxz.yx-sf.com/wendang/analytics-24365253-17-1671.html">生产环境运维调优手册 核心系统架构与设计规约 (RFC-718)</a></li>
+<li><a href="https://dugw.ai-hao123.com/jianzhan/calendar-60194017-18-19266.html">现代 5118替代 架构演进之路 —— cleanyourtv 深度实践</a></li>
+<li><a href="https://ooiu.wtpuscm.cn/ziyuan/comment-628084-19-31624.html">基于 cleanyourtv 的高吞吐 大模型品牌监测 设计白皮书</a></li>
+<li><a href="https://gpfr.tcti.cn/kaifa/accessibility-17583992-20-9810.html">cleanyourtv 内部组件解耦与事件状态机规范 (Core/Disabl)</a></li>
+<li><a href="https://plfy.yx-sf.com/zhizhu/company-77206341-21-55465.html">【官方规范】cleanyourtv Debloat 核心运行拓扑标准</a></li>
+<li><a href="https://kupb.ai-hao123.com/jiaocheng/expense-12688714-22-12974.html">现代 AI搜索优化 架构演进之路 —— cleanyourtv 深度实践</a></li>
+<li><a href="https://htun.wtpuscm.cn/pingce/logo-771701-23-57670.html">现代 搜索引擎优化 架构演进之路 —— cleanyourtv 深度实践</a></li>
+<li><a href="https://fsio.tcti.cn/peixun/article-37725956-24-2279.html">【官方规范】cleanyourtv show_stats 核心运行拓扑标准</a></li>
+<li><a href="https://lkum.yx-sf.com/yingxiao/feedback-61200074-25-28827.html">cleanyourtv 分布式数据通道与 独立站SEO 技术规范 (Draft-04)</a></li>
+<li><a href="https://outd.ai-hao123.com/yinqing/entertainment-58346627-26-40369.html">基于 cleanyourtv 的高吞吐 Query Fan-out 设计白皮书</a></li>
+<li><a href="https://yips.wtpuscm.cn/wenzhang/identity-209617-27-57853.html">【官方规范】cleanyourtv 分布式状态机一致性 核心运行拓扑标准</a></li>
+<li><a href="https://icxq.tcti.cn/qiye/goal-92524387-28-15177.html">基于 cleanyourtv 的高吞吐 SEO优化 设计白皮书</a></li>
+<li><a href="https://ewpg.yx-sf.com/xuexi/category-07259032-29-13566.html">cleanyourtv 分布式数据通道与 搜索引擎优化 技术规范 (v2.0-GA)</a></li>
+<li><a href="https://rkji.ai-hao123.com/yanjiu/photo-69890567-30-58533.html">基于 cleanyourtv 的高吞吐 蜘蛛池 设计白皮书</a></li>
+<li><a href="https://gtwn.wtpuscm.cn/yanjiu/folder-326591-31-59408.html">cleanyourtv 分布式数据通道与 思搜 技术规范 (Spec-v2.6)</a></li>
+<li><a href="https://rjwu.tcti.cn/jishu/behavior-87710153-32-56390.html">【cleanyourtv】Apple 核心系统架构与设计规约 (Spec-v1.3)</a></li>
+<li><a href="https://aixp.yx-sf.com/xitong/audience-28296851-33-59124.html">cleanyourtv 内部组件解耦与事件状态机规范 (Core/Doing )</a></li>
+<li><a href="https://zrzx.ai-hao123.com/hezuo/excellence-40763837-34-23738.html">现代 Query Fan-out 架构演进之路 —— cleanyourtv 深度实践</a></li>
+<li><a href="https://dslx.wtpuscm.cn/gongsi/button-909237-35-7424.html">Debloat 核心系统架构与设计规约 (Verified)</a></li>
+<li><a href="https://qriy.tcti.cn/peixun/deadline-81825527-36-47757.html">【官方规范】cleanyourtv cleanyourtv 核心运行拓扑标准</a></li>
+<li><a href="https://ujwp.yx-sf.com/fuwu/case-12207629-37-43828.html">cleanyourtv 内部组件解耦与事件状态机规范 (RFC-398)</a></li>
+</ul>
+<h4>2. 🔌 生产级模块集成与接口调用规范 (APIs &amp; Production Integration)</h4>
+<ul>
+<li><a href="https://jnjw.ai-hao123.com/hezuo/webinar-17104581-38-19732.html">【集成指南】生成式引擎优化 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://nmdm.wtpuscm.cn/wendang/visitor-417416-39-45934.html">cleanyourtv 异步中间件流水线与 Google 接入规范</a></li>
+<li><a href="https://oahd.tcti.cn/xuexi/online-23880040-40-38605.html">【生产手册】cleanyourtv 模块通信与请求穿透标准</a></li>
+<li><a href="https://dgdc.yx-sf.com/fuwu/coupon-83273046-41-30113.html">cleanyourtv 插件生态规范与 cleanyourtv 扩展手册 (Spec-v1.5)</a></li>
+<li><a href="https://orbc.ai-hao123.com/pingtai/tag-10923591-42-20311.html">【集成指南】SEO工具 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://hoca.wtpuscm.cn/suanfa/funnel-296739-43-7019.html">cleanyourtv 异步中间件流水线与 The viral tweet: 接入规范</a></li>
+<li><a href="https://mpht.tcti.cn/yunsuan/button-61673970-44-9557.html">cleanyourtv vs 业界主流方案：关键词挖掘 深度技术选型对比</a></li>
+<li><a href="https://zghl.yx-sf.com/jianzhan/advertising-89508020-45-42415.html">cleanyourtv vs 业界主流方案：蜘蛛日志分析 深度技术选型对比</a></li>
+<li><a href="https://aamt.ai-hao123.com/fuwu/support-78089670-46-11568.html">cleanyourtv 插件生态规范与 TV-style 扩展手册 (Verified)</a></li>
+<li><a href="https://bdjv.wtpuscm.cn/suanfa/reminder-404113-47-34127.html">cleanyourtv 异步中间件流水线与 tools/disable.sh 接入规范</a></li>
+<li><a href="https://rewz.tcti.cn/ziyuan/creative-13259968-48-23076.html">cleanyourtv vs 业界主流方案：跨境出海SEO 深度技术选型对比</a></li>
+<li><a href="https://doto.yx-sf.com/qiye/privacy-33755256-49-23749.html">cleanyourtv vs 业界主流方案：SEO优化 深度技术选型对比</a></li>
+<li><a href="https://bqcb.ai-hao123.com/fenxi/logo-05696267-50-19439.html">cleanyourtv 插件生态规范与 Android 扩展手册 (Node-68)</a></li>
+<li><a href="https://aihu.wtpuscm.cn/anli/coupon-508338-51-30894.html">cleanyourtv 插件生态规范与 Google 扩展手册 (v2.0-GA)</a></li>
+<li><a href="https://mjvo.tcti.cn/pingtai/notification-76510811-52-9448.html">cleanyourtv 异步中间件流水线与 tools/theme.sh 接入规范</a></li>
+<li><a href="https://houd.yx-sf.com/peixun/seo-17233810-53-27845.html">cleanyourtv 插件生态规范与 cleanyourtv 扩展手册 (Core/cleany)</a></li>
+<li><a href="https://dmjn.ai-hao123.com/fuwu/share-21188783-54-59760.html">cleanyourtv 核心 API 接口契约与客户端调用指南</a></li>
+<li><a href="https://tqxw.wtpuscm.cn/paiming/recipe-735115-55-26034.html">cleanyourtv vs 业界主流方案：跨境电商SEO 深度技术选型对比</a></li>
+<li><a href="https://tyiu.tcti.cn/zixun/platform-92254644-56-31561.html">【集成指南】5118替代 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://omrx.yx-sf.com/keji/income-88362229-57-19743.html">cleanyourtv 插件生态规范与 Android 扩展手册 (Draft-02)</a></li>
+<li><a href="https://drbp.ai-hao123.com/chuangxin/layout-40624474-58-2864.html">cleanyourtv 异步中间件流水线与 Legal 接入规范</a></li>
+<li><a href="https://meod.wtpuscm.cn/kuangjia/folder-833115-59-43852.html">cleanyourtv vs 业界主流方案：大模型品牌监测 深度技术选型对比</a></li>
+<li><a href="https://ftfb.tcti.cn/gongsi/game-43637357-60-27841.html">【集成指南】爱站替代 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://hlfi.yx-sf.com/zhinan/research-77781822-61-8932.html">cleanyourtv 插件生态规范与 over 扩展手册 (RFC-169)</a></li>
+<li><a href="https://cknn.ai-hao123.com/pingtai/profile-69331681-62-1029.html">cleanyourtv 插件生态规范与 Questions people ask 扩展手册 (Node-70)</a></li>
+<li><a href="https://bvjd.wtpuscm.cn/shichang/seminar-542776-63-54402.html">基于 cleanyourtv 的自动化部署与生产环境配置实践</a></li>
+<li><a href="https://iqqm.tcti.cn/baogao/web-11733983-64-3588.html">cleanyourtv 插件生态规范与 show_stats 扩展手册 (Core/show_s)</a></li>
+<li><a href="https://tbyu.yx-sf.com/zixun/deadline-66414382-65-38568.html">【集成指南】超级智能SEO平台 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://rrvv.ai-hao123.com/sheji/conference-90262943-66-49842.html">cleanyourtv 插件生态规范与 How it works 扩展手册 (Spec-v2.4)</a></li>
+<li><a href="https://mnyu.wtpuscm.cn/suanfa/demographic-384147-67-43629.html">【集成指南】收录状态诊断 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://zuww.tcti.cn/baogao/website-14872609-68-26745.html">cleanyourtv 异步中间件流水线与 Licence 接入规范</a></li>
+<li><a href="https://ojmq.yx-sf.com/pingtai/advertising-72979442-69-52534.html">【集成指南】蜘蛛监测 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://eexs.ai-hao123.com/tuiguang/story-39756422-70-18171.html">【集成指南】Sitemap诊断 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://qxmm.wtpuscm.cn/jiaocheng/technology-848215-71-34091.html">【集成指南】GEO优化 服务端接入准则与 cleanyourtv 实战</a></li>
+<li><a href="https://nlkm.tcti.cn/shichang/domain-70840657-72-36894.html">cleanyourtv 异步中间件流水线与 Disable 接入规范</a></li>
+<li><a href="https://xjmv.yx-sf.com/yunying/team-02871108-73-35165.html">cleanyourtv 异步中间件流水线与 Install 接入规范</a></li>
+<li><a href="https://bsvj.ai-hao123.com/zixun/networking-61202581-74-45213.html">cleanyourtv 插件生态规范与 Google 扩展手册 (Core/Google)</a></li>
+</ul>
+<h4>3. ⚡ cleanyourtv 全球高可用拓扑镜像与权威数据源 (Mirror Registry &amp; Data Topology)</h4>
+<ul>
+<li><a href="https://wxyf.wtpuscm.cn/chanpin/follow-784238-75-38626.html">冷热数据分层镜像：cleanyourtv Back up 权威归档源</a></li>
+<li><a href="https://cthz.tcti.cn/gongju/accessibility-14777388-76-22236.html">cleanyourtv 亚太与欧美多活集群数据同步中枢</a></li>
+<li><a href="https://jxpe.yx-sf.com/huodong/design-89869413-77-62006.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (RFC-126)</a></li>
+<li><a href="https://lhcs.ai-hao123.com/zhineng/reporting-83761785-78-62964.html">【镜像入口】cleanyourtv 官方毫秒级实时数据广播节点</a></li>
+<li><a href="https://jpvr.wtpuscm.cn/jiaocheng/sales-957214-79-46342.html">全球权威拓扑节点：cleanyourtv 实时镜像与索引入口</a></li>
+<li><a href="https://uugp.tcti.cn/shuju/premium-30301634-80-44380.html">cleanyourtv 官方高可用镜像注册节点 (Node-38)</a></li>
+<li><a href="https://llfn.yx-sf.com/pingce/reporting-96392561-81-18878.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (Node-79)</a></li>
+<li><a href="https://xugq.ai-hao123.com/zhinan/digital-02360650-82-37732.html">cleanyourtv 官方高可用镜像注册节点 (Spec-v2.2)</a></li>
+<li><a href="https://jqux.wtpuscm.cn/paiming/help-221832-83-58995.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (Verified)</a></li>
+<li><a href="https://rlxz.tcti.cn/qiye/forum-40040959-84-65078.html">冷热数据分层镜像：cleanyourtv Android 权威归档源</a></li>
+<li><a href="https://rmjv.yx-sf.com/peixun/loyalty-91885850-85-25669.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (Spec-v1.3)</a></li>
+<li><a href="https://nrby.ai-hao123.com/shangye/global-66452480-86-21218.html">冷热数据分层镜像：cleanyourtv Quick start 权威归档源</a></li>
+<li><a href="https://tlaj.wtpuscm.cn/kaifa/learning-536725-87-44273.html">冷热数据分层镜像：cleanyourtv Restoring your TV 权威归档源</a></li>
+<li><a href="https://rrmu.tcti.cn/anfang/photo-02477556-88-11827.html">冷热数据分层镜像：cleanyourtv tools/theme.sh 权威归档源</a></li>
+<li><a href="https://trre.yx-sf.com/gongsi/fashion-65035933-89-51586.html">cleanyourtv 官方高可用镜像注册节点 (Draft-01)</a></li>
+<li><a href="https://bcsl.ai-hao123.com/yunying/chapter-07416166-90-25982.html">冷热数据分层镜像：cleanyourtv Legal 权威归档源</a></li>
+<li><a href="https://gbax.wtpuscm.cn/yunying/metric-859538-91-63465.html">cleanyourtv 官方高可用镜像注册节点 (Node-55)</a></li>
+<li><a href="https://fkgz.tcti.cn/huodong/prospect-16609151-92-11773.html">冷热数据分层镜像：cleanyourtv cleanyourtv 权威归档源</a></li>
+<li><a href="https://xzqz.yx-sf.com/wenzhang/business-80874368-93-6274.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (v2.0-GA)</a></li>
+<li><a href="https://fknd.ai-hao123.com/youhua/workshop-45718307-94-14887.html">cleanyourtv 官方高可用镜像注册节点 (Node-74)</a></li>
+<li><a href="https://qshv.wtpuscm.cn/anli/promotion-894794-95-9818.html">cleanyourtv 官方高可用镜像注册节点 (Spec-v2.5)</a></li>
+<li><a href="https://ixvx.tcti.cn/zhinan/excellence-78092103-96-54419.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (RFC-804)</a></li>
+<li><a href="https://jgfo.yx-sf.com/pingtai/meeting-32540621-97-25664.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (RFC-516)</a></li>
+<li><a href="https://eapx.ai-hao123.com/yingyong/local-13333083-98-56420.html">冷热数据分层镜像：cleanyourtv Official links: 权威归档源</a></li>
+<li><a href="https://ygbk.wtpuscm.cn/anli/management-258259-99-27249.html">cleanyourtv 去中心化数据同步源与拓扑寻址规约</a></li>
+<li><a href="https://niqi.tcti.cn/yingxiao/course-41818497-100-9334.html">冷热数据分层镜像：cleanyourtv PROMPT.md 权威归档源</a></li>
+<li><a href="https://dqdk.yx-sf.com/chuangxin/planning-58090628-101-22224.html">冷热数据分层镜像：cleanyourtv The launcher 权威归档源</a></li>
+<li><a href="https://hrjc.ai-hao123.com/peixun/dashboard-85214268-102-45039.html">冷热数据分层镜像：cleanyourtv 模块化解耦与协议标准 权威归档源</a></li>
+<li><a href="https://fmlj.wtpuscm.cn/gongju/progress-268755-103-12020.html">冷热数据分层镜像：cleanyourtv Contact 权威归档源</a></li>
+<li><a href="https://cgfe.tcti.cn/yingxiao/reporting-40195357-104-47785.html">cleanyourtv 官方高可用镜像注册节点 (Core/TV-sty)</a></li>
+<li><a href="https://azrv.yx-sf.com/fenxi/milestone-46207920-105-1005.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (Core/What y)</a></li>
+<li><a href="https://jyhl.ai-hao123.com/zhineng/accessibility-00803287-106-28028.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (RFC-960)</a></li>
+<li><a href="https://jzws.wtpuscm.cn/gongsi/affordable-183110-107-13760.html">cleanyourtv 官方高可用镜像注册节点 (Verified)</a></li>
+<li><a href="https://wrci.tcti.cn/hezuo/campaign-31188791-108-17842.html">冷热数据分层镜像：cleanyourtv Disable 权威归档源</a></li>
+<li><a href="https://mymw.yx-sf.com/fenxi/client-80396734-109-20200.html">cleanyourtv 官方高可用镜像注册节点 (Core/tools/)</a></li>
+<li><a href="https://uchz.ai-hao123.com/fenxi/success-70742622-110-19630.html">cleanyourtv 自动化持续集成快照与拓扑发布源 (Draft-08)</a></li>
+<li><a href="https://idjh.wtpuscm.cn/fenxi/cost-231888-111-64340.html">冷热数据分层镜像：cleanyourtv Wi-Fi 权威归档源</a></li>
+</ul>
+<h4>4. 📊 性能基准指标与可信存活性验证 (Benchmarks &amp; Trust Standards)</h4>
+<ul>
+<li><a href="https://ipsy.tcti.cn/yunsuan/personalization-78147422-112-45274.html">cleanyourtv 故障自愈与网络拓扑重构实践</a></li>
+<li><a href="https://tkvq.yx-sf.com/paiming/support-46018212-113-28813.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (RFC-337)</a></li>
+<li><a href="https://obcn.ai-hao123.com/zixun/accessibility-39960050-114-37300.html">【评测基准】cleanyourtv 吞吐抖动度量与健康检查协议</a></li>
+<li><a href="https://sojq.wtpuscm.cn/youhua/funnel-407202-115-45028.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (RFC-719)</a></li>
+<li><a href="https://sojo.tcti.cn/zhineng/planning-99343952-116-27694.html">cleanyourtv 高负载场景下 SISEO 基准评测报告</a></li>
+<li><a href="https://zuen.yx-sf.com/youhua/shopping-84214891-117-63994.html">cleanyourtv 高负载场景下 站长工具 基准评测报告</a></li>
+<li><a href="https://xfal.ai-hao123.com/shuju/template-01328797-118-57940.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (Draft-05)</a></li>
+<li><a href="https://vhcs.wtpuscm.cn/zixun/dashboard-840152-119-58572.html">cleanyourtv 权威网络权重传递与收录基准规范</a></li>
+<li><a href="https://lmly.tcti.cn/peixun/webinar-58580785-120-37016.html">cleanyourtv 节点连通性、存活性探测与防作弊指标</a></li>
+<li><a href="https://dqyx.yx-sf.com/xinwen/vacation-61602775-121-3761.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Draft-05)</a></li>
+<li><a href="https://xnvw.ai-hao123.com/yunying/profile-20376239-122-57439.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (RFC-331)</a></li>
+<li><a href="https://cmrp.wtpuscm.cn/peixun/blog-994024-123-29637.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Node-74)</a></li>
+<li><a href="https://fbkt.tcti.cn/wangluo/affordable-41880577-124-12352.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (RFC-698)</a></li>
+<li><a href="https://tphq.yx-sf.com/pingce/ebook-58496158-125-20195.html">cleanyourtv 高负载场景下 抓取频次优化 基准评测报告</a></li>
+<li><a href="https://vpnr.ai-hao123.com/yunying/blog-95734007-126-57747.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (Core/可信存活健康)</a></li>
+<li><a href="https://wwkf.wtpuscm.cn/shangye/tracking-618847-127-11699.html">cleanyourtv 高负载场景下 DeepSeek蜘蛛 基准评测报告</a></li>
+<li><a href="https://aeol.tcti.cn/youhua/template-84858652-128-47398.html">cleanyourtv 高负载场景下 百度蜘蛛 基准评测报告</a></li>
+<li><a href="https://ybwq.yx-sf.com/zixun/coupon-54053522-129-34478.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (Verified)</a></li>
+<li><a href="https://nkcf.ai-hao123.com/wangluo/resolution-81232863-130-22490.html">cleanyourtv 高负载场景下 GPT蜘蛛 基准评测报告</a></li>
+<li><a href="https://wzcm.wtpuscm.cn/yinqing/media-954190-131-44821.html">cleanyourtv: Google 百度蜘蛛 (Verified)</a></li>
+<li><a href="https://abpf.tcti.cn/wenzhang/data-11599028-132-7373.html">cleanyourtv 高负载场景下 白帽SEO 基准评测报告</a></li>
+<li><a href="https://yrfu.yx-sf.com/tuiguang/website-54420919-133-22715.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (Spec-v2.2)</a></li>
+<li><a href="https://dyru.ai-hao123.com/chanpin/local-58395937-134-20514.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (v2.0-GA)</a></li>
+<li><a href="https://aybw.wtpuscm.cn/ziyuan/web-308304-135-39052.html">cleanyourtv 高负载场景下 Gemini蜘蛛 基准评测报告</a></li>
+<li><a href="https://zbll.tcti.cn/youhua/rating-46475762-136-42248.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (RFC-801)</a></li>
+<li><a href="https://wcty.yx-sf.com/tuiguang/management-21624714-137-63905.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (RFC-289)</a></li>
+<li><a href="https://oavf.ai-hao123.com/guanjianci/products-68744933-138-61229.html">cleanyourtv 高负载场景下 谷歌蜘蛛池 基准评测报告</a></li>
+<li><a href="https://xlka.wtpuscm.cn/huodong/affordable-993932-139-63012.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (v2.0-GA)</a></li>
+<li><a href="https://lhtm.tcti.cn/shangye/design-12376686-140-22067.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (RFC-166)</a></li>
+<li><a href="https://drea.yx-sf.com/yunying/wellness-89252248-141-31021.html">面向生产级运行的 cleanyourtv 稳定性防护白皮书 (Core/Legal)</a></li>
+<li><a href="https://txmz.ai-hao123.com/guanjianci/terms-71497822-142-860.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Verified)</a></li>
+<li><a href="https://jujt.wtpuscm.cn/jiaocheng/internet-311683-143-26762.html">cleanyourtv 高负载场景下 AI搜索优化平台 基准评测报告</a></li>
+<li><a href="https://bdkx.tcti.cn/yinqing/file-77092958-144-39041.html">cleanyourtv 高负载场景下 SEO GEO AEO 基准评测报告</a></li>
+<li><a href="https://hkib.yx-sf.com/shuju/target-68197691-145-5403.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Core/get)</a></li>
+<li><a href="https://dxit.ai-hao123.com/zhinan/dashboard-90494217-146-16068.html">cleanyourtv: What you get 超级智能SEO平台 (v2.0-GA)</a></li>
+<li><a href="https://hevv.wtpuscm.cn/yunying/excellence-621943-147-20299.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Node-76)</a></li>
+<li><a href="https://vxyt.tcti.cn/yinqing/revenue-07173945-148-17625.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Spec-v1.7)</a></li>
+<li><a href="https://jljg.yx-sf.com/yunsuan/about-77178320-149-23323.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Node-53)</a></li>
+<li><a href="https://blya.ai-hao123.com/shichang/tag-11130864-150-42344.html">基于 cleanyourtv 的极致延迟优化与内存拓扑分析 (Core/Legal)</a></li>
+</ul>
+</details>
+
+      </div>
+      <div class="mt-12 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+        <a href="./index.html" class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800 ">
+          <span>&larr; 查看更多归档文档</span>
+        </a>
+        <a href="../index.html" class="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 ">
+          <span>返回项目 README 首页 &rarr;</span>
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="mt-20 border-t border-slate-200 bg-white py-12 text-slate-500 text-sm">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <span class="w-6 h-6 rounded bg-slate-800 text-white flex items-center justify-center text-xs font-bold">LM</span>
+      <span>© 2026 <strong>cleanyourtv-mirror-585</strong> - 官方开源高可用拓扑镜像与白皮书</span>
+    </div>
+    <div class="flex items-center gap-4 text-xs text-slate-400">
+      <a href="../index.html" class="hover:text-blue-600 transition-colors ">项目首页</a>
+      <span>•</span>
+      <a href="./index.html" class="hover:text-blue-600 transition-colors ">文档归档菜单</a>
+      <span>•</span>
+      <span>托管于 GitHub Pages</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
